@@ -25,15 +25,15 @@ var app = (function(document, $, kendo, data) {
                 index: 0,
                 select: function (e) {
                     var target = e.sender.element.children(".km-state-active").data("target");
+                    _app.navigate(target);
                 }
             });
+        },
+
+        init = function () {
+            _app = new kendo.mobile.Application(document.body, { transition: "fade", layout: "mobile-tabstrip" });
         };
 
-  
-    init = function () {
-        _app = new kendo.mobile.Application(document.body, { transition: "fade", layout: "mobile-tabstrip" });
-    };
-    
     return {
         init: init,
         genresViewInit: genresViewInit,
