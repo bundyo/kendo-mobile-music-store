@@ -64,11 +64,33 @@ var data = (function (kendo, config) {
                     total: _wcfSchemaTotal
                 }
             });
+        },
+        
+        albumsFor = function (filter) {
+            return new kendo.data.DataSource({
+                type: "odata",
+                serverSorting: true,
+                serverPaging: true,
+                pageSize: 20,
+                transport: {
+                    read: config.albumsUrl,
+                },
+                filter: filter,
+                sort: {
+                    field: "Title",
+                    dir: "asc"
+                },
+                schema: {
+                    data: _wcfSchemaData,
+                    total: _wcfSchemaTotal
+                }
+            });
         };
 
     return {
         genresList: genresList,
         artistsList: artistsList,
-        artistsStartingWith: artistsStartingWith
+        artistsStartingWith: artistsStartingWith,
+        albumsFor: albumsFor
     }
 })(kendo, config);

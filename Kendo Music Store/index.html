@@ -50,6 +50,10 @@
                 <li>Z<ul></ul></li>
             </ul>
         </div>
+        
+        <div data-role="view" id="albums-view" data-layout="base-layout" data-before-show="app.albumsViewBeforeShow">
+            <ul class="listview"></ul>
+        </div>
 
         <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search">
             Search
@@ -107,16 +111,21 @@
         <!-- Templates -->
 
         <script id="genre-list-template" type="text/x-kendo-template">
-            <a href="##">#=Name#</a>
+            <a href="##albums-view?field=GenreId&operator=eq&value=#=GenreId#">#=Name#</a>
         </script>
 
         <script id="artist-list-template" type="text/x-kendo-template">
             <a href="##">#=Name#</a>
         </script>
 
+        <script id="album-list-template" type="text/x-kendo-template">
+            <a href="##">#=Title#</a>
+        </script>
+
 
         <!-- Scripts -->
 
+        <script src="scripts/URI.min.js"></script>
         <script src="scripts/config.js"></script>
         <script src="scripts/data.js"></script>
         <script src="scripts/app.js"></script>

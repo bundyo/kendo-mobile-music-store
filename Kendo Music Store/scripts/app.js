@@ -1,6 +1,28 @@
-var app = (function(document, $, kendo, data) {
+var app = (function(document, $, uri, kendo, data) {
     var _app,
         _genreAlbumSelector,
+        
+        _parseQueryStringToObject = function () {
+            var args = document.location.hash.split('?')[1].split('&');
+            var argsParsed = {};
+            
+            for (i=0; i < args.length; i++)
+            {
+                arg = unescape(args[i]);
+            
+                if (arg.indexOf('=') == -1)
+                {
+                    argsParsed[arg.trim()] = true;
+                }
+                else
+                {
+                    kvp = arg.split('=');
+                    var val = kvp[1].trim();
+                    argsParsed[kvp[0].trim()] = isNaN(val) ? val : parseFloat(val);
+                }
+            }
+            return argsParsed;
+        },
 
         genresViewInit = function (e) {
             $(e.sender.element).find(".listview").kendoMobileListView({
@@ -13,6 +35,16 @@ var app = (function(document, $, kendo, data) {
         
         genresViewBeforeShow = function (e) {
             _genreAlbumSelector.data("kendoMobileButtonGroup").select(0);
+        },
+        
+        albumsViewBeforeShow = function (e) {
+            var filter = _parseQueryStringToObject();
+            $(e.sender.element).find(".listview").kendoMobileListView({
+                dataSource: data.albumsFor(filter),
+                template: $("#album-list-template").text(),
+                style: "inset",
+                endlessScroll: true
+            });
         },
         
         artistsViewInit = function (e) {
@@ -54,10 +86,11 @@ var app = (function(document, $, kendo, data) {
         init: init,
         genresViewInit: genresViewInit,
         genresViewBeforeShow: genresViewBeforeShow,
+        albumsViewBeforeShow: albumsViewBeforeShow,
         artistsViewInit: artistsViewInit,
         homeLayoutInit: homeLayoutInit,
         accountViewInit: accountViewInit
     };
-})(document, jQuery, kendo, data);
+})(document, jQuery, URI, kendo, data);
 
 app.init();
