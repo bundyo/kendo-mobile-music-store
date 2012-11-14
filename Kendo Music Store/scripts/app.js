@@ -11,12 +11,20 @@ var app = (function(document, $, kendo, data) {
         },
         
         artistsViewInit = function (e) {
-            $(e.sender.element).find(".listview").kendoMobileListView({
-                dataSource: data.artistsList,
-                template: $("#artist-list-template").text(),
-                style: "inset",
-                endlessScroll: true,
-                fixedHeaders: true
+            $("#panelbar").kendoPanelBar({
+                expandMode: "single",
+                expand: function (e) {
+                    var filter = $(e.item).text();
+                    if($(e.item).find(".listview").length > 0) {
+                        return;
+                    }
+                    $(e.item).children("ul").append("<li><ul class='listview'></ul></li>");
+                    $(e.item).find(".listview").kendoMobileListView({
+                        dataSource: data.artistsStartingWith(filter),
+                        template: "#=Name#",
+                        style: "inset"
+                    });
+                }
             });
         },
         
@@ -29,6 +37,9 @@ var app = (function(document, $, kendo, data) {
                 }
             });
         },
+        
+        accountViewInit = function (e) {
+        },
 
         init = function () {
             _app = new kendo.mobile.Application(document.body, { transition: "fade", layout: "mobile-tabstrip" });
@@ -38,7 +49,8 @@ var app = (function(document, $, kendo, data) {
         init: init,
         genresViewInit: genresViewInit,
         artistsViewInit: artistsViewInit,
-        homeLayoutInit: homeLayoutInit
+        homeLayoutInit: homeLayoutInit,
+        accountViewInit: accountViewInit
     };
 })(document, jQuery, kendo, data);
 

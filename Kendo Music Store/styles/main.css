@@ -39,3 +39,22 @@ body
     height: 100%;
     width: 100%;
 }
+
+/* Panel Bar */
+
+.k-panelbar {
+    list-style: none;
+    padding: 0;
+    
+}
+
+.k-panelbar .k-panel {
+    padding: 0;   
+}
+
+.k-panelbar .k-header {
+    display: block;
+    width: 98%;
+    padding: 1%;
+    font-size: 2em;
+}
