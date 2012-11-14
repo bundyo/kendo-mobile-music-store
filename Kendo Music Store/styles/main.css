@@ -5,9 +5,6 @@ body
 
 .buttonArea,
 .footerText,
-#geoLocationContainer,
-#helloWorldInput,
-#helloWorldText
 {
     text-align: center;
 }
@@ -23,4 +20,22 @@ body
     background:white;
     color: black;
     padding: 7px;
+}
+
+/* Main View */
+
+.km-header .km-buttongroup
+{
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #EEE;
+}
+
+.km-buttongroup a
+{
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    width: 100%;
 }
