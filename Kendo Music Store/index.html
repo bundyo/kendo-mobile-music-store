@@ -21,37 +21,37 @@
         </div>
 
         <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-init="app.artistsViewInit">
-            <ul id="panelbar">
-                <li>A<ul></ul></li>
-                <li>B<ul></ul></li>
-                <li>C<ul></ul></li>
-                <li>D<ul></ul></li>
-                <li>E<ul></ul></li>
-                <li>F<ul></ul></li>
-                <li>G<ul></ul></li>
-                <li>H<ul></ul></li>
-                <li>I<ul></ul></li>
-                <li>J<ul></ul></li>
-                <li>K<ul></ul></li>
-                <li>L<ul></ul></li>
-                <li>M<ul></ul></li>
-                <li>N<ul></ul></li>
-                <li>O<ul></ul></li>
-                <li>P<ul></ul></li>
-                <li>Q<ul></ul></li>
-                <li>R<ul></ul></li>
-                <li>S<ul></ul></li>
-                <li>T<ul></ul></li>
-                <li>U<ul></ul></li>
-                <li>V<ul></ul></li>
-                <li>W<ul></ul></li>
-                <li>X<ul></ul></li>
-                <li>Y<ul></ul></li>
-                <li>Z<ul></ul></li>
+            <ul class="accordian km-insetcontent">
+                <li><span>A</span><ul></ul></li>
+                <li><span>B</span><ul></ul></li>
+                <li><span>C</span><ul></ul></li>
+                <li><span>D</span><ul></ul></li>
+                <li><span>E</span><ul></ul></li>
+                <li><span>F</span><ul></ul></li>
+                <li><span>G</span><ul></ul></li>
+                <li><span>H</span><ul></ul></li>
+                <li><span>I</span><ul></ul></li>
+                <li><span>J</span><ul></ul></li>
+                <li><span>K</span><ul></ul></li>
+                <li><span>L</span><ul></ul></li>
+                <li><span>M</span><ul></ul></li>
+                <li><span>N</span><ul></ul></li>
+                <li><span>O</span><ul></ul></li>
+                <li><span>P</span><ul></ul></li>
+                <li><span>Q</span><ul></ul></li>
+                <li><span>R</span><ul></ul></li>
+                <li><span>S</span><ul></ul></li>
+                <li><span>T</span><ul></ul></li>
+                <li><span>U</span><ul></ul></li>
+                <li><span>V</span><ul></ul></li>
+                <li><span>W</span><ul></ul></li>
+                <li><span>X</span><ul></ul></li>
+                <li><span>Y</span><ul></ul></li>
+                <li><span>Z</span><ul></ul></li>
             </ul>
         </div>
         
-        <div data-role="view" id="albums-view" data-layout="base-layout" data-before-show="app.albumsViewBeforeShow">
+        <div data-role="view" id="albums-view" data-layout="albums-layout" data-show="app.albumsViewBeforeShow" data-transition="slide:left">
             <ul class="listview"></ul>
         </div>
 
@@ -107,25 +107,45 @@
             </div>
         </div>
 
+        <div data-role="layout" data-id="albums-layout">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="#genres-view" data-icon="home">Home</a>
+                    <a href="#search-view" data-icon="search">Search</a>
+                    <a href="#cart-view" data-icon="cart">Cart</a>
+                    <a href="#account-view" data-icon="contacts">Account</a>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Templates -->
 
         <script id="genre-list-template" type="text/x-kendo-template">
-            <a href="##albums-view?field=GenreId&operator=eq&value=#=GenreId#">#=Name#</a>
+            <a href="##albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name)#">#=Name#</a>
         </script>
 
         <script id="artist-list-template" type="text/x-kendo-template">
-            <a href="##">#=Name#</a>
+            <a href="##albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name)#">#=Name#</a>
         </script>
 
         <script id="album-list-template" type="text/x-kendo-template">
-            <a href="##">#=Title#</a>
+            <img class="album-art" src="#=config.serverUrl + AlbumArtUrl#" />
+            <div class="album-title">#=Title#</div>
+            <div class="album-artist">#=Artist.Name#</div>
+            <div class="album-price">#=kendo.toString(Price, "c")#</div>
         </script>
 
 
         <!-- Scripts -->
 
-        <script src="scripts/URI.min.js"></script>
         <script src="scripts/config.js"></script>
         <script src="scripts/data.js"></script>
         <script src="scripts/app.js"></script>

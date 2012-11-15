@@ -71,9 +71,10 @@ var data = (function (kendo, config) {
                 type: "odata",
                 serverSorting: true,
                 serverPaging: true,
+                serverFiltering: true,
                 pageSize: 20,
                 transport: {
-                    read: config.albumsUrl,
+                    read: config.albumsUrl + "?$expand=Artist",
                 },
                 filter: filter,
                 sort: {

@@ -42,6 +42,34 @@ body
 
 /* Panel Bar */
 
+.accordian
+{
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+}
+
+.accordian li
+{
+    cursor: pointer;
+    padding: 6px;
+    margin: 0;
+    display: block;
+    width: 98%;
+    padding: 1%;
+}
+
+.accordian li span
+{
+    font-size: 2em;
+}
+
+.accordian li ul
+{
+    margin: 0;
+    padding: 0;
+}
+
 .k-panelbar {
     list-style: none;
     padding: 0;
@@ -57,4 +85,23 @@ body
     width: 98%;
     padding: 1%;
     font-size: 2em;
+}
+
+.album-art
+{
+    float: left;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.album-artist
+{
+    font-size: .8em;
+}
+
+.album-price
+{
+    font-size: .7em;
+    font-style: italic;
 }
