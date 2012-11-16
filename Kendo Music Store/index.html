@@ -16,39 +16,12 @@
 
         <!-- Views -->
 
-        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-init="app.genresViewInit" data-before-show="app.genresViewBeforeShow">
+        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-init="app.genresViewInit" data-show="app.genresViewBeforeShow">
             <ul class="listview"></ul>
         </div>
 
-        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-init="app.artistsViewInit">
-            <ul class="accordian km-insetcontent">
-                <li><span>A</span><ul></ul></li>
-                <li><span>B</span><ul></ul></li>
-                <li><span>C</span><ul></ul></li>
-                <li><span>D</span><ul></ul></li>
-                <li><span>E</span><ul></ul></li>
-                <li><span>F</span><ul></ul></li>
-                <li><span>G</span><ul></ul></li>
-                <li><span>H</span><ul></ul></li>
-                <li><span>I</span><ul></ul></li>
-                <li><span>J</span><ul></ul></li>
-                <li><span>K</span><ul></ul></li>
-                <li><span>L</span><ul></ul></li>
-                <li><span>M</span><ul></ul></li>
-                <li><span>N</span><ul></ul></li>
-                <li><span>O</span><ul></ul></li>
-                <li><span>P</span><ul></ul></li>
-                <li><span>Q</span><ul></ul></li>
-                <li><span>R</span><ul></ul></li>
-                <li><span>S</span><ul></ul></li>
-                <li><span>T</span><ul></ul></li>
-                <li><span>U</span><ul></ul></li>
-                <li><span>V</span><ul></ul></li>
-                <li><span>W</span><ul></ul></li>
-                <li><span>X</span><ul></ul></li>
-                <li><span>Y</span><ul></ul></li>
-                <li><span>Z</span><ul></ul></li>
-            </ul>
+        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-init="app.artistsViewInit" data-before-show="app.artistsViewBeforeShow" data-show="app.artistsViewShow" class="km-insetcontent">
+            <ul class="listview"></ul>
         </div>
         
         <div data-role="view" id="albums-view" data-layout="albums-layout" data-show="app.albumsViewBeforeShow" data-transition="slide:left">
@@ -78,6 +51,10 @@
                     <li data-target="#genres-view">Genres</li>
                     <li data-target="#artists-view">Artists</li>
                 </ul>
+                <div id="artists-filter-header" data-role="scroller" style="display: none;">
+                    <ul class="buttongroup km-buttongroup">
+                    </ul>
+                </div>
             </header>
 
             <div data-role="footer">
@@ -141,6 +118,10 @@
             <div class="album-title">#=Title#</div>
             <div class="album-artist">#=Artist.Name#</div>
             <div class="album-price">#=kendo.toString(Price, "c")#</div>
+        </script>
+        
+        <script id="artist-filter-template" type="text/x-kendo-template">
+            <a href="##artists-view?value=#=data#" id="#=data#">#=data#</a>
         </script>
 
 

@@ -1,10 +1,19 @@
 var app = (function(document, $, kendo, data) {
     var _app,
         _genreAlbumSelector,
+        _selectedArtistFilter = "A",
         
         _parseQueryStringToObject = function () {
-            var args = document.location.hash.split('?')[1].split('&');
             var argsParsed = {};
+            var hash = document.location.hash;
+            if(!hash || hash.length == 0) {
+                return argsParsed;
+            }
+            var args = document.location.hash.split('?');
+            if(args.length < 2) {
+                return argsParsed;
+            }
+            args = args[1].split('&');
             
             for (i=0; i < args.length; i++)
             {
@@ -43,6 +52,7 @@ var app = (function(document, $, kendo, data) {
         
         genresViewBeforeShow = function (e) {
             _genreAlbumSelector.data("kendoMobileButtonGroup").select(0);
+            $("#artists-filter-header").hide();
         },
         
         albumsViewBeforeShow = function (e) {
@@ -64,25 +74,35 @@ var app = (function(document, $, kendo, data) {
         },
         
         artistsViewInit = function (e) {
-            var expanders = e.sender.element.find(".accordian").children("li");
             var scroller = e.sender.element.data("kendoMobileView").scroller;
-            expanders.click(function (e) {
-                expanders.find("ul").hide();
-                var filter = $(e.delegateTarget).text();
-                if($(e.delegateTarget).find(".listview").length == 0) {
-                    $(e.delegateTarget).children("ul").append("<li><ul class='listview'></ul></li>");
-                    $(e.delegateTarget).find(".listview").kendoMobileListView({
-                        dataSource: data.artistsStartingWith(filter),
-                        template: $("#artist-list-template").text(),
-                        style: "inset"
-                    });
-                }
-                var scrollToY= scroller.movable.y - $(e.delegateTarget).position().top;
-                scroller.movable.element.css("-webkit-transition", "-webkit-transform 3s;");
-                //scroller.movable.element.attr("style", "-webkit-transform: translate3d(0px, " + scrollToY + "px, 0); -webkit-transition: -webkit-transform 3s;" );
-                scroller.movable.moveTo({x: 0, y: scrollToY});
-                //scroller.movable.element.css("-webkit-transition", "");
-                $(e.delegateTarget).find("ul").slideDown();
+            var listView = e.sender.element.find(".listview");
+        },
+        
+        artistsViewBeforeShow = function (e) {
+            $("#artists-filter-header").show();
+            var query = _parseQueryStringToObject();
+            if(query.value) {
+                _selectedArtistFilter = query.value;
+                e.sender.element.data("kendoMobileView").scroller.reset();
+                e.preventDefault();
+                _app.navigate("#artists-view");
+            }
+        },
+        
+        artistsViewShow = function (e) {
+            e.sender.element.find(".buttongroup.km-buttongroup .km-button").removeClass("km-state-active");
+            e.sender.element.find("#" + _selectedArtistFilter).parents(".km-button").addClass("km-state-active");
+            
+            var oldList = $(e.sender.element).find(".listview").data("kendoMobileListView");
+            if (oldList) {
+                oldList.destroy();
+            }
+            
+            $(e.sender.element).find(".listview").kendoMobileListView({
+                dataSource: data.artistsStartingWith(_selectedArtistFilter),
+                template: $("#artist-list-template").text(),
+                style: "inset",
+                endlessScroll: true
             });
         },
         
@@ -94,6 +114,15 @@ var app = (function(document, $, kendo, data) {
                     _app.navigate(target);
                 }
             });
+            
+            var letterButtonGroup = e.sender.element.find(".buttongroup").kendoMobileListView({
+                dataSource: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split(""),
+                template: $("#artist-filter-template").text()
+            });
+            letterButtonGroup.removeClass("km-listview km-list").addClass("km-buttongroup");
+            var buttonGroupItems = letterButtonGroup.children("li");
+            buttonGroupItems.addClass("km-button");
+            buttonGroupItems.find("a").removeClass("km-listview-link");
         },
         
         accountViewInit = function (e) {
@@ -110,7 +139,9 @@ var app = (function(document, $, kendo, data) {
         albumsViewBeforeShow: albumsViewBeforeShow,
         artistsViewInit: artistsViewInit,
         homeLayoutInit: homeLayoutInit,
-        accountViewInit: accountViewInit
+        accountViewInit: accountViewInit,
+        artistsViewBeforeShow: artistsViewBeforeShow,
+        artistsViewShow: artistsViewShow
     };
 })(document, jQuery, kendo, data);
 

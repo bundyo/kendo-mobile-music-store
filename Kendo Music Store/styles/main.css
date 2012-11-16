@@ -24,7 +24,7 @@ body
 
 /* Main View */
 
-.km-header .km-buttongroup
+.km-header .select-group.km-buttongroup
 {
     width: 100%;
     text-align: center;
@@ -38,53 +38,6 @@ body
     display: block;
     height: 100%;
     width: 100%;
-}
-
-/* Panel Bar */
-
-.accordian
-{
-    list-style: none;
-    padding: 6px;
-    margin: 0;
-}
-
-.accordian li
-{
-    cursor: pointer;
-    padding: 6px;
-    margin: 0;
-    display: block;
-    width: 98%;
-    padding: 1%;
-}
-
-.accordian li span
-{
-    font-size: 2em;
-}
-
-.accordian li ul
-{
-    margin: 0;
-    padding: 0;
-}
-
-.k-panelbar {
-    list-style: none;
-    padding: 0;
-    
-}
-
-.k-panelbar .k-panel {
-    padding: 0;   
-}
-
-.k-panelbar .k-header {
-    display: block;
-    width: 98%;
-    padding: 1%;
-    font-size: 2em;
 }
 
 .album-art
@@ -104,4 +57,23 @@ body
 {
     font-size: .7em;
     font-style: italic;
+}
+
+.km-android #artists-view .km-buttongroup
+{
+    padding: 4px;
+}
+
+#artists-view .buttongroup.km-buttongroup .km-button
+{
+    padding: 0;
+}
+
+#artists-view .buttongroup.km-buttongroup .km-button a
+{
+    height: 1em;
+    padding: .12em .2em .28em .2em;
+    font-size: 2em;
+    width: 1em;
+    text-align: center;
 }
