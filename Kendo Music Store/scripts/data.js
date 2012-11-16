@@ -72,7 +72,7 @@ var data = (function (kendo, config) {
         });
     };
 
-    var foo = function (term) { return {logic: "or", filters: [{field: "Title", operator: "contains", value: term}, {field: "Artist.Name", operator: "contains", value: term}] }; };
+    //function (term) { return {logic: "or", filters: [{field: "Title", operator: "contains", value: term}, {field: "Artist.Name", operator: "contains", value: term}] }; };
     
     return {
         genresList: genresList,

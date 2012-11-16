@@ -127,6 +127,10 @@ var app = (function(document, $, kendo, data) {
         
         accountViewInit = function (e) {
         },
+        
+        searchViewInit = function (initEvent) {
+            $(initEvent.sender.element).find("input").change(function (changeEvent) { debugger; });
+        },
 
         init = function () {
             _app = new kendo.mobile.Application(document.body, { transition: "fade", layout: "mobile-tabstrip" });
@@ -141,7 +145,8 @@ var app = (function(document, $, kendo, data) {
         homeLayoutInit: homeLayoutInit,
         accountViewInit: accountViewInit,
         artistsViewBeforeShow: artistsViewBeforeShow,
-        artistsViewShow: artistsViewShow
+        artistsViewShow: artistsViewShow,
+        searchViewInit: searchViewInit
     };
 })(document, jQuery, kendo, data);
 

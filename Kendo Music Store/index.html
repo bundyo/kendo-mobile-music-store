@@ -28,8 +28,9 @@
             <ul class="listview"></ul>
         </div>
 
-        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search">
-            Search
+        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-init="app.searchViewInit">
+            <input type=text />
+            <ul class="listview"></ul>
         </div>
 
         <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart">
@@ -37,6 +38,7 @@
         </div>
 
         <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account" data-init="app.accountViewInit">
+            Account
         </div>
 
 
@@ -117,7 +119,7 @@
             <img class="album-art" src="#=config.serverUrl + data.AlbumArtUrl#" />
             <div class="album-title">#=Title#</div>
             <div class="album-artist">#=Artist.Name#</div>
-            <div class="album-price">#=kendo.toString(Price, "c")#</div>
+            <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
         </script>
         
         <script id="artist-filter-template" type="text/x-kendo-template">
