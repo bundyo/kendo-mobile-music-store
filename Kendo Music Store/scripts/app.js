@@ -99,7 +99,7 @@ var app = (function(document, $, kendo, data) {
             }
             
             $(e.sender.element).find(".listview").kendoMobileListView({
-                dataSource: data.artistsStartingWith(_selectedArtistFilter),
+                dataSource: data.artistsStartingWith(_selectedArtistFilter.toString()),
                 template: $("#artist-list-template").text(),
                 style: "inset",
                 endlessScroll: true
@@ -116,7 +116,7 @@ var app = (function(document, $, kendo, data) {
             });
             
             var letterButtonGroup = e.sender.element.find(".buttongroup").kendoMobileListView({
-                dataSource: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split(""),
+                dataSource: ("ABCDEFGIJKLMNOPQRSTUVWYZ6א").split(""),
                 template: $("#artist-filter-template").text()
             });
             letterButtonGroup.removeClass("km-listview km-list").addClass("km-buttongroup");

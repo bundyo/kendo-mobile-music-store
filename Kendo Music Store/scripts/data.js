@@ -74,7 +74,6 @@ var data = (function (kendo, config) {
 
     return {
         genresList: genresList,
-        artistsList: artistsList,
         artistsStartingWith: artistsStartingWith,
         albumsFor: albumsFor
     }
