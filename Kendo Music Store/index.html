@@ -114,7 +114,7 @@
         </script>
 
         <script id="album-list-template" type="text/x-kendo-template">
-            <img class="album-art" src="#=config.serverUrl + AlbumArtUrl#" />
+            <img class="album-art" src="#=config.serverUrl + data.AlbumArtUrl#" />
             <div class="album-title">#=Title#</div>
             <div class="album-artist">#=Artist.Name#</div>
             <div class="album-price">#=kendo.toString(Price, "c")#</div>

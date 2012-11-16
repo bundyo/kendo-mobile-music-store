@@ -25,28 +25,12 @@ var data = (function (kendo, config) {
             }
         }),
         
-        artistsList = new kendo.data.DataSource({
-            type: "odata",
-            serverPaging: true,
-            serverSorting: true,
-            pageSize: 20,
-            transport: {
-                read: config.artistsUrl,
-            },
-            sort: {
-                field: "Name",
-                dir: "asc"
-            },
-            schema: {
-                data: _wcfSchemaData,
-                total: _wcfSchemaTotal
-            }
-        }),
-        
+       
         artistsStartingWith = function (filter) {
             return new kendo.data.DataSource({
                 type: "odata",
                 serverSorting: true,
+                serverFiltering: true,
                 transport: {
                     read: config.artistsUrl,
                 },

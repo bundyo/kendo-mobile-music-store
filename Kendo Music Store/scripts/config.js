@@ -3,7 +3,7 @@ var config = (function () {
         serviceUrl = serverUrl + "/Services/MusicStore.svc";
     
     return {
-        baseUrl: serverUrl,
+        serverUrl: serverUrl,
         serviceUrl: serviceUrl,
         genresUrl: serviceUrl + "/Genres",
         artistsUrl: serviceUrl + "/Artists",
