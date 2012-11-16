@@ -14,19 +14,19 @@
 
         <!-- Views -->
 
-        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-init="app.genresViewInit" data-show="app.genresViewBeforeShow">
+        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-init="app.genresView.init" data-show="app.genresView.beforeShow">
             <ul class="listview"></ul>
         </div>
 
-        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-init="app.artistsViewInit" data-before-show="app.artistsViewBeforeShow" data-show="app.artistsViewShow" class="km-insetcontent">
+        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-init="app.artistsView.init" data-before-show="app.artistsView.beforeShow" data-show="app.artistsView.show" class="km-insetcontent">
             <ul class="listview"></ul>
         </div>
         
-        <div data-role="view" id="albums-view" data-layout="albums-layout" data-show="app.albumsViewBeforeShow" data-transition="slide:left">
+        <div data-role="view" id="albums-view" data-layout="albums-layout" data-show="app.albumsView.show" data-transition="slide:left">
             <ul class="listview"></ul>
         </div>
 
-        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-init="app.searchViewInit">
+        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-init="app.searchView.init">
             <input type=text />
             <ul class="listview"></ul>
         </div>
@@ -35,14 +35,14 @@
             Cart
         </div>
 
-        <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account" data-init="app.accountViewInit">
+        <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account">
             Account
         </div>
 
 
         <!-- Layouts -->
 
-        <div data-role="layout" data-id="home-layout" data-init="app.homeLayoutInit">
+        <div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
