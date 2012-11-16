@@ -6,8 +6,6 @@
         <script src="cordova.js"></script>
         <script src="kendo/js/jquery.min.js"></script>
         <script src="kendo/js/kendo.mobile.min.js"></script>
-        <script src="kendo/js/kendo.panelbar.js"></script>
-        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
         <link href="styles/main.css" rel="stylesheet" />
@@ -116,7 +114,7 @@
         </script>
 
         <script id="album-list-template" type="text/x-kendo-template">
-            <img class="album-art" src="#=config.serverUrl + data.AlbumArtUrl#" />
+            <img class="album-art" src="#=app.config.serverUrl + data.AlbumArtUrl#" />
             <div class="album-title">#=Title#</div>
             <div class="album-artist">#=Artist.Name#</div>
             <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
@@ -129,8 +127,6 @@
 
         <!-- Scripts -->
 
-        <script src="scripts/config.js"></script>
-        <script src="scripts/data.js"></script>
-        <script src="scripts/app.js"></script>
+        <script data-main="scripts/main.js" src="scripts/require.js"></script>
     </body>
 </html>

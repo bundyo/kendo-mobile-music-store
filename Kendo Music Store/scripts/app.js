@@ -1,4 +1,4 @@
-var app = (function(document, $, kendo, data) {
+define(["jQuery", "kendo", "data", "config"], function($, kendo, data, config) {
     var _app,
         _genreAlbumSelector,
         _selectedArtistFilter = "A",
@@ -137,6 +137,7 @@ var app = (function(document, $, kendo, data) {
         };
 
     return {
+        config: config,
         init: init,
         genresViewInit: genresViewInit,
         genresViewBeforeShow: genresViewBeforeShow,
@@ -148,6 +149,4 @@ var app = (function(document, $, kendo, data) {
         artistsViewShow: artistsViewShow,
         searchViewInit: searchViewInit
     };
-})(document, jQuery, kendo, data);
-
-app.init();
+});

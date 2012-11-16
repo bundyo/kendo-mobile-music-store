@@ -1,4 +1,4 @@
-var config = (function () {
+define([], function () {
     var serverUrl = "http://kmstest.apphb.com",
         serviceUrl = serverUrl + "/Services/MusicStore.svc";
     
@@ -9,4 +9,4 @@ var config = (function () {
         artistsUrl: serviceUrl + "/Artists",
         albumsUrl: serviceUrl + "/Albums"
     };
-})();
+});

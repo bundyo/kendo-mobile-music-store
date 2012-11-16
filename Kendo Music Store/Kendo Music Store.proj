@@ -60,8 +60,11 @@
     <Content Include="kendo\styles\images\android-sprite.png" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
     <Content Include="scripts\app.js" />
+    <Content Include="scripts\artistsView.js" />
     <Content Include="scripts\config.js" />
     <Content Include="scripts\data.js" />
+    <Content Include="scripts\main.js" />
+    <Content Include="scripts\require.js" />
     <Content Include="styles\main.css" />
     <Content Include="cordova.ios.js">
       <Platform>iOS</Platform>

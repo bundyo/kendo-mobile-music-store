@@ -1,4 +1,4 @@
-var data = (function (kendo, config) {
+define(["kendo", "config"], function (kendo, config) {
     var _wcfSchemaData = function (data) {
         return data.value;
     };
@@ -79,4 +79,4 @@ var data = (function (kendo, config) {
         artistsStartingWith: artistsStartingWith,
         albumsFor: albumsFor
     }
-})(kendo, config);
+});
