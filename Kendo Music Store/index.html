@@ -49,6 +49,10 @@
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
+                <div>Swipe to Remove Item.</div>
+                <div>
+                    TOTAL: <span class="total" data-bind="text: formattedTotal"></span>
+                </div>
             </header>
 
             <ul class="listview"></ul>
@@ -116,7 +120,7 @@
 
         <script id="album-list-template" type="text/x-kendo-template">
             <img class="album-art" src="#=app.config.serverUrl + data.AlbumArtUrl#" />
-            <a class="album-cart" data-role="button" data-click="app.cart.add" data-album-id="#=AlbumId#" #if(app.cart.find(data.AlbumId)) {#style="background-color: ##F60;"#}#><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></a>
+            <a class="album-cart" data-role="button" data-click="app.albumsView.onAddToCart"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></a>
             <div class="album-title">#=Title#</div>
             <div class="album-artist">#=Artist.Name#</div>
             <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
@@ -127,11 +131,10 @@
         </script>
 
         <script id="cart-list-template" type="text/x-kendo-template">
-            <img class="album-art" src="#=app.config.serverUrl + data.AlbumArtUrl#" />
-                <a class="album-cart" data-role="button" data-click="app.cart.add" data-album-id="#=AlbumId#"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></a>
-            <div class="album-title">#=Title#</div>
-            <div class="album-artist">#=Artist.Name#</div>
-            <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
+            <img class="album-art" src="#=app.config.serverUrl + data.album.AlbumArtUrl#" />
+            <div class="album-title">#=album.Title#</div>
+            <div class="album-artist">#=album.Artist.Name#</div>
+            <div class="album-price">#=kendo.toString(parseFloat(album.Price), "c")#</div>
         </script>
 
 

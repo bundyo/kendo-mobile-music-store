@@ -1,11 +1,11 @@
-define(["jQuery", "data", "utils", "templates"], function ($, data, utils, templates) {
+define(["jQuery", "data", "utils", "templates", "cart"], function ($, data, utils, templates, cart) {
     return {
         show: function (e) {
             var filter = utils.parseQueryStringToObject();
             utils.setViewTitle(e.sender.element, filter.title);
             utils.scrollViewToTop(e.sender.element);
             
-            var oldList = $(e.sender.element).find(".listview").data("kendoMobileListView");
+            var oldList = e.sender.element.find(".listview").data("kendoMobileListView");
             if (oldList) {
                 oldList.destroy();
             }
@@ -16,6 +16,13 @@ define(["jQuery", "data", "utils", "templates"], function ($, data, utils, templ
                 style: "inset",
                 endlessScroll: true
             });
+        },
+
+        onAddToCart: function (clickEvt) {
+            var data = clickEvt.sender.element.parents(".listview").data("kendoMobileListView").dataSource;
+            var uid = clickEvt.sender.element.parents("li").data("uid");
+            var album = data.getByUid(uid);
+            cart.add(album);
         }
     }
 });

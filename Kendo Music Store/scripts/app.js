@@ -1,5 +1,5 @@
-define(["jQuery", "kendo", "data", "config", "utils", "cart", "home-layout", "artists-view", "genres-view", "albums-view", "search-view", "cart-view"],
-       function($, kendo, data, config, utils, cart, homeLayout, artistsView, genresView, albumsView, searchView, cartView) {
+define(["jQuery", "kendo", "data", "config", "utils", "home-layout", "artists-view", "genres-view", "albums-view", "search-view", "cart-view"],
+       function($, kendo, data, config, utils, homeLayout, artistsView, genresView, albumsView, searchView, cartView) {
 
     var init = function () {
             var kendoApp = new kendo.mobile.Application(document.body, { transition: "fade", layout: "mobile-tabstrip" });
@@ -9,7 +9,6 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart", "home-layout", "ar
     return {
         config: config,
         init: init,
-        cart: cart,
         homeLayout: homeLayout,
         albumsView: albumsView,
         artistsView: artistsView,

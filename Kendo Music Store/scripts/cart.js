@@ -1,40 +1,49 @@
 define(["kendo"], function (kendo) {
     "use strict";
-
+    
+    var cartAggregates = kendo.observable({
+        total: 0,
+        formattedTotal: function () {
+            return kendo.toString(this.get("total"), "c");
+        }
+    });
+    
     var cartItems = new kendo.data.DataSource({
-            schema: {
-                model: {
-                    id: "albumId",
-                    fields: {
-                        albumId: {
-                            type: "number"
-                        },
-                        qty: {
-                            defaultValue: 1,
-                            type: "number"
-                        }
-                    }
+            data: [],
+            change: function () {
+                var totalPrice = 0;
+                var albums = cartItems.data();
+                for (var i = 0; i < albums.length; i++) {
+                    var cartEntry = albums[i];
+                    totalPrice += cartEntry.qty * cartEntry.album.Price;
                 }
+                cartAggregates.set("total", totalPrice);
             }
         }),
 
         findAlbum = function (albumId) {
-            return cartItems.get(albumId);
+            var data = cartItems.data();
+            for(var i = 0; i < data.length; i++) {
+                if(data[i].album.AlbumId === albumId) {
+                    return data[i];
+                }
+            }
+            return undefined;
         },
 
-        addAlbum = function (clickEvt) {
-            var albumId = parseInt(clickEvt.sender.element.data("album-id"));
-            var existing = findAlbum(albumId);
+        addAlbum = function (album) {
+            var existing = findAlbum(album.AlbumId);
             if(existing) {
                 existing.qty = existing.qty + 1;
             } else {
-                cartItems.add({ albumId: albumId, qty: 1 });
+                cartItems.add({ album: album, qty: 1 });
             }
         };
 
     return {
         items: cartItems,
         add: addAlbum,
-        find: findAlbum
+        find: findAlbum,
+        aggregates: cartAggregates
     };
 });
