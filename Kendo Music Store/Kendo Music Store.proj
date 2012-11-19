@@ -62,6 +62,8 @@
     <Content Include="scripts\albums-view.js" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\artists-view.js" />
+    <Content Include="scripts\cart-view.js" />
+    <Content Include="scripts\cart.js" />
     <Content Include="scripts\config.js" />
     <Content Include="scripts\data.js" />
     <Content Include="scripts\genres-view.js" />
@@ -69,6 +71,7 @@
     <Content Include="scripts\main.js" />
     <Content Include="scripts\require.js" />
     <Content Include="scripts\search-view.js" />
+    <Content Include="scripts\templates.js" />
     <Content Include="scripts\utils.js" />
     <Content Include="styles\main.css" />
     <Content Include="cordova.ios.js">

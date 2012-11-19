@@ -59,6 +59,18 @@ body
     font-style: italic;
 }
 
+.album-cart
+{
+    float: right;
+}
+
+.album-cart .km-icon.km-add
+{
+    width: 0.5em;
+    height: 0.5em;
+    vertical-align: middle;
+}
+
 .km-android #artists-view .km-buttongroup
 {
     padding: 4px;

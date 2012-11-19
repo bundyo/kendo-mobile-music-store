@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "utils", "data"], function ($, kendo, utils, data) {
+define(["jQuery", "kendo", "utils", "data", "templates"], function ($, kendo, utils, data, templates) {
     var _selectedArtistFilter = "A";
 
     return {
@@ -29,7 +29,7 @@ define(["jQuery", "kendo", "utils", "data"], function ($, kendo, utils, data) {
             
             $(e.sender.element).find(".listview").kendoMobileListView({
                 dataSource: data.artistsStartingWith(_selectedArtistFilter.toString()),
-                template: $("#artist-list-template").text(),
+                template: templates.artistListItem,
                 style: "inset",
                 endlessScroll: true
             });

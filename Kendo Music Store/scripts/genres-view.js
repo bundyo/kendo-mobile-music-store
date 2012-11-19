@@ -1,11 +1,11 @@
-define(["jQuery", "data"], function ($, data) {
+define(["jQuery", "data", "templates"], function ($, data, templates) {
     var _genreAlbumSelector;
 
     return {
         init: function (e) {
             $(e.sender.element).find(".listview").kendoMobileListView({
                 dataSource: data.genresList,
-                template: $("#genre-list-template").text(),
+                template: templates.genreListItem,
                 style: "inset",
                 endlessScroll: true
             });

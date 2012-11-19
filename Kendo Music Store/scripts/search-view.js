@@ -10,7 +10,7 @@ define(["jQuery", "utils", "data"], function ($, utils, data) {
                     {field: "Artist.Name", operator: "contains", value: term}
                 ]
             };
-        };
+        },
 
         _submitSearch = function (e) {
             var oldList, filter;
@@ -22,7 +22,7 @@ define(["jQuery", "utils", "data"], function ($, utils, data) {
                 oldList.destroy();
             }
             
-            filter = _buildSearchFilter(e.target.value);
+            filter = _buildSearchFilter(_viewElement.find(".search-text").val());
             _searchResultsElement.kendoMobileListView({
                 dataSource: data.albumsFor(filter),
                 template: $("#album-list-template").text(),
@@ -34,7 +34,11 @@ define(["jQuery", "utils", "data"], function ($, utils, data) {
     return {
         init: function (initEvent) {
             _viewElement = initEvent.sender.element;
-            _viewElement.find("input").change(_submitSearch);
+            _viewElement.find(".search-text").change(_submitSearch);
+            _viewElement.find(".search-button").kendoMobileButton({
+                icon: "search",
+                click: _submitSearch
+            });
             _searchResultsElement = initEvent.sender.element.find(".listview");
         }
     }

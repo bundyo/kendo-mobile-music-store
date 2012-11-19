@@ -1,4 +1,4 @@
-define(["jQuery", "data", "utils"], function ($, data, utils) {
+define(["jQuery", "data", "utils", "templates"], function ($, data, utils, templates) {
     return {
         show: function (e) {
             var filter = utils.parseQueryStringToObject();
@@ -12,7 +12,7 @@ define(["jQuery", "data", "utils"], function ($, data, utils) {
             
             $(e.sender.element).find(".listview").kendoMobileListView({
                 dataSource: data.albumsFor(filter),
-                template: $("#album-list-template").text(),
+                template: templates.albumListItem,
                 style: "inset",
                 endlessScroll: true
             });

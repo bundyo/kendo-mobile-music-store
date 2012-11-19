@@ -22,21 +22,46 @@
             <ul class="listview"></ul>
         </div>
         
-        <div data-role="view" id="albums-view" data-layout="albums-layout" data-show="app.albumsView.show" data-transition="slide:left">
+        <div data-role="view" id="albums-view" data-layout="base-layout" data-show="app.albumsView.show" data-transition="slide:left">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+
             <ul class="listview"></ul>
         </div>
 
         <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-init="app.searchView.init">
-            <input type=text />
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+                <input type=text class="search-text" /><a class="search-button"></a>
+            </header>
+
             <ul class="listview"></ul>
         </div>
 
-        <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart">
-            Cart
+        <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-init="app.cartView.init">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+
+            <ul class="listview"></ul>
         </div>
 
         <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account">
-            Account
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+
+            <ul class="listview"></ul>
         </div>
 
 
@@ -68,30 +93,6 @@
         </div>
 
         <div data-role="layout" data-id="base-layout">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                </div>
-            </header>
-
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart</a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                </div>
-            </div>
-        </div>
-
-        <div data-role="layout" data-id="albums-layout">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
-                    <span data-role="view-title"></span>
-                </div>
-            </header>
-
             <div data-role="footer">
                 <div data-role="tabstrip">
                     <a href="#genres-view" data-icon="home">Home</a>
@@ -115,6 +116,7 @@
 
         <script id="album-list-template" type="text/x-kendo-template">
             <img class="album-art" src="#=app.config.serverUrl + data.AlbumArtUrl#" />
+            <a class="album-cart" data-role="button" data-click="app.cart.add" data-album-id="#=AlbumId#" #if(app.cart.find(data.AlbumId)) {#style="background-color: ##F60;"#}#><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></a>
             <div class="album-title">#=Title#</div>
             <div class="album-artist">#=Artist.Name#</div>
             <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
@@ -122,6 +124,14 @@
         
         <script id="artist-filter-template" type="text/x-kendo-template">
             <a href="##artists-view?value=#=data#" id="#=data#">#=data#</a>
+        </script>
+
+        <script id="cart-list-template" type="text/x-kendo-template">
+            <img class="album-art" src="#=app.config.serverUrl + data.AlbumArtUrl#" />
+                <a class="album-cart" data-role="button" data-click="app.cart.add" data-album-id="#=AlbumId#"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></a>
+            <div class="album-title">#=Title#</div>
+            <div class="album-artist">#=Artist.Name#</div>
+            <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
         </script>
 
 
