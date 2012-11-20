@@ -54,6 +54,7 @@
     <Content Include="index.html" />
     <Content Include="kendo\js\jquery.min.js" />
     <Content Include="kendo\js\kendo.mobile.min.js" />
+    <Content Include="kendo\js\kendo.mobile.q2.min.js" />
     <Content Include="kendo\styles\images\ios-sprite.png" />
     <Content Include="kendo\styles\images\icons.png" />
     <Content Include="kendo\styles\images\iconmasks.svg" />
