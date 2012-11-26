@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "config", "utils", "data", "cart"], function ($, kendo, config, utils, data, cart) {
+define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates"], function ($, kendo, config, utils, data, cart, templates) {
     var _viewElement,
         
         _buildSearchFilter = function (term) {

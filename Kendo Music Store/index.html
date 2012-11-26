@@ -36,10 +36,11 @@
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
-                <input type=text class="search-text" placeholder="Show All" /><a data-role="button" data-icon="search" data-click="submitSearch"></a>
+                <input type=text class="search-text" placeholder="Album title or artist" /><a data-role="button" data-icon="search" data-click="submitSearch"></a>
             </header>
 
-            <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
+            <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
+            <!--<ul class="search-results-list"></ul>-->
         </div>
 
         <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
