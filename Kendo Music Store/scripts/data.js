@@ -34,8 +34,8 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
             data: _wcfSchemaData,
             total: _wcfSchemaTotal
         },
-        requestStart: utils.showLoading,
-        requestEnd: utils.hideLoading
+        requestStart: function () { if (this.page() === 1) { utils.showLoading(); }}, //infinite scrolling has its own, less obtrusive indicator
+        requestEnd: function () { if (this.page() === 1) { utils.hideLoading(); }}
     }
 
 
