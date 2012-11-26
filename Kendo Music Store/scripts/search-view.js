@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "config", "utils", "data"], function ($, kendo, config, utils, data) {
+define(["jQuery", "kendo", "config", "utils", "data", "cart"], function ($, kendo, config, utils, data, cart) {
     var _viewElement,
         
         _buildSearchFilter = function (term) {
@@ -29,6 +29,11 @@ define(["jQuery", "kendo", "config", "utils", "data"], function ($, kendo, confi
         viewModel: kendo.observable({
             results: data.searchList,
             submitSearch: submitSearch,
+            onAddToCart: function (clickEvt) {
+                var uid = clickEvt.sender.element.parents("li").data("uid");
+                var album = data.searchList.getByUid(uid);
+                cart.add(album);
+            },
             albumPrice: function (album) {
                 return kendo.toString(parseFloat(album.get("Price")), "c");
             },
