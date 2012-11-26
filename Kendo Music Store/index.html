@@ -40,7 +40,6 @@
             </header>
 
             <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
-            <!--<ul class="search-results-list"></ul>-->
         </div>
 
         <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
@@ -119,7 +118,7 @@
 
         <script id="album-list-template" type="text/x-kendo-template">
             <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
-            <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></div>
+                <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span data-bind="text: qtyInCart, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span></div>
             <div class="album-title" data-bind="text: Title"></div>
             <div class="album-artist" data-bind="text: Artist.Name"></div>
             <div class="album-price" data-bind="text: albumPrice"></div>

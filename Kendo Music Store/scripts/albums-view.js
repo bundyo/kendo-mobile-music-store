@@ -21,6 +21,22 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart"], function ($, kend
             },
             albumArtUrl: function (album) {
                 return config.serverUrl + album.get("AlbumArtUrl");
+            },
+            qtyInCart: function (album) {
+                var cartItem = cart.find(album.get("AlbumId"));
+                if(cartItem) {
+                    return cartItem.get("qty");
+                } else {
+                    return "";
+                }
+            },
+            buttonClasses: function (album) {
+                //var cartItem = cart.find(album.get("AlbumId"));
+                if(this.qtyInCart(album) !== "") {
+                    return "km-icon cartQty";
+                } else {
+                    return "km-icon km-add";
+                }
             }
         })
     }

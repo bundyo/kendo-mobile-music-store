@@ -65,11 +65,15 @@ body
     float: right;
 }
 
-.album-cart .km-icon.km-add
+.album-cart .km-icon.km-add, .album-cart .km-icon.cartQty
 {
     font-size: .6em;
     margin-right: .8em;
     vertical-align: middle;
+}
+
+.album-cart .km-icon.cartQty {
+    padding-bottom: .45em;
 }
 
 .km-android #artists-view .km-buttongroup
@@ -97,4 +101,9 @@ body
     width: 3.01em;
     border: 1px solid #999;
     position: relative;
+}
+
+.km-ios .km-list .km-icon
+{
+    color: #fff;
 }
