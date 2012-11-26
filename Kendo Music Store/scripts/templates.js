@@ -10,7 +10,6 @@ define(["jQuery", "kendo"], function ($, kendo) {
         };
 
     return {
-        cartListItem: _getText("#cart-list-template"),
         genreListItem: _getText("#genre-list-template"),
         artistListItem: _getText("#artist-list-template"),
         albumListItem: _getText("#album-list-template")

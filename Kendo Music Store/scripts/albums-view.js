@@ -4,7 +4,8 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart"], function ($, kend
             var filter = utils.parseQueryStringToObject();
             utils.setViewTitle(e.sender.element, filter.title);
             utils.scrollViewToTop(e.sender.element);
-            
+
+            data.clear(data.albumsList);
             data.albumsList.filter(filter);
         },
         

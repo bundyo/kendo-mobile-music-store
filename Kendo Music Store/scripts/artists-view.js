@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "utils", "data", "templates"], function ($, kendo, utils, data, templates) {
+define(["jQuery", "kendo", "utils", "data"], function ($, kendo, utils, data) {
     return {
         init: function (e) {
             var scroller = e.sender.element.data("kendoMobileView").scroller;
@@ -11,9 +11,11 @@ define(["jQuery", "kendo", "utils", "data", "templates"], function ($, kendo, ut
                 selectedArtistFilter = e.view.params.value;
             }
             $(".artists-filter-header").show();
+            utils.scrollViewToTop(e.view.element);
             e.sender.element.find(".buttongroup.km-buttongroup .km-button").removeClass("km-state-active");
             e.sender.element.find("#" + selectedArtistFilter).parents(".km-button").addClass("km-state-active");
             
+            data.clear(data.artistsList);
             data.artistsList.filter({
                 field: "Name",
                 operator: "startswith",

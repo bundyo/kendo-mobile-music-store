@@ -93,9 +93,8 @@ body
 
 #cart-view input[type="number"]
 {
-    max-width: 3em;
-    min-width: 3em;
-    width: 3em;
+    min-width: 3.01em;
+    width: 3.01em;
     border: 1px solid #999;
     position: relative;
 }

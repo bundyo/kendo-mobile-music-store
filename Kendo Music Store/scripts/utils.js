@@ -53,6 +53,14 @@ define(["app"], function (app) {
         
         scrollViewToTop: function (viewElement) {
             viewElement.data("kendoMobileView").scroller.reset();
+        },
+        
+        showLoading: function () {
+            _kendoApp.showLoading();
+        },
+        
+        hideLoading: function () {
+            _kendoApp.hideLoading();
         }
     };
 });

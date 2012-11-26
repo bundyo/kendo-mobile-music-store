@@ -36,7 +36,7 @@
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
-                <input type=text class="search-text" /><a data-role="button" data-icon="search" data-click="submitSearch"></a>
+                <input type=text class="search-text" placeholder="Show All" /><a data-role="button" data-icon="search" data-click="submitSearch"></a>
             </header>
 
             <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
@@ -116,10 +116,6 @@
             <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name)#">#=Name#</a>
         </script>
 
-        <script id="album-list-template-new" type="text/x-kendo-template">
-            <div data-bind="text: Title"></div>
-            <div>#=Title#</div>
-        </script>
         <script id="album-list-template" type="text/x-kendo-template">
             <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
             <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></div>
