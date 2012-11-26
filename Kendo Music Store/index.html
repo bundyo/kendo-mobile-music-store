@@ -3,7 +3,7 @@
     <head>
         <title></title>
         <meta charset="utf-8" />
-        <script src="cordova.js"></script>
+        <!--<script src="cordova.js"></script>-->
         
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
         <link href="styles/main.css" rel="stylesheet" />
@@ -12,15 +12,15 @@
 
         <!-- Views -->
 
-        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-init="app.genresView.init" data-show="app.genresView.beforeShow">
-            <ul class="listview"></ul>
+        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-model="app.genresView.viewModel" data-show="app.genresView.onShow">
+            <ul data-role="listview" data-bind="source: genres" data-template="genre-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
-        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-init="app.artistsView.init" data-before-show="app.artistsView.beforeShow" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
-            <ul class="listview"></ul>
+        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-init="app.artistsView.init" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
+            <ul data-role="listview" data-bind="source: artists" data-template="artist-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
         
-        <div data-role="view" id="albums-view" data-layout="base-layout" data-before-show="app.albumsView.beforeShow" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
+        <div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
             <header data-role="header">
                 <div data-role="navbar">
                     <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
@@ -28,21 +28,21 @@
                 </div>
             </header>
 
-            <ul class="listview"></ul>
+            <ul data-role="listview" data-bind="source: albums" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
-        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-init="app.searchView.init" style="display: none;">
+        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-model="app.searchView.viewModel" data-init="app.searchView.init" style="display: none;">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
-                <input type=text class="search-text" /><a class="search-button"></a>
+                <input type=text class="search-text" /><a data-role="button" data-icon="search" data-click="submitSearch"></a>
             </header>
 
-            <ul class="listview"></ul>
+            <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
-        <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-init="app.cartView.init" style="display: none;">
+        <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -53,7 +53,7 @@
                 </div>
             </header>
 
-            <ul class="listview"></ul>
+            <ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>
         </div>
 
         <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account" style="display: none;">
@@ -78,7 +78,7 @@
                     <li data-target="#genres-view">Genres</li>
                     <li data-target="#artists-view">Artists</li>
                 </ul>
-                <div id="artists-filter-header" data-role="scroller" style="display: none;">
+                <div class="artists-filter-header" data-role="scroller">
                     <ul class="buttongroup km-buttongroup">
                     </ul>
                 </div>
@@ -116,12 +116,16 @@
             <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name)#">#=Name#</a>
         </script>
 
+        <script id="album-list-template-new" type="text/x-kendo-template">
+            <div data-bind="text: Title"></div>
+            <div>#=Title#</div>
+        </script>
         <script id="album-list-template" type="text/x-kendo-template">
-            <img class="album-art" src="#=app.config.serverUrl + data.AlbumArtUrl#" />
-            <div class="album-cart" data-role="button" data-click="app.albumsView.onAddToCart"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></div>
-            <div class="album-title">#=Title#</div>
-            <div class="album-artist">#=Artist.Name#</div>
-            <div class="album-price">#=kendo.toString(parseFloat(Price), "c")#</div>
+            <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
+            <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span class="km-icon km-add"></span><span class="km-icon km-cart"></span></div>
+            <div class="album-title" data-bind="text: Title"></div>
+            <div class="album-artist" data-bind="text: Artist.Name"></div>
+            <div class="album-price" data-bind="text: albumPrice"></div>
         </script>
         
         <script id="artist-filter-template" type="text/x-kendo-template">
@@ -130,14 +134,14 @@
 
         <script id="cart-list-template" type="text/x-kendo-template">
             <div data-role="touch" data-enable-swipe="1" data-swipe="app.cartView.onRemove">
-                <img class="album-art" src="#=app.config.serverUrl + data.album.AlbumArtUrl#" />
-                    <div class="album-title" data-bind="text: album.Title"></div>
-                <div class="album-artist">#=album.Artist.Name#</div>
-                <div class="album-price">#=kendo.toString(parseFloat(album.Price), "c")#</div>
+                <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
+                <div class="album-title" data-bind="text: album.Title"></div>
+                <div class="album-artist" data-bind="text: album.Artist.Name"></div>
+                <div class="album-price" data-bind="text: albumPrice"></div>
                 <div class="qty-and-price">
                     <span>Qty:</span>
-                    <input type="number" value="#=qty#" />
-                    <span>Subtotal: </span><span>#=kendo.toString(data.qty * data.album.Price, "c")#</span>
+                    <input type="number" data-bind="value: qty" min="1" max="99" />
+                    <span>Subtotal: </span><span data-bind="text: albumSubtotal"></span>
                 </div>
             </div>
         </script>

@@ -1,6 +1,5 @@
-define(["jQuery", "utils", "data"], function ($, utils, data) {
+define(["jQuery", "kendo", "config", "utils", "data"], function ($, kendo, config, utils, data) {
     var _viewElement,
-        _searchResultsElement,
         
         _buildSearchFilter = function (term) {
             return {
@@ -12,34 +11,30 @@ define(["jQuery", "utils", "data"], function ($, utils, data) {
             };
         },
 
-        _submitSearch = function (e) {
-            var oldList, filter;
+        submitSearch = function (e) {
+            var filter;
 
             utils.scrollViewToTop(_viewElement);
             
-            oldList = _searchResultsElement.data("kendoMobileListView");
-            if(oldList) {
-                oldList.destroy();
-            }
-            
             filter = _buildSearchFilter(_viewElement.find(".search-text").val());
-            _searchResultsElement.kendoMobileListView({
-                dataSource: data.albumsFor(filter),
-                template: $("#album-list-template").text(),
-                style: "inset",
-                endlessScroll: true
-            });
+            data.searchList.filter(filter);
         };
 
     return {
         init: function (initEvent) {
             _viewElement = initEvent.sender.element;
-            _viewElement.find(".search-text").change(_submitSearch);
-            _viewElement.find(".search-button").kendoMobileButton({
-                icon: "search",
-                click: _submitSearch
-            });
-            _searchResultsElement = initEvent.sender.element.find(".listview");
-        }
+            _viewElement.find(".search-text").change(submitSearch);
+        },
+
+        viewModel: kendo.observable({
+            results: data.searchList,
+            submitSearch: submitSearch,
+            albumPrice: function (album) {
+                return kendo.toString(parseFloat(album.get("Price")), "c");
+            },
+            albumArtUrl: function (album) {
+                return config.serverUrl + album.get("AlbumArtUrl");
+            }
+        })
     }
 });

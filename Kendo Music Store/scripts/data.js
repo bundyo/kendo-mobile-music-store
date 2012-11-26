@@ -25,51 +25,62 @@ define(["kendo", "config"], function (kendo, config) {
                 total: _wcfSchemaTotal
             }
         }),
+        
+        artistsList: new kendo.data.DataSource({
+            type: "odata",
+            serverSorting: true,
+            serverFiltering: true,
+            serverPaging: true,
+            pageSize: 20,
+            transport: {
+                read: config.artistsUrl,
+            },
+            sort: {
+                field: "Name",
+                dir: "asc"
+            },
+            schema: {
+                data: _wcfSchemaData,
+                total: _wcfSchemaTotal
+            }
+        }),
 
-        artistsStartingWith: function (filter) {
-            return new kendo.data.DataSource({
-                type: "odata",
-                serverSorting: true,
-                serverFiltering: true,
-                transport: {
-                    read: config.artistsUrl,
-                },
-                filter: {
-                    field: "Name",
-                    operator: "startswith",
-                    value: filter
-                },
-                sort: {
-                    field: "Name",
-                    dir: "asc"
-                },
-                schema: {
-                    data: _wcfSchemaData,
-                    total: _wcfSchemaTotal
-                }
-            });
-        },
+        albumsList: new kendo.data.DataSource({
+            type: "odata",
+            serverSorting: true,
+            serverFiltering: true,
+            serverPaging: true,
+            pageSize: 20,
+            transport: {
+                read: config.albumsUrl + "?$expand=Artist",
+            },
+            sort: {
+                field: "Title",
+                dir: "asc"
+            },
+            schema: {
+                data: _wcfSchemaData,
+                total: _wcfSchemaTotal
+            }
+        }),
 
-        albumsFor: function (filter) {
-            return new kendo.data.DataSource({
-                type: "odata",
-                serverSorting: true,
-                serverPaging: true,
-                serverFiltering: true,
-                pageSize: 20,
-                transport: {
-                    read: config.albumsUrl + "?$expand=Artist",
-                },
-                filter: filter,
-                sort: {
-                    field: "Title",
-                    dir: "asc"
-                },
-                schema: {
-                    data: _wcfSchemaData,
-                    total: _wcfSchemaTotal
-                }
-            });
-        }
+        searchList: new kendo.data.DataSource({
+            type: "odata",
+            serverSorting: true,
+            serverFiltering: true,
+            serverPaging: true,
+            pageSize: 20,
+            transport: {
+                read: config.albumsUrl + "?$expand=Artist",
+            },
+            sort: {
+                field: "Title",
+                dir: "asc"
+            },
+            schema: {
+                data: _wcfSchemaData,
+                total: _wcfSchemaTotal
+            }
+        })
     }
 });
