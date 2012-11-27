@@ -63,6 +63,7 @@
     <Content Include="kendo\styles\images\KendoUI.woff" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
     <Content Include="scripts\albums-view.js" />
+    <Content Include="scripts\albums.js" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\artists-view.js" />
     <Content Include="scripts\cart-view.js" />

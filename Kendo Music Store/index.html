@@ -31,7 +31,7 @@
             <ul data-role="listview" data-bind="source: albums" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
-        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-model="app.searchView.viewModel" data-init="app.searchView.init" style="display: none;">
+        <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-model="app.searchView.viewModel" data-init="app.searchView.init" data-show="app.searchView.show" style="display: none;">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -118,7 +118,7 @@
 
         <script id="album-list-template" type="text/x-kendo-template">
             <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
-                <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span data-bind="text: qtyInCart, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span></div>
+            <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span data-bind="text: qtyInCart, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span></div>
             <div class="album-title" data-bind="text: Title"></div>
             <div class="album-artist" data-bind="text: Artist.Name"></div>
             <div class="album-price" data-bind="text: albumPrice"></div>

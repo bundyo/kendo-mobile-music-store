@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates"], function ($, kendo, config, utils, data, cart, templates) {
+define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates", "albums"], function ($, kendo, config, utils, data, cart, templates, albums) {
     var _viewElement,
         
         _buildSearchFilter = function (term) {
@@ -18,6 +18,13 @@ define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates"], func
             
             filter = _buildSearchFilter(_viewElement.find(".search-text").val());
             data.searchList.filter(filter);
+        },
+        
+        show = function (showEvent) {
+            var resultsListView = showEvent.view.element.find(".km-listview").data("kendoMobileListView");
+            if(resultsListView) {
+                resultsListView.refresh();
+            }
         };
 
     return {
@@ -26,20 +33,11 @@ define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates"], func
             _viewElement.find(".search-text").change(submitSearch);
         },
 
-        viewModel: kendo.observable({
+        show: show,
+
+        viewModel: kendo.observable($.extend({
             results: data.searchList,
             submitSearch: submitSearch,
-            onAddToCart: function (clickEvt) {
-                var uid = clickEvt.sender.element.parents("li").data("uid");
-                var album = data.searchList.getByUid(uid);
-                cart.add(album);
-            },
-            albumPrice: function (album) {
-                return kendo.toString(parseFloat(album.get("Price")), "c");
-            },
-            albumArtUrl: function (album) {
-                return config.serverUrl + album.get("AlbumArtUrl");
-            }
-        })
+        }, albums.baseAlbumViewModel))
     }
 });

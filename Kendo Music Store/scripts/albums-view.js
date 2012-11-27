@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "data", "config", "utils", "cart"], function ($, kendo, data, config, utils, cart) {
+define(["kendo", "data", "utils", "cart", "albums"], function (kendo, data, utils, cart, albums) {
     return {
         show: function (e) {
             var filter = utils.parseQueryStringToObject();
@@ -9,35 +9,8 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart"], function ($, kend
             data.albumsList.filter(filter);
         },
         
-        viewModel: kendo.observable({
-            albums: data.albumsList,
-            onAddToCart: function (clickEvt) {
-                var uid = clickEvt.sender.element.parents("li").data("uid");
-                var album = data.albumsList.getByUid(uid);
-                cart.add(album);
-            },
-            albumPrice: function (album) {
-                return kendo.toString(parseFloat(album.get("Price")), "c");
-            },
-            albumArtUrl: function (album) {
-                return config.serverUrl + album.get("AlbumArtUrl");
-            },
-            qtyInCart: function (album) {
-                var cartItem = cart.find(album.get("AlbumId"));
-                if(cartItem) {
-                    return cartItem.get("qty");
-                } else {
-                    return "";
-                }
-            },
-            buttonClasses: function (album) {
-                //var cartItem = cart.find(album.get("AlbumId"));
-                if(this.qtyInCart(album) !== "") {
-                    return "km-icon cartQty";
-                } else {
-                    return "km-icon km-add";
-                }
-            }
-        })
+        viewModel: kendo.observable($.extend({
+            albums: data.albumsList
+        }, albums.baseAlbumViewModel))
     }
 });

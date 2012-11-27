@@ -1,4 +1,4 @@
-define(["kendo"], function (kendo) {
+define(["jQuery", "kendo"], function ($, kendo) {
     "use strict";
     
     var cartAggregates = kendo.observable({
@@ -15,7 +15,7 @@ define(["kendo"], function (kendo) {
                 var albums = cartItems.data();
                 for (var i = 0; i < albums.length; i++) {
                     var cartEntry = albums[i];
-                    totalPrice += cartEntry.qty * cartEntry.album.Price;
+                    totalPrice += cartEntry.get("qty") * cartEntry.get("album.Price");
                 }
                 cartAggregates.set("total", totalPrice);
             }
@@ -34,9 +34,9 @@ define(["kendo"], function (kendo) {
         addAlbum = function (album) {
             var existing = findAlbum(album.AlbumId);
             if(existing) {
-                existing.qty = existing.qty + 1;
+                existing.set("qty", existing.qty + 1);
             } else {
-                cartItems.add({ album: album, qty: 1 });
+                cartItems.add({ album: $.extend(true, {}, album), qty: 1 });
             }
         };
 
