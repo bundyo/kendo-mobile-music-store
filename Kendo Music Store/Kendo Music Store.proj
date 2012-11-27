@@ -66,6 +66,7 @@
     <Content Include="scripts\albums.js" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\artists-view.js" />
+    <Content Include="scripts\base-layout.js" />
     <Content Include="scripts\cart-view.js" />
     <Content Include="scripts\cart.js" />
     <Content Include="scripts\config.js" />

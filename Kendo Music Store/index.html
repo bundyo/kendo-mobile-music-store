@@ -69,7 +69,7 @@
 
         <!-- Layouts -->
 
-        <div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init">
+        <div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init" data-show="app.homeLayout.show">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -88,18 +88,18 @@
                 <div data-role="tabstrip">
                     <a href="#genres-view" data-icon="home">Home</a>
                     <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart</a>
+                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
                     <a href="#account-view" data-icon="contacts">Account</a>
                 </div>
             </div>
         </div>
 
-        <div data-role="layout" data-id="base-layout">
+        <div data-role="layout" data-id="base-layout" data-show="app.baseLayout.show">
             <div data-role="footer">
                 <div data-role="tabstrip">
                     <a href="#genres-view" data-icon="home">Home</a>
                     <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart</a>
+                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
                     <a href="#account-view" data-icon="contacts">Account</a>
                 </div>
             </div>

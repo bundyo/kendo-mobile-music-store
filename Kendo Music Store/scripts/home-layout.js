@@ -1,4 +1,4 @@
-define(["jQuery", "utils"], function ($, utils) {
+define(["jQuery", "utils", "cart"], function ($, utils, cart) {
     return {
         init: function (e) {
             $(e.sender.element).find(".select-group").kendoMobileButtonGroup({
@@ -17,6 +17,10 @@ define(["jQuery", "utils"], function ($, utils) {
             var buttonGroupItems = letterButtonGroup.children("li");
             buttonGroupItems.addClass("km-button");
             buttonGroupItems.find("a").removeClass("km-listview-link");
+        },
+        
+        show: function (showEvt) {
+            utils.updateCartBadges($, cart);
         }
     }
 });

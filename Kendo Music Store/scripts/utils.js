@@ -61,6 +61,16 @@ define(["app"], function (app) {
         
         hideLoading: function () {
             _kendoApp.hideLoading();
+        },
+        updateCartBadges: function ($, cart) {
+            var numberInCart = cart.items.aggregates() && cart.items.aggregates().qty ? cart.items.aggregates().qty.sum : 0;
+            var cartBadges = $(".cart-badge");
+            cartBadges.text(numberInCart);
+            if(numberInCart > 0) {
+                cartBadges.show();
+            } else {
+                cartBadges.hide();
+            }
         }
     };
 });

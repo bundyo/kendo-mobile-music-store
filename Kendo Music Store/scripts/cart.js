@@ -12,13 +12,23 @@ define(["jQuery", "kendo"], function ($, kendo) {
             data: [],
             change: function () {
                 var totalPrice = 0;
+                var totalQty = 0;
                 var albums = cartItems.data();
                 for (var i = 0; i < albums.length; i++) {
                     var cartEntry = albums[i];
                     totalPrice += cartEntry.get("qty") * cartEntry.get("album.Price");
                 }
                 cartAggregates.set("total", totalPrice);
-            }
+            },
+            schema: {
+                model: {
+                    fields: {
+                        qty: { type: "number", min: 1, max: 99 },
+                        album: {}
+                    }
+                }
+            },
+            aggregate: [{field: "qty", aggregate: "sum"}]
         }),
 
         findAlbum = function (albumId) {

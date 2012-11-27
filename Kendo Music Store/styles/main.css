@@ -107,3 +107,9 @@ body
 {
     color: #fff;
 }
+
+.km-tabstrip .km-badge
+{
+    top: 0;
+    right: 0;
+}
