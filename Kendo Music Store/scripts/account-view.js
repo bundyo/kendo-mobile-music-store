@@ -1,7 +1,7 @@
 define(["jQuery", "config", "utils", "account"], function ($, config, utils, account) {
     var _showError = function (message, error) {
         viewModel.set("errorMessage", message + (error === undefined ? "" : "\n" + error.status + ": " + error.statusText));
-        $("#account-error-view").data().kendoMobileModalView.open();
+        $("#account-error-view").show().data().kendoMobileModalView.open();
     };
 
     var viewModel = kendo.observable({

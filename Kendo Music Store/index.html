@@ -95,7 +95,7 @@
             <input type="button" data-role="button" value="Register" data-bind="click: register" />
         </div>
         
-        <div data-role="modalview" id="account-error-view" data-model="app.accountView.viewModel" style="width: 95%; height: 90%;">
+        <div data-role="modalview" id="account-error-view" data-model="app.accountView.viewModel" style="display: none; width: 95%; height: 90%;">
             <div data-role="header">
                 <div data-role="navbar">
                     <span>Error</span>
@@ -149,11 +149,11 @@
         <!-- Templates -->
 
         <script id="genre-list-template" type="text/x-kendo-template">
-            <a href="\#albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name)#">#=Name#</a>
+            <a href="\#albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
         </script>
 
         <script id="artist-list-template" type="text/x-kendo-template">
-            <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name)#">#=Name#</a>
+            <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
         </script>
 
         <script id="album-list-template" type="text/x-kendo-template">

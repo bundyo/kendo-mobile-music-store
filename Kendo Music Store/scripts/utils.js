@@ -23,7 +23,7 @@ define(["app"], function (app) {
             
             for (i=0; i < args.length; i++)
             {
-                arg = unescape(args[i]);
+                arg = decodeURIComponent(args[i]);
             
                 if (arg.indexOf('=') == -1)
                 {
