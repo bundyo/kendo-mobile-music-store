@@ -64,8 +64,8 @@
                 </div>
             </header>
 
-            <div>Hello, <span data-bind="text: account.userName"></span>!</div>
-            <input type="submit" data-role="button" value="Log Off" />
+            <div>Hello, <span data-bind="text: userName"></span>!</div>
+            <input type="submit" data-role="button" value="Log Off" data-bind="click: logout"/>
         </div>
 
         <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel">
