@@ -1,6 +1,6 @@
 define(["jQuery", "config", "utils", "account"], function ($, config, utils, account) {
-    var _showError = function (message) {
-        viewModel.set("errorMessage", message);
+    var _showError = function (message, error) {
+        viewModel.set("errorMessage", message + (error === undefined ? "" : "\n" + error.status + ": " + error.statusText));
         $("#account-error-view").data().kendoMobileModalView.open();
     };
 
@@ -23,8 +23,8 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     _showError("Log in failed.");
                 }
             })
-            .error(function(data) {
-                _showError("Log In failed.");
+            .error(function(error) {
+                _showError("Log In failed.", error);
             });
         },
         
@@ -36,15 +36,20 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                 account.isAuthenticated = false;
                 utils.navigate("#login-view");
             })
-            .error(function(data) {
-                _showError("Log off failed.");
+            .error(function(error) {
+                _showError("Log off failed.", error);
             });
         },
 
         register: function (clickEvt) {
-            var pwd = $("#register-Password").val(),
+            var name = $("#register-UserName").val(),
+                pwd = $("#register-Password").val(),
                 pwd2 = $("#register-PasswordRetyped").val();
-            if(pwd !== pwd2 || pwd === "") {
+            
+            if (name === ""){
+                _showError("Name must not be empty.");
+                return;
+            } else if(pwd === "" || pwd !== pwd2) {
                 _showError("Passwords must match.");
                 return;
             }
@@ -52,7 +57,7 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
             $.ajax(config.loginUrl, {
                 type: "put",
                 data: {
-                    UserName: $("#register-UserName").val(),
+                    UserName: name,
                     Password: pwd
                 }
             })
@@ -64,8 +69,8 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     utils.navigate("#account-view");
                 }
             })
-            .error(function(data) {
-                _showError("Registration failed.");
+            .error(function(error) {
+                _showError("Registration failed.", error);
             });
         },
 
