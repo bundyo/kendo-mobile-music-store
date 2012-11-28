@@ -3,6 +3,10 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
         viewModel.set("errorMessage", message + (error === undefined ? "" : "\n" + error.status + ": " + error.statusText));
         $("#account-error-view").show().data().kendoMobileModalView.open();
     };
+    
+    var _clearForms = function() {
+        $("input[id|='login'], input[id|='register']").val("");
+    }
 
     var viewModel = kendo.observable({
         userName: account.userName,
@@ -13,7 +17,7 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     UserName: $("#login-UserName").val(),
                     Password: $("#login-Password").val()
             })
-            .success(function(data) {
+            .done(function(data) {
                 if (data.isAuthenticated) {
                     document.cookie = ".ASPXAUTH=" + data.authToken;
                     viewModel.set("userName", data.userName);
@@ -23,22 +27,24 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     _showError("Log in failed.");
                 }
             })
-            .error(function(error) {
+            .fail(function(error) {
                 _showError("Log In failed.", error);
-            });
+            })
+            .always(_clearForms);
         },
         
         logout: function (clickEvt) {
             $.post(config.loginUrl)
-            .success(function (data) {
+            .done(function (data) {
                 document.cookie = ".ASPXAUTH=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
                 viewModel.set("userName", null);
                 account.isAuthenticated = false;
                 utils.navigate("#login-view");
             })
-            .error(function(error) {
+            .fail(function(error) {
                 _showError("Log off failed.", error);
-            });
+            })
+            .always(_clearForms);
         },
 
         register: function (clickEvt) {
@@ -61,7 +67,7 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     Password: pwd
                 }
             })
-            .success(function(data) {
+            .done(function(data) {
                 if (data.isAuthenticated) {
                     document.cookie = ".ASPXAUTH=" + data.authToken;
                     viewModel.set("userName", data.userName);
@@ -69,9 +75,10 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     utils.navigate("#account-view");
                 }
             })
-            .error(function(error) {
+            .fail(function(error) {
                 _showError("Registration failed.", error);
-            });
+            })
+            .always(_clearForms);
         },
 
         closeErrorModal: function () {
