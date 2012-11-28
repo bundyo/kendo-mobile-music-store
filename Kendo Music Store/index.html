@@ -75,10 +75,35 @@
                 </div>
             </header>
 
-            <input type="text" name="UserName" placeholder="Username" />
-            <input type="password" name="Password" placeholder="Password" />
+            <input type="text" id="login-UserName" placeholder="Username" />
+            <input type="password" id="login-Password" placeholder="Password" />
             <input type="button" data-role="button" value="Log In" data-bind="click: login" />
             <a href="#register-view" data-role="button">Register</a>
+        </div>
+        
+        <div data-role="view" id="register-view" data-layout="base-layout" data-title="Register" style="display: none;" data-model="app.accountView.viewModel">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                </div>
+            </header>
+
+            <input type="text" id="register-UserName" placeholder="Username" />
+            <input type="password" id="register-Password" placeholder="Password" />
+            <input type="password" id="register-PasswordRetyped" placeholder="Confirm Password" />
+            <input type="button" data-role="button" value="Register" data-bind="click: register" />
+        </div>
+        
+        <div data-role="modalview" id="account-error-view" data-model="app.accountView.viewModel" style="width: 95%; height: 90%;">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <span>Error</span>
+                    <a data-bind="click: closeErrorModal" data-role="button" data-align="right">Cancel</a>
+                </div>
+            </div>
+            
+            <div data-bind="text: errorMessage"></div>
         </div>
 
 
