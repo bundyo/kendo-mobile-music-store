@@ -62,6 +62,8 @@
     <Content Include="kendo\styles\images\KendoUI.ttf" />
     <Content Include="kendo\styles\images\KendoUI.woff" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
+    <Content Include="scripts\account-view.js" />
+    <Content Include="scripts\account.js" />
     <Content Include="scripts\albums-view.js" />
     <Content Include="scripts\albums.js" />
     <Content Include="scripts\app.js" />

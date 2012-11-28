@@ -51,19 +51,34 @@
                 <div>
                     TOTAL: <span class="total" data-bind="text: formattedTotal"></span>
                 </div>
+                <a href="#checkout-view" data-role="button">Checkout</a>
             </header>
 
             <ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>
         </div>
 
-        <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account" style="display: none;">
+        <div data-role="view" id="account-view" data-layout="base-layout" data-title="Log Off" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
             </header>
 
-            <ul class="listview"></ul>
+            <div>Hello, <span data-bind="text: account.userName"></span>!</div>
+            <input type="submit" data-role="button" value="Log Off" />
+        </div>
+
+        <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+
+            <input type="text" name="UserName" placeholder="Username" />
+            <input type="password" name="Password" placeholder="Password" />
+            <input type="button" data-role="button" value="Log In" data-bind="click: login" />
+            <a href="#register-view" data-role="button">Register</a>
         </div>
 
 

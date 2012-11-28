@@ -1,5 +1,5 @@
 define([], function () {
-    var serverUrl = "http://www.kendouimusicstore.com",
+    var serverUrl = "http://localhost:59537",
         serviceUrl = serverUrl + "/Services/MusicStore.svc";
     
     return {
@@ -7,6 +7,7 @@ define([], function () {
         serviceUrl: serviceUrl,
         genresUrl: serviceUrl + "/Genres",
         artistsUrl: serviceUrl + "/Artists",
-        albumsUrl: serviceUrl + "/Albums"
+        albumsUrl: serviceUrl + "/Albums",
+        loginUrl: serverUrl + "/Api/AccountApi"
     };
 });
