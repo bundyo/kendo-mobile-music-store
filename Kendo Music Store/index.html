@@ -3,14 +3,14 @@
     <head>
         <title></title>
         <meta charset="utf-8" />
-        <!--<script src="cordova.js"></script>-->
+        <!-- <script src="cordova.js"></script> -->
         
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
         <link href="styles/main.css" rel="stylesheet" />
     </head>
     <body>
 
-        <!-- Views -->
+        <!-- Home Views -->
 
         <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-model="app.genresView.viewModel" data-show="app.genresView.onShow">
             <ul data-role="listview" data-bind="source: genres" data-template="genre-list-template", data-style="inset" data-endless-scroll="true"></ul>
@@ -31,6 +31,9 @@
             <ul data-role="listview" data-bind="source: albums" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
+
+        <!-- Search Views -->
+
         <div data-role="view" id="search-view" data-layout="base-layout" data-title="Search" data-model="app.searchView.viewModel" data-init="app.searchView.init" data-show="app.searchView.show" style="display: none;">
             <header data-role="header">
                 <div data-role="navbar">
@@ -42,11 +45,14 @@
             <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
         </div>
 
+
+        <!-- Cart Checkout Views -->
+
         <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
-                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
+                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Shipping</a>
                 </div>
                 <div>Swipe to Remove Item.</div>
                 <div>
@@ -62,9 +68,34 @@
                 <div data-role="navbar">
                     <a href="#cart-view" class="nav-button" data-align="left" data-role="backbutton">Cart</a>
                     <span data-role="view-title"></span>
+                    <div data-role="button" data-align="right" data-bind="click: submit">Submit</div>
                 </div>
             </header>
+            
+            <section class="validate" data-role="validator">
+                <input type="text" name="firstName" placeholder="First Name" data-bind="value: firstName" pattern=".{0,160}" required validationmessage="!" />
+                <input type="text" name="lastName" placeholder="Last Name" data-bind="value: lastName" pattern=".{0,160}" required validationmessage="!" />
+                <input type="text" name="address" placeholder="Address" data-bind="value: address" pattern=".{3,70}" required validationmessage="!" />
+                <input type="text" name="city" placeholder="City" data-bind="value: city" pattern=".{0,40}" required validationmessage="!"/>
+                <input type="text" name="state" placeholder="State" data-bind="value: state" pattern=".{0,40}" required validationmessage="!"/>
+                <input type="text" name="zip" placeholder="Postal Code" data-bind="value: zip" pattern=".{5,10}" required validationmessage="!"/>
+                <input type="text" name="country" placeholder="Country" data-bind="value: country" pattern=".{0,40}" required validationmessage="!"/>
+                <input type="text" name="phone" placeholder="Phone" data-bind="value: phone" pattern=".{0,24}" required validationmessage="!"/>
+                <input type="text" name="email" placeholder="Email Address" data-bind="value: email" pattern=".+@.+\..{2,}" required validationmessage="!"/>
+            </section>
         </div>
+
+        <div data-role="view" id="checkout-complete-view" data-layout="base-layout" data-title="Order Complete" data-model="app.checkoutView.viewModel" data-transition="slide:left" style="display: none;">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+            <div>Thank You!</div>
+        </div>
+
+
+        <!-- Account Views -->
 
         <div data-role="view" id="account-view" data-layout="base-layout" data-title="Log Off" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow">
             <header data-role="header">
@@ -84,13 +115,13 @@
                 </div>
             </header>
 
-            <input type="text" id="login-UserName" placeholder="Username" data-bind="value: loginUsername" />
-            <input type="password" id="login-Password" placeholder="Password" data-bind="value: loginPassword" />
-            <input type="button" data-role="button" value="Log In" data-bind="click: login" />
+            <input type="text" placeholder="Username" data-bind="value: loginUsername" />
+            <input type="password" placeholder="Password" data-bind="value: loginPassword" />
+            <div type="button" data-role="button" data-bind="click: login">Log In</div>
             <a href="#register-view" data-role="button">Register</a>
         </div>
         
-        <div data-role="view" id="register-view" data-layout="base-layout" data-title="Register" style="display: none;" data-model="app.accountView.viewModel">
+        <div data-role="view" id="register-view" data-layout="base-layout" data-title="Create Account" style="display: none;" data-model="app.accountView.viewModel">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -98,21 +129,24 @@
                 </div>
             </header>
 
-            <input type="text" id="register-UserName" placeholder="Username" data-bind="value: registerUsername" />
-            <input type="password" id="register-Password" placeholder="Password" data-bind="value: registerPassword" />
-            <input type="password" id="register-PasswordRetyped" placeholder="Confirm Password" data-bind="value: registerPasswordRetyped" />
+            <input type="text" placeholder="Username" data-bind="value: registerUsername" />
+            <input type="password" placeholder="Password" data-bind="value: registerPassword" />
+            <input type="password" placeholder="Confirm Password" data-bind="value: registerPasswordRetyped" />
             <input type="button" data-role="button" value="Register" data-bind="click: register" />
         </div>
-        
-        <div data-role="modalview" id="account-error-view" data-model="app.accountView.viewModel" style="display: none; width: 95%; height: 90%;">
+
+
+        <!-- Error Views -->
+
+        <div data-role="modalview" id="error-view" style="display: none; width: 95%; height: 90%;">
             <div data-role="header">
                 <div data-role="navbar">
                     <span>Error</span>
-                    <a data-bind="click: closeErrorModal" data-role="button" data-align="right">Cancel</a>
+                    <a data-click="app.closeErrorModal" data-role="button" data-align="right">Close</a>
                 </div>
             </div>
             
-            <div data-bind="text: errorMessage"></div>
+            <div class="message"></div>
         </div>
 
 

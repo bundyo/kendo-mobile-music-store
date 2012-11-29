@@ -1,10 +1,5 @@
-define(["jQuery", "config", "utils", "account"], function ($, config, utils, account) {
+define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, config, utils, account) {
     var _loginView;
-
-    var _showError = function (message, error) {
-        viewModel.set("errorMessage", message + (error === undefined ? "" : "\n" + error.status + ": " + error.statusText));
-        $("#account-error-view").show().data().kendoMobileModalView.open();
-    };
     
     var _clearForms = function() {
         viewModel.set("loginUsername", "");
@@ -38,17 +33,17 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
             })
             .done(function(data) {
                 if (data.isAuthenticated) {
-                    document.cookie = ".ASPXAUTH=" + data.authToken;
+                    document.cookie = ".ASPXAUTH=" + data.authToken + ";domain=" + config.domain;
                     viewModel.set("userName", data.userName);
                     account.isAuthenticated = true;
                     
                     _redirectAfterLogin();
                 } else {
-                    _showError("Log in failed.");
+                    utils.showError("Log in failed.");
                 }
             })
             .fail(function(error) {
-                _showError("Log In failed.", error);
+                utils.showError("Log In failed.", error);
             })
             .always(_clearForms);
         },
@@ -62,7 +57,7 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                 utils.navigate("#login-view");
             })
             .fail(function(error) {
-                _showError("Log off failed.", error);
+                utils.showError("Log off failed.", error);
             })
             .always(_clearForms);
         },
@@ -73,10 +68,10 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                 pwd2 = viewModel.registerPasswordRetyped;
             
             if (name === ""){
-                _showError("Name must not be empty.");
+                utils.showError("Name must not be empty.");
                 return;
             } else if(pwd === "" || pwd !== pwd2) {
-                _showError("Passwords must match.");
+                utils.showError("Passwords must match.");
                 return;
             }
 
@@ -96,13 +91,9 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                 }
             })
             .fail(function(error) {
-                _showError("Registration failed.", error);
+                utils.showError("Registration failed.", error);
             })
             .always(_clearForms);
-        },
-
-        closeErrorModal: function () {
-            $("#account-error-view").data().kendoMobileModalView.close();
         }
     });
     
