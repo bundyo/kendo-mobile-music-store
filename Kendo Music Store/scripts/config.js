@@ -1,5 +1,5 @@
 define([], function () {
-    var serverUrl = "http://kmstest.apphb.com",
+    var serverUrl = "http://localhost:59537",
         serviceUrl = serverUrl + "/Services/MusicStore.svc";
     
     return {

@@ -71,6 +71,7 @@
     <Content Include="scripts\base-layout.js" />
     <Content Include="scripts\cart-view.js" />
     <Content Include="scripts\cart.js" />
+    <Content Include="scripts\checkout-view.js" />
     <Content Include="scripts\config.js" />
     <Content Include="scripts\data.js" />
     <Content Include="scripts\genres-view.js" />

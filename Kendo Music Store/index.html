@@ -46,15 +46,24 @@
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
+                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
                 </div>
                 <div>Swipe to Remove Item.</div>
                 <div>
                     TOTAL: <span class="total" data-bind="text: formattedTotal"></span>
                 </div>
-                <a href="#checkout-view" data-role="button">Checkout</a>
             </header>
 
             <ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>
+        </div>
+        
+        <div data-role="view" id="checkout-view" data-layout="base-layout" data-title="Checkout" data-model="app.checkoutView.viewModel" data-before-show="app.checkoutView.beforeShow" data-transition="slide:left" style="display: none;">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a href="#cart-view" class="nav-button" data-align="left" data-role="backbutton">Cart</a>
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
         </div>
 
         <div data-role="view" id="account-view" data-layout="base-layout" data-title="Log Off" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow">
@@ -68,7 +77,7 @@
             <input type="submit" data-role="button" value="Log Off" data-bind="click: logout"/>
         </div>
 
-        <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel">
+        <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel" data-init="app.accountView.loginInit">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>

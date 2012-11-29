@@ -1,4 +1,6 @@
 define(["jQuery", "config", "utils", "account"], function ($, config, utils, account) {
+    var _loginView;
+
     var _showError = function (message, error) {
         viewModel.set("errorMessage", message + (error === undefined ? "" : "\n" + error.status + ": " + error.statusText));
         $("#account-error-view").show().data().kendoMobileModalView.open();
@@ -6,7 +8,15 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
     
     var _clearForms = function() {
         $("input[id|='login'], input[id|='register']").val("");
-    }
+    };
+    
+    var _redirectAfterLogin = function () {
+        if(_loginView.params && _loginView.params.navto) {
+            utils.navigate("#" +_loginView.params.navto);
+            return;
+        }
+        utils.navigate("#account-view");
+    };
 
     var viewModel = kendo.observable({
         userName: account.userName,
@@ -22,7 +32,8 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     document.cookie = ".ASPXAUTH=" + data.authToken;
                     viewModel.set("userName", data.userName);
                     account.isAuthenticated = true;
-                    utils.navigate("#account-view");
+                    
+                    _redirectAfterLogin();
                 } else {
                     _showError("Log in failed.");
                 }
@@ -87,6 +98,9 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
     });
     
     return {
+        loginInit: function (initEvt) {
+            _loginView = initEvt.view;
+        },
         beforeShow: function (showEvt) {
             if(!account.isAuthenticated) {
                 showEvt.preventDefault();
