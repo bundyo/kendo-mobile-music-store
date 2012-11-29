@@ -7,7 +7,11 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
     };
     
     var _clearForms = function() {
-        $("input[id|='login'], input[id|='register']").val("");
+        viewModel.set("loginUsername", "");
+        viewModel.set("loginPassword", "");
+        viewModel.set("registerUsername", "");
+        viewModel.set("registerPassword", "");
+        viewModel.set("registerPasswordRetyped", "");
     };
     
     var _redirectAfterLogin = function () {
@@ -21,11 +25,16 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
     var viewModel = kendo.observable({
         userName: account.userName,
         errorMessage: "",
+        loginUsername: "",
+        loginPassword: "",
+        registerUsername: "",
+        registerPassword: "",
+        registerPasswordRetyped: "",
         
         login: function (clickEvt) {
             $.post(config.loginUrl, {
-                    UserName: $("#login-UserName").val(),
-                    Password: $("#login-Password").val()
+                    UserName: viewModel.loginUsername,
+                    Password: viewModel.loginPassword
             })
             .done(function(data) {
                 if (data.isAuthenticated) {
@@ -59,9 +68,9 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
         },
 
         register: function (clickEvt) {
-            var name = $("#register-UserName").val(),
-                pwd = $("#register-Password").val(),
-                pwd2 = $("#register-PasswordRetyped").val();
+            var name = viewModel.registerUsername,
+                pwd = viewModel.registerPassword,
+                pwd2 = viewModel.registerPasswordRetyped;
             
             if (name === ""){
                 _showError("Name must not be empty.");

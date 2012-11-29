@@ -84,8 +84,8 @@
                 </div>
             </header>
 
-            <input type="text" id="login-UserName" placeholder="Username" />
-            <input type="password" id="login-Password" placeholder="Password" />
+            <input type="text" id="login-UserName" placeholder="Username" data-bind="value: loginUsername" />
+            <input type="password" id="login-Password" placeholder="Password" data-bind="value: loginPassword" />
             <input type="button" data-role="button" value="Log In" data-bind="click: login" />
             <a href="#register-view" data-role="button">Register</a>
         </div>
@@ -98,9 +98,9 @@
                 </div>
             </header>
 
-            <input type="text" id="register-UserName" placeholder="Username" />
-            <input type="password" id="register-Password" placeholder="Password" />
-            <input type="password" id="register-PasswordRetyped" placeholder="Confirm Password" />
+            <input type="text" id="register-UserName" placeholder="Username" data-bind="value: registerUsername" />
+            <input type="password" id="register-Password" placeholder="Password" data-bind="value: registerPassword" />
+            <input type="password" id="register-PasswordRetyped" placeholder="Confirm Password" data-bind="value: registerPasswordRetyped" />
             <input type="button" data-role="button" value="Register" data-bind="click: register" />
         </div>
         
