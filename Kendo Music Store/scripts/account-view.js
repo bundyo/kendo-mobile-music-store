@@ -28,14 +28,14 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
         
         login: function (clickEvt) {
             var userName = viewModel.loginUsername;
-            var password = viewModel.password;
+            var password = viewModel.loginPassword;
             $.post(config.loginUrl, {
                     UserName: userName,
                     Password: password
             })
             .done(function(validCredentials) {
                 if (validCredentials) {
-                    viewModel.set("userName", data.userName);
+                    viewModel.set("userName", userName);
                     account.isAuthenticated = true;
                     account.userName = userName;
                     account.password = password;
@@ -87,7 +87,7 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
             })
             .done(function(registrationSuccess) {
                 if (registrationSuccess) {
-                    viewModel.set("userName", data.userName);
+                    viewModel.set("userName", name);
                     account.isAuthenticated = true;
                     account.userName = name;
                     account.password = pwd;
