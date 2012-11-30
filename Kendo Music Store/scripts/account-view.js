@@ -27,13 +27,21 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
         registerPasswordRetyped: "",
         
         login: function (clickEvt) {
-            $.post(config.loginUrl, {
+            $.ajax(config.loginUrl, {
+                type: "POST",
+                data: {
                     UserName: viewModel.loginUsername,
                     Password: viewModel.loginPassword
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true
             })
             .done(function(data) {
                 if (data.isAuthenticated) {
-                    document.cookie = ".ASPXAUTH=" + data.authToken + ";domain=" + config.domain;
+                    document.cookie = ".ASPXAUTH=" + data.authToken;// + ";domain=" + config.domain;
+                    alert(document.cookie);
                     viewModel.set("userName", data.userName);
                     account.isAuthenticated = true;
                     

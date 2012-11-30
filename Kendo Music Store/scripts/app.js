@@ -4,7 +4,7 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart", "home-layout", "ba
     var init = function () {
         var kendoApp = new kendo.mobile.Application(document.body, { transition: "fade", layout: "mobile-tabstrip" });
         utils.init(kendoApp);
-        document.cookie = ".ASPXAUTH=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        //document.cookie = ".ASPXAUTH=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
         cart.items.bind("change", function () { utils.updateCartBadges($, cart) });
     };
 
