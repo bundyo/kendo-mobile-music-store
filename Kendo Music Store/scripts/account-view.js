@@ -32,16 +32,18 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
         registerPasswordRetyped: "",
         
         login: function (clickEvt) {
+            var userName = viewModel.loginUsername;
+            var password = viewModel.password;
             $.post(config.loginUrl, {
-                    UserName: viewModel.loginUsername,
-                    Password: viewModel.loginPassword
+                    UserName: userName,
+                    Password: password
             })
-            .done(function(data) {
-                if (data.isAuthenticated) {
-                    document.cookie = ".ASPXAUTH=" + data.authToken;
+            .done(function(validCredentials) {
+                if (validCredentials) {
                     viewModel.set("userName", data.userName);
                     account.isAuthenticated = true;
-                    
+                    account.userName = userName;
+                    account.password = password;
                     _redirectAfterLogin();
                 } else {
                     _showError("Log in failed.");
@@ -56,9 +58,10 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
         logout: function (clickEvt) {
             $.post(config.loginUrl)
             .done(function (data) {
-                document.cookie = ".ASPXAUTH=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
-                viewModel.set("userName", null);
+                viewModel.set("userName", "");
                 account.isAuthenticated = false;
+                account.userName = null;
+                account.password = null;
                 utils.navigate("#login-view");
             })
             .fail(function(error) {
@@ -87,11 +90,13 @@ define(["jQuery", "config", "utils", "account"], function ($, config, utils, acc
                     Password: pwd
                 }
             })
-            .done(function(data) {
-                if (data.isAuthenticated) {
-                    document.cookie = ".ASPXAUTH=" + data.authToken;
+            .done(function(registrationSuccess) {
+                if (registrationSuccess) {
                     viewModel.set("userName", data.userName);
                     account.isAuthenticated = true;
+                    account.userName = name;
+                    account.password = pwd;
+                    
                     utils.navigate("#account-view");
                 }
             })
