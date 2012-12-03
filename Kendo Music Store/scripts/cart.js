@@ -48,12 +48,19 @@ define(["jQuery", "kendo"], function ($, kendo) {
             } else {
                 cartItems.add({ album: $.extend(true, {}, album), qty: 1 });
             }
+        },
+
+        clear = function () {
+            for(var i = cartItems.data().length - 1; i >= 0; i--) {
+                cartItems.remove(cartItems.data()[i]);
+            }
         };
 
     return {
         items: cartItems,
         add: addAlbum,
         find: findAlbum,
-        aggregates: cartAggregates
+        aggregates: cartAggregates,
+        clear: clear
     };
 });

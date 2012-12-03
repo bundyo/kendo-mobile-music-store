@@ -8,6 +8,7 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart", "home-layout", "ba
     };
 
     return {
+        closeErrorModal: utils.closeError,
         config: config,
         init: init,
         homeLayout: homeLayout,

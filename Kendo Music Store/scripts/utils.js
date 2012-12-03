@@ -1,4 +1,4 @@
-define(["app"], function (app) {
+define([], function () {
     var _kendoApp;
 
     return {
@@ -55,13 +55,15 @@ define(["app"], function (app) {
             viewElement.data("kendoMobileView").scroller.reset();
         },
         
-        showLoading: function () {
+        showLoading: function (message) {
+            _kendoApp.loading = "<h1>" + (message ? message : "Loading...") + "</h1>";
             _kendoApp.showLoading();
         },
         
         hideLoading: function () {
             _kendoApp.hideLoading();
         },
+
         updateCartBadges: function ($, cart) {
             var numberInCart = cart.items.aggregates() && cart.items.aggregates().qty ? cart.items.aggregates().qty.sum : 0;
             var cartBadges = $(".cart-badge");
@@ -71,6 +73,16 @@ define(["app"], function (app) {
             } else {
                 cartBadges.hide();
             }
+        },
+
+        showError: function (message, error) {
+            var errorMessage = message + (error === undefined ? "" : "\n" + error.status + ": " + error.statusText);
+            $("#error-view .message").text(errorMessage);
+            $("#error-view").show().data().kendoMobileModalView.open();
+        },
+
+        closeError: function () {
+            $("#error-view").data().kendoMobileModalView.close();
         }
     };
 });
