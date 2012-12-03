@@ -1,5 +1,6 @@
 define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, config, utils, account) {
-    var _loginView;
+    var _loginView,
+        _submitting = false;
     
     var _clearForms = function() {
         viewModel.set("loginUsername", "");
@@ -70,6 +71,10 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
                 pwd = viewModel.registerPassword,
                 pwd2 = viewModel.registerPasswordRetyped;
             
+            if(_submitting) {
+                return;
+            }
+            
             if (name === ""){
                 utils.showError("Name must not be empty.");
                 return;
@@ -78,6 +83,7 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
                 return;
             }
 
+            _submitting = true;
             $.ajax(config.loginUrl, {
                 type: "put",
                 data: {
@@ -86,6 +92,7 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
                 }
             })
             .done(function(registrationSuccess) {
+                _submitting = false;
                 if (registrationSuccess) {
                     viewModel.set("userName", name);
                     account.isAuthenticated = true;
@@ -96,6 +103,7 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
                 }
             })
             .fail(function(error) {
+                _submitting = false;
                 utils.showError("Registration failed.", error);
             })
             .always(_clearForms);

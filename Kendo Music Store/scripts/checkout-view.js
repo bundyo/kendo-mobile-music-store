@@ -1,6 +1,8 @@
 define(["jQuery", "kendo", "config", "utils", "cart", "account"], function ($, kendo, config, utils, cart, account) {
     "use strict";
 
+    var _submitting = false;
+
     var _buildCartData = function (viewModel) {
         var data = {
             Order: {
@@ -56,13 +58,19 @@ define(["jQuery", "kendo", "config", "utils", "cart", "account"], function ($, k
             
             submit: function (clickEvt) {
                 var viewModel = this;
+                if(_submitting) {
+                    return;
+                }
+
                 if(!$(".validate").data("kendoValidator").validate()) {
                     return;
                 }
                 
+                _submitting = true;
                 utils.showLoading("Submitting...");
                 $.post(config.cartSubmitUrl, _buildCartData(viewModel))
                 .done(function(data) {
+                    _submitting = false;
                     utils.hideLoading();
                     console.log("submit");
                     if(data.error === undefined || data.error === "") {
@@ -74,6 +82,7 @@ define(["jQuery", "kendo", "config", "utils", "cart", "account"], function ($, k
                     }
                 })
                 .fail(function(error) {
+                    _submitting = false;
                     utils.hideLoading();
                     utils.showError("There was an error submitting your order.", error);
                 });
