@@ -7,9 +7,11 @@
     <ProjectName>Kendo Music Store</ProjectName>
     <IsRunnable>true</IsRunnable>
     <TemplateAppName>Cordova200</TemplateAppName>
-    <AndroidPermissions>android.permission.CAMERA;android.permission.VIBRATE;android.permission.ACCESS_COARSE_LOCATION;android.permission.ACCESS_FINE_LOCATION;android.permission.ACCESS_LOCATION_EXTRA_COMMANDS;android.permission.READ_PHONE_STATE;android.permission.INTERNET;android.permission.RECEIVE_SMS;android.permission.RECORD_AUDIO;android.permission.MODIFY_AUDIO_SETTINGS;android.permission.READ_CONTACTS;android.permission.WRITE_CONTACTS;android.permission.WRITE_EXTERNAL_STORAGE;android.permission.ACCESS_NETWORK_STATE</AndroidPermissions>
+    <AndroidPermissions>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS;android.permission.INTERNET;android.permission.WRITE_EXTERNAL_STORAGE;android.permission.ACCESS_NETWORK_STATE</AndroidPermissions>
     <DeviceOrientations>Portrait;Landscape</DeviceOrientations>
     <iOSStatusBarStyle>Default</iOSStatusBarStyle>
+    <BundleVersion>1.0</BundleVersion>
+    <AndroidVersionCode>1</AndroidVersionCode>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="App_Resources" />
