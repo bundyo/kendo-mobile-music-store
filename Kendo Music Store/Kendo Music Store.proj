@@ -30,6 +30,7 @@
     <Folder Include="App_Resources\Android\drawable-ldpi">
       <Platform>Android</Platform>
     </Folder>
+    <Folder Include="Images" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App_Resources\iOS\icon.png" />
@@ -53,6 +54,7 @@
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\footer-logos.png" />
     <Content Include="index.html" />
     <Content Include="kendo\js\jquery.min.js" />
     <Content Include="kendo\js\kendo.mobile.min.js" />
@@ -64,6 +66,7 @@
     <Content Include="kendo\styles\images\KendoUI.ttf" />
     <Content Include="kendo\styles\images\KendoUI.woff" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
+    <Content Include="scripts\about-view.js" />
     <Content Include="scripts\account-view.js" />
     <Content Include="scripts\account.js" />
     <Content Include="scripts\albums-view.js" />
@@ -81,6 +84,7 @@
     <Content Include="scripts\main.js" />
     <Content Include="scripts\require.js" />
     <Content Include="scripts\search-view.js" />
+    <Content Include="scripts\splash-view.js" />
     <Content Include="scripts\templates.js" />
     <Content Include="scripts\utils.js" />
     <Content Include="styles\main.css" />
@@ -92,6 +96,15 @@
       <Platform>Android</Platform>
       <TargetName>cordova.js</TargetName>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <CordovaPlugin Include="com.phonegap.plugins.childbrowser">
+      <Version>3.0.4</Version>
+      <Name>Child Browser</Name>
+    </CordovaPlugin>
+  </ItemGroup>
+  <ItemGroup>
+    <CordovaPluginContent Include="com.phonegap.plugins.childbrowser\childbrowser.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>

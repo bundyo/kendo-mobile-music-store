@@ -118,3 +118,26 @@ body
 {
     background: rgba(255, 0, 0, .2);
 }
+
+#about-view footer
+{
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#about-view .footer-images
+{
+    height: 32px;
+    background-color: #222;
+    text-align: center;
+    padding-top: 8px;
+}
+
+#about-view footer .km-button
+{
+    width: 98%;
+    padding: 10px 0;
+    margin: 1%;
+}

@@ -4,6 +4,7 @@
         <title></title>
         <meta charset="utf-8" />
         <script src="cordova.js"></script>
+        <script src="Plugins/Child Browser/childbrowser.js"></script>
         
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
         <link href="styles/main.css" rel="stylesheet" />
@@ -16,7 +17,7 @@
             <ul data-role="listview" data-bind="source: genres" data-template="genre-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
-        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-init="app.artistsView.init" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
+        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
             <ul data-role="listview" data-bind="source: artists" data-template="artist-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
         
@@ -28,7 +29,7 @@
                 </div>
             </header>
 
-            <ul data-role="listview" data-bind="source: albums" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
+            <ul data-role="listview" data-bind="source: albums, events: {lastPageReached: lastPageReached}" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
 
@@ -136,6 +137,25 @@
         </div>
 
 
+        <!-- About Views -->
+
+        <div data-role="view" id="about-view" data-layout="base-layout" data-model="app.aboutView.viewModel" style="display: none;">
+            <h1>Kendo UI Mobile Music Store</h1>
+            <p>This is a demo app for Kendo UI Mobile.</p>
+            
+            <footer>
+                <a data-role="button" data-rel="actionsheet" href="#learnmore-actions">Learn More about Kendo UI</a>
+                <div class="footer-images"><img src="Images/footer-logos.png" /></div>
+            </footer>
+
+            <ul data-role="actionsheet" id="learnmore-actions" data-popup='{"direction": "left"}'>
+                <li class="km-actionsheet-title">Learn More about Kendo UI</li>
+                <li><a data-bind="click: app.aboutView.openKendoWeb">Visit www.kendoui.com</a></li>
+                <li><a data-bind="click: app.aboutView.openSource">View Source for This App</a></li>
+            </ul>            
+        </div>
+
+
         <!-- Error Views -->
 
         <div data-role="modalview" id="error-view" style="display: none; width: 95%; height: 90%;">
@@ -173,6 +193,7 @@
                     <a href="#search-view" data-icon="search">Search</a>
                     <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
                     <a href="#account-view" data-icon="contacts">Account</a>
+                    <a href="#about-view" data-icon="about">About</a>
                 </div>
             </div>
         </div>
@@ -184,6 +205,7 @@
                     <a href="#search-view" data-icon="search">Search</a>
                     <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
                     <a href="#account-view" data-icon="contacts">Account</a>
+                    <a href="#about-view" data-icon="about">About</a>
                 </div>
             </div>
         </div>

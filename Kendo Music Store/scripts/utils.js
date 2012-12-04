@@ -83,6 +83,13 @@ define([], function () {
 
         closeError: function () {
             $("#error-view").data().kendoMobileModalView.close();
+        },
+
+        reEnableEndlessScrolling: function (listViewElement) {
+            var listView = listViewElement.data().kendoMobileListView;
+            //listView.stopEndlessScrolling(); //incase it hasn't already been stopped.
+            //listView._loadIcon.parent().show(); //reenable the loading icon.
+            listView._bindScroller(); //rebind to the scroller.
         }
     };
 });

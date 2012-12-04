@@ -114,6 +114,7 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
         loginInit: function (initEvt) {
             _loginView = initEvt.view;
         },
+
         beforeShow: function (showEvt) {
             if(!account.isAuthenticated) {
                 showEvt.preventDefault();

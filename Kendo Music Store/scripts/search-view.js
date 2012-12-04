@@ -18,6 +18,8 @@ define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates", "albu
             
             filter = _buildSearchFilter(_viewElement.find(".search-text").val());
             data.searchList.filter(filter);
+
+            utils.reEnableEndlessScrolling(_viewElement.find("ul.km-listview"));
         },
         
         show = function (showEvent) {

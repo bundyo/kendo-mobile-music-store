@@ -1,10 +1,5 @@
 define(["jQuery", "kendo", "utils", "data"], function ($, kendo, utils, data) {
     return {
-        init: function (e) {
-            var scroller = e.sender.element.data("kendoMobileView").scroller;
-            var listView = e.sender.element.find(".listview");
-        },
-        
         show: function (e) {
             var selectedArtistFilter = "A";
             if(e.view.params.value) {
