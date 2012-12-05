@@ -45,10 +45,10 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
         
         genresList: new kendo.data.DataSource(new DataSourceConfig(config.genresUrl, "Name")),
         
-        artistsList: new kendo.data.DataSource(new DataSourceConfig(config.artistsUrl, "Name"), {
+        artistsList: new kendo.data.DataSource(new DataSourceConfig(config.artistsUrl, "Name", {
             serverFiltering: true,
             serverSorting: true
-        }),
+        })),
 
         albumsList: new EndlessScrollDataSource(new DataSourceConfig(config.albumsUrl + "?$expand=Artist", "Title", {
             serverPaging: true,

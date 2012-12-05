@@ -18,7 +18,7 @@
         </div>
 
         <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
-            <ul data-role="listview" data-bind="source: artists" data-template="artist-list-template", data-style="inset" data-endless-scroll="true"></ul>
+            <ul data-role="listview" data-bind="source: artists" data-template="artist-list-template", data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
         </div>
         
         <div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
@@ -150,8 +150,8 @@
 
             <ul data-role="actionsheet" id="learnmore-actions" data-popup='{"direction": "left"}'>
                 <li class="km-actionsheet-title">Learn More about Kendo UI</li>
-                <li><a data-bind="click: app.aboutView.openKendoWeb">Visit www.kendoui.com</a></li>
-                <li><a data-bind="click: app.aboutView.openSource">View Source for This App</a></li>
+                <li><a data-bind="click: openKendoWeb">Visit www.kendoui.com</a></li>
+                <li><a data-bind="click: openSource">View Source for This App</a></li>
             </ul>            
         </div>
 
