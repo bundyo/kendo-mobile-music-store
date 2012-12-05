@@ -40,7 +40,10 @@
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
-                <input type=text class="search-text" placeholder="Album title or artist" /><a data-role="button" data-icon="search" data-click="submitSearch"></a>
+                <div class="search-container">
+                    <input type=text class="search-text" placeholder="Album title or artist" />
+                    <a data-role="button" data-icon="search" data-click="submitSearch"></a>
+                </div>
             </header>
 
             <ul data-role="listview" data-bind="source: results" data-template="album-list-template", data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>

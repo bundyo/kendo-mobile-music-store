@@ -3,6 +3,11 @@ body
     font: Arial, sans-serif;
 }
 
+input[type="text"], input[type="password"] {
+    margin: 4px;
+    width: 70%;
+}
+
 .buttonArea,
 .footerText
 {
@@ -23,15 +28,6 @@ body
 }
 
 /* Main View */
-
-.km-header .select-group.km-buttongroup
-{
-    width: 100%;
-    text-align: center;
-    padding: 20px;
-    background-color: #EEE;
-    margin: 0;
-}
 
 .km-buttongroup a
 {
@@ -117,6 +113,25 @@ body
 .k-invalid-msg
 {
     background: rgba(255, 0, 0, .2);
+}
+
+.search-container {
+    text-align: center;
+}
+
+.km-ios .search-container {
+    padding: 10px;
+}
+
+.km-ios .search-container input[type="text"] {
+    padding: 2px 2px 6px 2px;
+    margin: 0;
+    line-height: 20px;
+    height: 16px;
+}
+
+.km-ios .search-container a {
+    margin: 0;
 }
 
 #about-view footer
