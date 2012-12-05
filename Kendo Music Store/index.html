@@ -140,19 +140,21 @@
         <!-- About Views -->
 
         <div data-role="view" id="about-view" data-layout="base-layout" data-model="app.aboutView.viewModel" style="display: none;">
-            <h1>Kendo UI Mobile Music Store</h1>
-            <p>This is a demo app for Kendo UI Mobile.</p>
-            
-            <footer>
-                <a data-role="button" data-rel="actionsheet" href="#learnmore-actions">Learn More about Kendo UI</a>
-                <div class="footer-images"><img src="Images/footer-logos.png" /></div>
-            </footer>
-
-            <ul data-role="actionsheet" id="learnmore-actions" data-popup='{"direction": "left"}'>
-                <li class="km-actionsheet-title">Learn More about Kendo UI</li>
-                <li><a data-bind="click: openKendoWeb">Visit www.kendoui.com</a></li>
-                <li><a data-bind="click: openSource">View Source for This App</a></li>
-            </ul>            
+            <div class="km-insetcontent">
+                <h1>Kendo UI Mobile Music Store</h1>
+                <p>The Mobile Music Store is a demo app built using Kendo UI Mobile.</p>
+                
+                <footer>
+                    <div class="footer-images"><img src="Images/footer-logos.png" /></div>
+                    <a data-role="button" data-rel="actionsheet" href="#learnmore-actions">Learn More about Kendo UI</a>
+                </footer>
+    
+                <ul data-role="actionsheet" id="learnmore-actions" data-popup='{"direction": "left"}'>
+                    <li class="km-actionsheet-title">Learn More about Kendo UI</li>
+                    <li><a data-bind="click: openKendoWeb">Visit www.kendoui.com</a></li>
+                    <li><a data-bind="click: openSource">View Source for This App</a></li>
+                </ul>
+            </div>
         </div>
 
 
