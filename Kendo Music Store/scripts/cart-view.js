@@ -2,8 +2,28 @@ define(["kendo", "cart", "config"], function (kendo, cart, config) {
     "use strict";
 
     var onRemove = function (swipeEvt) {
-            var uid = swipeEvt.sender.element.parents("li").data("uid");
-            cart.items.remove(cart.items.getByUid(uid));
+            var element = swipeEvt.sender.element;
+            var li = element.parents("li");
+            var uid = li.data("uid");
+
+            var animation = {
+                "margin-left": li.width(),
+                "margin-right": -li.width(),
+                "opacity": 0
+            };
+            if(swipeEvt.direction === "left") {
+                animation = {
+                    "margin-left": -li.width(),
+                    "margin-right": li.width(),
+                    "opacity": 0
+                }
+            }
+
+            li.animate(animation,
+                300,
+                function () {
+                    cart.items.remove(cart.items.getByUid(uid));
+                });
         },
 
         viewModel = kendo.observable({
