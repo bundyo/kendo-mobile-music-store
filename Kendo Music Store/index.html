@@ -225,9 +225,9 @@
         <script id="album-list-template" type="text/x-kendo-template">
             <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
             <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span data-bind="text: qtyInCart, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span></div>
-            <div class="album-title" data-bind="text: Title"></div>
-            <div class="album-artist" data-bind="text: Artist.Name"></div>
-            <div class="album-price" data-bind="text: albumPrice"></div>
+            <h1 class="album-title" data-bind="text: Title"></h1>
+            <h2 class="album-artist" data-bind="text: Artist.Name"></h2>
+            <span class="album-price" data-bind="text: albumPrice"></span>
         </script>
         
         <script id="artist-filter-template" type="text/x-kendo-template">
@@ -236,15 +236,15 @@
 
         <script id="cart-list-template" type="text/x-kendo-template">
             <div data-role="touch" data-enable-swipe="1" data-swipe="app.cartView.onRemove">
-                <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
-                <div class="album-title" data-bind="text: album.Title"></div>
-                <div class="album-artist" data-bind="text: album.Artist.Name"></div>
-                <div class="album-price" data-bind="text: albumPrice"></div>
                 <div class="qty-and-price">
-                    <span>Qty:</span>
+                    <strong>Qty</strong>
                     <input type="number" data-bind="value: qty" min="1" max="99" />
-                    <span>Subtotal: </span><span data-bind="text: albumSubtotal"></span>
                 </div>
+                <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
+                <h1 class="album-title" data-bind="text: album.Title"></h1>
+                <h2 class="album-artist" data-bind="text: album.Artist.Name"></h2>
+                <span class="album-price" data-bind="text: albumPrice"></span>
+                <div class="subtotal">Subtotal: <span data-bind="text: albumSubtotal"></span></div>
             </div>
         </script>
 
