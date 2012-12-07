@@ -53,15 +53,13 @@
         <!-- Cart Checkout Views -->
 
         <div data-role="view" id="cart-view" data-layout="base-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
-            <header data-role="header">
+            <header data-role="header" class="cart-header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                     <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Shipping</a>
                 </div>
-                <div>Swipe to Remove Item.</div>
-                <div>
-                    TOTAL: <span class="total" data-bind="text: formattedTotal"></span>
-                </div>
+                <h3>Swipe to Remove Item</h3>
+                <h1>TOTAL: <span class="total" data-bind="text: formattedTotal"></span></h1>
             </header>
 
             <ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>

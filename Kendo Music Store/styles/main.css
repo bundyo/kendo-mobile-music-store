@@ -27,6 +27,8 @@ input[type="text"], input[type="password"] {
     padding: 7px;
 }
 
+.km-ios .km-header { background: #fff; }
+
 /* Navigation */
 .km-footer .km-tabstrip {
     background: #D88E2E;
@@ -46,10 +48,48 @@ input[type="text"], input[type="password"] {
         color: rgba(255,255,255,.5);
         background-image: none;
     }
-    .km-ios .km-tabstrip .km-text { display: none; }
+    .km-ios .km-tabstrip .km-text { color: rgba(255,255,255,.5); }
+    .km-ios .km-tabstrip .km-badge { display: block; }
 
 .km-icon::before, .km-contactadd::before, .km-rowdelete::before, .km-rowinsert::before, .km-detaildisclose::before { color: transparent; }
-.km-ios .km-tabstrip .km-state-active .km-icon, .km-android .km-tabstrip .km-state-active .km-icon { color: #fff; }
+.km-ios .km-tabstrip .km-state-active .km-icon, .km-android .km-tabstrip .km-state-active .km-icon, .km-ios .km-tabstrip .km-state-active .km-text { color: #fff; }
+
+.km-android .km-tabstrip .km-badge { 
+    bottom: -0.3em;
+    font-size: 10px;
+    background: #D88E2E;
+}
+
+.km-android .km-buttongroup .km-state-active,
+.km-android .km-navbar .km-buttongroup .km-state-active,
+.km-android .km-touch-scrollbar,
+.km-ios .km-header > .km-buttongroup .km-state-active,
+.km-ios .km-footer > .km-buttongroup .km-state-active,
+.km-ios .km-content .km-buttongroup .km-state-active
+    { background: #D88E2E; }
+
+/* Starburst Background Views */
+
+#about-view .km-content { 
+    background: url('/Images/rays-background.png') no-repeat;
+    background-size: cover;
+}
+
+.km-horizontal #about-view .km-content { 
+    background: url('/Images/rays-background-horizontal.png') no-repeat 50% 50%;
+}
+
+/* Login */
+
+#login-view .km-content {
+    padding: 40% 0 0;
+    text-align: center;
+}
+
+#login-view .km-content input {
+    display: block;
+    margin: 10px auto;
+}
 
 /* Main View */
 
@@ -167,14 +207,22 @@ input[type="text"], input[type="password"] {
     padding: 10px 0 0;
 }
 
-#about-view .km-content { 
-    background: url('/Images/rays-background.png') no-repeat;
-    background-size: cover;
-}
+/* Cart */
 
-.km-horizontal #about-view .km-content { 
-    background: url('/Images/rays-background-horizontal.png') no-repeat 50% 50%;
+.cart-header {
+    text-align: center;
 }
+    .cart-header h3 {
+        padding: 5px 0;
+        background: #E6E6E6;
+        font-weight: normal;
+    }
+    .cart-header h1 {
+        padding: 5px 0;
+        background: #fff;
+    }
+
+/* About */
 
 #about-view h1 {
     background: url('/Images/awesomesauce-logo.png') no-repeat 50% 0;
