@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\footer-logos.png" />
+    <Content Include="Images\rays-background-horizontal.png" />
+    <Content Include="Images\rays-background.png" />
     <Content Include="index.html" />
     <Content Include="kendo\js\jquery.min.js" />
     <Content Include="kendo\js\kendo.mobile.min.js" />
@@ -87,6 +89,9 @@
     <Content Include="scripts\splash-view.js" />
     <Content Include="scripts\templates.js" />
     <Content Include="scripts\utils.js" />
+    <Content Include="Images\awesomesauce-logo.png" />
+    <Content Include="Images\kendo-ui-logo.png" />
+    <Content Include="Images\telerik-logo.png" />
     <Content Include="styles\main.css" />
     <Content Include="cordova.ios.js">
       <Platform>iOS</Platform>

@@ -27,6 +27,30 @@ input[type="text"], input[type="password"] {
     padding: 7px;
 }
 
+/* Navigation */
+.km-footer .km-tabstrip {
+    background: #D88E2E;
+    background: -moz-linear-gradient(top,  #e0a558 0%, #e0a558 50%, #d88e2e 50%, #d88e2e 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e0a558), color-stop(50%,#e0a558), color-stop(50%,#d88e2e), color-stop(100%,#d88e2e));
+    background: -webkit-linear-gradient(top,  #e0a558 0%,#e0a558 50%,#d88e2e 50%,#d88e2e 100%);
+    background: -o-linear-gradient(top,  #e0a558 0%,#e0a558 50%,#d88e2e 50%,#d88e2e 100%);
+    background: -ms-linear-gradient(top,  #e0a558 0%,#e0a558 50%,#d88e2e 50%,#d88e2e 100%);
+    background: linear-gradient(to bottom,  #e0a558 0%,#e0a558 50%,#d88e2e 50%,#d88e2e 100%);
+}
+
+.km-ios .km-tabstrip {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+    .km-ios .km-tabstrip .km-icon { 
+        color: rgba(255,255,255,.5);
+        background-image: none;
+    }
+    .km-ios .km-tabstrip .km-text { display: none; }
+
+.km-icon::before, .km-contactadd::before, .km-rowdelete::before, .km-rowinsert::before, .km-detaildisclose::before { color: transparent; }
+.km-ios .km-tabstrip .km-state-active .km-icon, .km-android .km-tabstrip .km-state-active .km-icon { color: #fff; }
+
 /* Main View */
 
 .km-buttongroup a
@@ -140,28 +164,48 @@ input[type="text"], input[type="password"] {
 }
 
 #about-view .km-insetcontent {
-    padding: 10px 0 30px;
+    padding: 10px 0 0;
+}
+
+#about-view .km-content { 
+    background: url('/Images/rays-background.png') no-repeat;
+    background-size: cover;
+}
+
+.km-horizontal #about-view .km-content { 
+    background: url('/Images/rays-background-horizontal.png') no-repeat 50% 50%;
 }
 
 #about-view h1 {
-    font-size: 3em;
+    background: url('/Images/awesomesauce-logo.png') no-repeat 50% 0;
+    padding-top: 80px;
+    font-size: 1.7em;
+    text-align: center;
+    color: #000;
 }
 
 #about-view p {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #000;
+    text-align: center;
 }
 
 #about-view .footer-images
 {
-    background-color: #21242c;
     text-align: center;
     padding: 15px 10px 10px;
     margin: 0 10%;
 }
 
+    #about-view .footer-images img {
+        width: 80%;
+        background: #fff;
+        padding: 5px 20px 10px;
+        border-radius: 5px;
+    }
+
 #about-view footer .km-button
 {
     padding: 10px;
-    margin: 40px 0;
 }
