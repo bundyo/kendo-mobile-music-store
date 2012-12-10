@@ -75,15 +75,24 @@
             </header>
             
             <section class="validate" data-role="validator">
-                <input type="text" name="firstName" placeholder="First Name" data-bind="value: firstName" pattern=".{0,160}" required validationmessage="!" />
-                <input type="text" name="lastName" placeholder="Last Name" data-bind="value: lastName" pattern=".{0,160}" required validationmessage="!" />
-                <input type="text" name="address" placeholder="Address" data-bind="value: address" pattern=".{3,70}" required validationmessage="!" />
-                <input type="text" name="city" placeholder="City" data-bind="value: city" pattern=".{0,40}" required validationmessage="!"/>
-                <input type="text" name="state" placeholder="State" data-bind="value: state" pattern=".{0,40}" required validationmessage="!"/>
-                <input type="text" name="zip" placeholder="Postal Code" data-bind="value: zip" pattern=".{5,10}" required validationmessage="!"/>
-                <input type="text" name="country" placeholder="Country" data-bind="value: country" pattern=".{0,40}" required validationmessage="!"/>
-                <input type="text" name="phone" placeholder="Phone" data-bind="value: phone" pattern=".{0,24}" required validationmessage="!"/>
-                <input type="text" name="email" placeholder="Email Address" data-bind="value: email" pattern=".+@.+\..{2,}" required validationmessage="!"/>
+                <label>First Name</label>
+                <input type="text" name="firstName" placeholder="First Name" data-bind="value: firstName" pattern=".{0,160}" required validationmessage="Required" />
+                <label>Last Name</label>
+                <input type="text" name="lastName" placeholder="Last Name" data-bind="value: lastName" pattern=".{0,160}" required validationmessage="Required" />
+                <label>Address</label>
+                <input type="text" name="address" placeholder="Address" data-bind="value: address" pattern=".{3,70}" required validationmessage="Required" />
+                <label>City</label>
+                <input type="text" name="city" placeholder="City" data-bind="value: city" pattern=".{0,40}" required validationmessage="Required"/>
+                <label>State</label>
+                <input type="text" name="state" placeholder="State" data-bind="value: state" pattern=".{0,40}" required validationmessage="Required"/>
+                <label>Postal Code</label>
+                <input type="text" name="zip" placeholder="Postal Code" data-bind="value: zip" pattern=".{5,10}" required validationmessage="Required"/>
+                <label>Country</label>
+                <input type="text" name="country" placeholder="Country" data-bind="value: country" pattern=".{0,40}" required validationmessage="Required"/>
+                <label>Phone</label>
+                <input type="text" name="phone" placeholder="Phone" data-bind="value: phone" pattern=".{0,24}" required validationmessage="Required"/>
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email Address" data-bind="value: email" pattern=".+@.+\..{2,}" required validationmessage="Required"/>
             </section>
         </div>
 

@@ -29,6 +29,13 @@ input[type="text"], input[type="password"] {
 
 .km-ios .km-header { background: #E6E6E6; }
 
+.k-invalid-msg {
+    background: rgba(255, 0, 0, .2);
+    display: inline-block;
+    padding: 2px 5px 2px 4px;
+}
+    .km-android .k-invalid-msg { background: red; }
+
 /* Modals */
 
 .km-ios .km-modalview .km-header { background: #D88E2E; }
@@ -176,11 +183,6 @@ input[type="text"], input[type="password"] {
     right: 0;
 }
 
-.k-invalid-msg
-{
-    background: rgba(255, 0, 0, .2);
-}
-
 .search-container {
     text-align: center;
 }
@@ -225,6 +227,27 @@ input[type="text"], input[type="password"] {
     }
 .album-cart {
     margin-left: 10px;
+}
+
+/* Shipping */
+
+.validate {
+    padding: 10px 10%;
+}
+
+.validate label { 
+    display: block; 
+    margin-top: 10px;
+}
+
+.km-android .validate label {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.validate input {
+    margin: 0 5px 10px 0;
+    padding: 0;
 }
 
 /* Album Lists */
