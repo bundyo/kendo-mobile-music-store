@@ -76,17 +76,6 @@ input[type="text"], input[type="password"] {
 .km-ios .km-content .km-buttongroup .km-state-active
     { background: #D88E2E; }
 
-/* Starburst Background Views */
-
-#about-view .km-content { 
-    background: url('/Images/rays-background.png') no-repeat;
-    background-size: cover;
-}
-
-.km-horizontal #about-view .km-content { 
-    background: url('/Images/rays-background-horizontal.png') no-repeat 50% 50%;
-}
-
 /* Login & Register */
 
 #login-view .km-content, #register-view .km-content {
@@ -274,26 +263,32 @@ input[type="text"], input[type="password"] {
 
 /* About */
 
+.km-ios #about-view .km-content { 
+    background: url('/Images/rays-background.png') no-repeat;
+    background-size: cover;
+}
+
+.km-ios .km-horizontal #about-view .km-content { 
+    background: url('/Images/rays-background-horizontal.png') no-repeat 50% 50%;
+}
+
 #about-view h1 {
-    background: url('/Images/awesomesauce-logo.png') no-repeat 50% 0;
-    padding-top: 80px;
     font-size: 1.7em;
     text-align: center;
-    color: #000;
 }
 
-#about-view p {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: #000;
-    text-align: center;
+#about-view img {
+    margin: 20px auto 5px;
+    display: block;
 }
 
-#about-view .footer-images
-{
+.km-ios #about-view h1, .km-ios #about-view p { color: #000; }
+
+#about-view p { text-align: center; }
+
+#about-view .footer-images {
     text-align: center;
-    padding: 15px 10px 10px;
-    margin: 0 10%;
+    margin: 0 10% 20px;
 }
 
     #about-view .footer-images img {
