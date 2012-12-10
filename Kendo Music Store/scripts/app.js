@@ -4,7 +4,8 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart", "home-layout", "ba
     var init = function () {
         var kendoApp = new kendo.mobile.Application(document.body, {
             transition: "fade",
-            initial: "about-view"
+            initial: "about-view",
+            loading: '<h1 class="loading-message">Loading...</h1>'
         });
         utils.init(kendoApp);
         cart.items.bind("change", function () { utils.updateCartBadges($, cart) });

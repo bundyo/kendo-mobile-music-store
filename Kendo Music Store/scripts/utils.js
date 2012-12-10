@@ -56,7 +56,7 @@ define([], function () {
         },
         
         showLoading: function (message) {
-            _kendoApp.loading = "<h1>" + (message ? message : "Loading...") + "</h1>";
+            $(".loading-message").text(message ? message : "Loading...");
             _kendoApp.showLoading();
         },
         
@@ -87,7 +87,7 @@ define([], function () {
 
         reEnableEndlessScrolling: function (listViewElement) {
             var listView = listViewElement.data().kendoMobileListView;
-            //listView.stopEndlessScrolling(); //incase it hasn't already been stopped.
+            listView.stopEndlessScrolling(); //incase it hasn't already been stopped.
             //listView._loadIcon.parent().show(); //reenable the loading icon.
             listView._bindScroller(); //rebind to the scroller.
         }
