@@ -6,7 +6,7 @@ define(["jQuery", "utils"], function ($, utils) {
             utils.showError("Sorry, opening an external page is only avaibale on an actual device.");
         }
         
-        if(event) {
+        if(event && event.preventDefault) {
             event.preventDefault();
         }
         return false;
