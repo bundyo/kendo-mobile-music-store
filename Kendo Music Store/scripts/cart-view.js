@@ -1,5 +1,13 @@
-define(["kendo", "cart", "config"], function (kendo, cart, config) {
+define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, utils) {
     "use strict";
+
+    var _view;
+
+    var _scrollToTopIfTooFewItemsInCart = function () {
+        if(_view.scrollerContent.height() < _view.scroller.element.height()) {
+            utils.scrollViewToTop(_view.element);
+        }
+    };
 
     var onRemove = function (swipeEvt) {
             var element = swipeEvt.sender.element;
@@ -23,6 +31,7 @@ define(["kendo", "cart", "config"], function (kendo, cart, config) {
                 300,
                 function () {
                     cart.items.remove(cart.items.getByUid(uid));
+                    _scrollToTopIfTooFewItemsInCart();
                 });
         },
 
@@ -42,6 +51,7 @@ define(["kendo", "cart", "config"], function (kendo, cart, config) {
         }),
 
         init = function (initEvt) {
+            _view = initEvt.view
             kendo.bind(initEvt.sender.element.find(".total"), cart.aggregates, kendo.mobile.ui);
             viewModel.set("cartHasItems", cart.items.view().length > 0);
             cart.items.bind("change", function () {
