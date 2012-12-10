@@ -83,6 +83,8 @@ input[type="text"], input[type="password"] {
     text-align: center;
 }
 
+.km-horizontal #login-view .km-content, .km-horizontal #register-view .km-content { padding: 10px 0 0; }
+
 #login-view .km-content input[type="text"],
 #login-view .km-content input[type="password"],
 #register-view .km-content input[type="text"],
