@@ -1,19 +1,24 @@
 define(["jQuery", "utils"], function ($, utils) {
-    var _openExternal = function (url) {
+    var _openExternal = function (event, url) {
         try {
             window.plugins.childBrowser.openExternal(url);
         } catch(ex) {
             utils.showError("Sorry, opening an external page is only avaibale on an actual device.");
         }
+        
+        if(event) {
+            event.preventDefault();
+        }
+        return false;
     };
 
     return {
         viewModel: {
             openKendoWeb: function (clickEvt) {
-                _openExternal('http://www.kendoui.com');
+                _openExternal(clickEvt, 'http://www.kendoui.com');
             },
             openSource: function (clickEvt) {
-                _openExternal('http://www.github.com/telerik/kendo-mobile-music-store');
+                _openExternal(clickEvt, 'http://www.github.com/telerik/kendo-mobile-music-store');
             }
         }
     };
