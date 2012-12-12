@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, config, utils, account) {
+define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, kendo, config, utils, account, data) {
     var _loginView,
         _submitting = false;
     
@@ -120,6 +120,30 @@ define(["jQuery", "kendo", "config", "utils", "account"], function ($, kendo, co
                 showEvt.preventDefault();
                 utils.navigate("#login-view");
             }
+        },
+
+        accountViewShow: function (showEvt) {
+            var element = $("#order-history-list");
+            var existingList = element.data().kendoMobileListView;
+            if(existingList) {
+                existingList.refresh();
+            } else {
+                element.kendoMobileListView({
+                    dataSource: data.orderHistory(account.userName, account.password),
+                    //style: "inset",
+                    scrolling: "endless",
+                    template: kendo.template($("#order-history-template").text()),
+                    headerTemplate: kendo.template($("#order-history-header-template").text())
+                });
+            }
+        },
+
+        calcOrderTotal: function (orderItems) {
+            var total = 0;
+            for(var i = 0; i < orderItems.length; i++) {
+                total += (orderItems[i].Quantity * orderItems[i].UnitPrice);
+            }
+            return kendo.toString(total, "c");
         },
 
         viewModel: viewModel

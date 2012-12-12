@@ -30,6 +30,10 @@ define(["jQuery", "kendo", "data", "config", "utils", "cart", "home-layout", "ba
         cartView: cartView,
         checkoutView: checkoutView,
         accountView: accountView,
-        aboutView: aboutView
+        aboutView: aboutView,
+        snag: function (data) {
+            debugger;
+            return "foo";
+        }
     };
 });

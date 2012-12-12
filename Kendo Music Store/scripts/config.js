@@ -1,6 +1,6 @@
 define([], function () {
-    //var domain = "localhost:59537",
-    var domain = "kmstest.apphb.com",
+    var domain = "localhost:59537",
+    //var domain = "kmstest.apphb.com",
         serverUrl = "http://" + domain,
         serviceUrl = serverUrl + "/Services/MusicStore.svc";
     
@@ -12,6 +12,7 @@ define([], function () {
         artistsUrl: serviceUrl + "/Artists",
         albumsUrl: serviceUrl + "/Albums",
         loginUrl: serverUrl + "/Api/AccountApi",
-        cartSubmitUrl: serverUrl + "/Api/CheckoutApi"
+        cartSubmitUrl: serverUrl + "/Api/CheckoutApi",
+        orderHistoryUrl: serverUrl + "/OrderHistory"
     };
 });

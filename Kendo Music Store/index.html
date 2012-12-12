@@ -108,7 +108,7 @@
 
         <!-- Account Views -->
 
-        <div data-role="view" id="account-view" data-layout="base-layout" data-title="Log Off" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow">
+        <div data-role="view" id="account-view" data-layout="base-layout" data-title="Account" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow" data-show="app.accountView.accountViewShow">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -117,6 +117,9 @@
 
             <div>Hello, <span data-bind="text: userName"></span>!</div>
             <input type="submit" data-role="button" value="Log Off" data-bind="click: logout"/>
+
+            <div>Order History:</div>
+            <ul id="order-history-list"></ul>
         </div>
 
         <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel" data-init="app.accountView.loginInit">
@@ -256,6 +259,17 @@
                 <span class="album-price" data-bind="text: albumPrice"></span>
                 <div class="subtotal">Subtotal: <span data-bind="text: albumSubtotal"></span></div>
             </div>
+        </script>
+
+        <script id="order-history-header-template" type="text/x-kendo-template">
+            <span>Order\# #=data.items[0].OrderId#</span>
+            <span>#=app.accountView.calcOrderTotal(data.items)#</span>
+            <span>#=kendo.toString(data.items[0].OrderDate, "g")#</span>
+        </script>
+
+        <script id="order-history-template" type="text/x-kendo-template">
+            <div>#=Title#</div>
+            <div>#=Quantity# at #=kendo.toString(UnitPrice, "c")# each</div>
         </script>
 
 

@@ -26,7 +26,7 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
         },
         requestStart: function () { if (this.page() === 1) { utils.showLoading(); }}, //infinite scrolling has its own, less obtrusive indicator
         requestEnd: function () { if (this.page() === 1) { utils.hideLoading(); }},
-        error: function () { utils.showError("There was an error loading the data from the server. Please close the app and try again."); }
+        error: function () { utils.hideLoading(); utils.showError("There was an error loading the data from the server. Please close the app and try again."); }
     };
 
     var EndlessScrollDataSource = kendo.data.DataSource.extend({
@@ -63,6 +63,43 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
             serverFiltering: true,
             serverSorting: true,
             pageSize: 20
-        }))
+        })),
+
+        orderHistory: function (user, pass) {
+            return new kendo.data.DataSource({
+                serverPaging: true,
+                serverSorting: true,
+                pageSize: 5,
+                sort: [{field: "OrderDate", dir: "desc"}, {field: "Title", dir: "asc"}],
+                group: {field: "OrderId"},
+                transport: {
+                    read: {
+                        url: config.orderHistoryUrl,
+                        type: "POST",
+                        data: {
+                            username: user,
+                            password: pass
+                        }
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    total: "Total",
+                    model: {
+                        id: "OrderId",
+                        fields: {
+                            OrderId: { type: "number" },
+                            OrderDate: { type: "date" },
+                            Quantity: { type: "number" },
+                            UnitPrice: { type: "number" },
+                            Title: { type: "string"}
+                        }
+                    }
+                },
+                requestStart: function () { if (this.page() === 1) { utils.showLoading(); }}, //infinite scrolling has its own, less obtrusive indicator
+                requestEnd: function () { if (this.page() === 1) { utils.hideLoading(); }},
+                error: function () { utils.hideLoading(); utils.showError("There was an error loading the data from the server. Please close the app and try again."); }
+            });
+        }
     };
 });
