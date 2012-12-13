@@ -1,6 +1,6 @@
 define([], function () {
-    var domain = "localhost:59537",
-    //var domain = "kmstest.apphb.com",
+    //var domain = "localhost:59537",
+    var domain = "kmstest.apphb.com",
         serverUrl = "http://" + domain,
         serviceUrl = serverUrl + "/Services/MusicStore.svc";
     

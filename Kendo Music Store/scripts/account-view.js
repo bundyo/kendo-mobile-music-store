@@ -30,11 +30,13 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
         login: function (clickEvt) {
             var userName = viewModel.loginUsername;
             var password = viewModel.loginPassword;
+            utils.showLoading("Logging In...");
             $.post(config.loginUrl, {
                     UserName: userName,
                     Password: password
             })
             .done(function(validCredentials) {
+                utils.hideLoading();
                 if (validCredentials) {
                     viewModel.set("userName", userName);
                     account.isAuthenticated = true;
@@ -46,6 +48,7 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
                 }
             })
             .fail(function(error) {
+                utils.hideLoading();
                 utils.showError("Log In failed.", error);
             })
             .always(_clearForms);
@@ -126,17 +129,15 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
             var element = $("#order-history-list");
             var existingList = element.data().kendoMobileListView;
             if(existingList) {
-                existingList.refresh();
-            } else {
-                element.kendoMobileListView({
-                    dataSource: data.orderHistory(account.userName, account.password),
-                    //style: "inset",
-                    scrolling: "endless",
-                    template: kendo.template($("#order-history-template").text()),
-                    headerTemplate: kendo.template($("#order-history-header-template").text())
-                });
+                existingList.destroy();
             }
-        },
+            element.kendoMobileListView({
+                dataSource: data.orderHistory(account.userName, account.password),
+                scrolling: "endless",
+                template: kendo.template($("#order-history-template").text()),
+                headerTemplate: kendo.template($("#order-history-header-template").text())
+            });
+    },
 
         calcOrderTotal: function (orderItems) {
             var total = 0;
