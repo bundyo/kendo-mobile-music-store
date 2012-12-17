@@ -112,14 +112,13 @@
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
+                    <input type="submit" data-role="button" value="Log Off" data-bind="click: logout" class="log-off"/>
                 </div>
+                <h2>Hello, <span data-bind="text: userName"></span></h2>
             </header>
-
-            <div>Hello, <span data-bind="text: userName"></span>!</div>
-            <input type="submit" data-role="button" value="Log Off" data-bind="click: logout"/>
-
-            <div>Order History:</div>
-            <ul id="order-history-list"></ul>
+            
+            <h2>Order History</h2>
+            <ul id="order-history-list" class="order-history-list"></ul>
         </div>
 
         <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel" data-init="app.accountView.loginInit">
@@ -262,14 +261,14 @@
         </script>
 
         <script id="order-history-header-template" type="text/x-kendo-template">
-            <span>Order\# #=data.items[0].OrderId#</span>
-            <span>#=app.accountView.calcOrderTotal(data.items)#</span>
-            <span>#=kendo.toString(data.items[0].OrderDate, "g")#</span>
+            <h3 class="order-number">Order\# #=data.items[0].OrderId#</h3>
+            <h3 class="order-total">#=app.accountView.calcOrderTotal(data.items)#</h3>
+            <span class="order-date">#=kendo.toString(data.items[0].OrderDate, "g")#</span>
         </script>
 
         <script id="order-history-template" type="text/x-kendo-template">
-            <div>#=Title#</div>
-            <div>#=Quantity# at #=kendo.toString(UnitPrice, "c")# each</div>
+            <span class="item-title">#=Title#</span>
+            <span class="item-quantity">#=Quantity# at #=kendo.toString(UnitPrice, "c")# each</span>
         </script>
 
 

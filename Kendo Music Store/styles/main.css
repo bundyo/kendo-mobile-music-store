@@ -100,6 +100,48 @@ input[type="text"], input[type="password"] {
     margin: 10px auto;
 }
 
+/* Account View */
+
+#account-view header h2 {
+    padding: 10px;
+    text-align: center;
+}
+    .km-android #account-view header h2 { color: #fff; }
+
+.log-off {
+    float: right;
+    margin: 16px 10px;
+}
+
+.order-history-list li .order-number { 
+    float: left;
+    margin: 5px 0;
+}
+.order-history-list li .order-total { 
+    float: right;
+    margin: 5px 1rem 5px 0;
+}
+.order-history-list li .order-date { 
+    clear: both;
+    display: block;
+}
+
+.km-android .order-history-list li .km-group-title {
+    border-top: 2px solid #aaa;
+}
+
+.order-history-list li span {
+    font-size: 15px;
+}
+    .order-history-list li .item-title {
+        float: left;
+        display: block;
+        width: 55%;
+    }
+    .order-history-list li .item-quantity {
+        float: right;
+    }
+    
 /* Main View */
 
 .km-buttongroup a
