@@ -50,7 +50,12 @@ define([], function () {
         navigate: function (location) {
             _kendoApp.navigate(location);
         },
-        
+
+        redirect: function (location) {
+            _kendoApp.pane.history.pop();
+            _kendoApp.navigate(location);
+        },
+
         scrollViewToTop: function (viewElement) {
             viewElement.data("kendoMobileView").scroller.reset();
         },

@@ -24,8 +24,8 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
             data: _wcfSchemaData,
             total: _wcfSchemaTotal
         },
-        requestStart: function () { if (this.page() === 1) { utils.showLoading(); }}, //infinite scrolling has its own, less obtrusive indicator
-        requestEnd: function () { if (this.page() === 1) { utils.hideLoading(); }},
+        requestStart: function () { if (this.pageSize() === undefined || this.page() === 1) { utils.showLoading(); }}, //infinite scrolling has its own, less obtrusive indicator
+        requestEnd: function () { utils.hideLoading(); },
         error: function () { utils.hideLoading(); utils.showError("There was an error loading the data from the server. Please close the app and try again."); }
     };
 

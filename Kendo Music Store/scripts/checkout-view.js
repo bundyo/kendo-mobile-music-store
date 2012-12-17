@@ -92,13 +92,13 @@ define(["jQuery", "kendo", "config", "utils", "cart", "account"], function ($, k
         beforeShow: function (showEvent) {
             if(cart.items.view().length == 0) {
                 showEvent.preventDefault();
-                utils.navigate("#cart-view");
+                utils.redirect("#cart-view");
                 return;
             }
 
             if (!account.isAuthenticated){
                 showEvent.preventDefault();
-                utils.navigate("#login-view?navto=checkout-view");
+                utils.redirect("#login-view?navto=checkout-view");
                 return;
             }
         }
