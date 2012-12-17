@@ -63,7 +63,10 @@ input[type="text"], input[type="password"] {
         color: rgba(255,255,255,.5);
         background-image: none;
     }
-    .km-ios .km-tabstrip .km-text { color: rgba(255,255,255,.5); }
+    .km-ios .km-tabstrip .km-text { 
+        color: rgba(255,255,255,.5);
+        text-shadow: none;
+    }
     .km-ios .km-tabstrip .km-badge { display: block; }
 
 .km-icon::before, .km-contactadd::before, .km-rowdelete::before, .km-rowinsert::before, .km-detaildisclose::before { color: transparent; }
@@ -105,12 +108,13 @@ input[type="text"], input[type="password"] {
 #account-view header h2 {
     padding: 10px;
     text-align: center;
+    text-transform: capitalize;
 }
     .km-android #account-view header h2 { color: #fff; }
 
 .log-off {
-    float: right;
-    margin: 16px 10px;
+    position: absolute;
+    right: 1rem;
 }
 
 .order-history-list li .order-number { 
@@ -124,6 +128,8 @@ input[type="text"], input[type="password"] {
 .order-history-list li .order-date { 
     clear: both;
     display: block;
+    font-weight: normal;
+    font-size: 12px;
 }
 
 .km-android .order-history-list li .km-group-title {

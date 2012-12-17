@@ -114,10 +114,8 @@
                     <span data-role="view-title"></span>
                     <input type="submit" data-role="button" value="Log Off" data-bind="click: logout" class="log-off"/>
                 </div>
-                <h2>Hello, <span data-bind="text: userName"></span></h2>
+                <h2><span data-bind="text: userName" class="user-name"></span>'s Order History</h2>
             </header>
-            
-            <h2>Order History</h2>
             <ul id="order-history-list" class="order-history-list"></ul>
         </div>
 
@@ -261,8 +259,8 @@
         </script>
 
         <script id="order-history-header-template" type="text/x-kendo-template">
-            <h3 class="order-number">Order\# #=data.items[0].OrderId#</h3>
-            <h3 class="order-total">#=app.accountView.calcOrderTotal(data.items)#</h3>
+            <h2 class="order-number">Order\# #=data.items[0].OrderId#</h2>
+            <h2 class="order-total">#=app.accountView.calcOrderTotal(data.items)#</h2>
             <span class="order-date">#=kendo.toString(data.items[0].OrderDate, "g")#</span>
         </script>
 
