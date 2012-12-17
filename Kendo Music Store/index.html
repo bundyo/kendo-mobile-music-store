@@ -119,6 +119,7 @@
             <input type="submit" data-role="button" value="Log Off" data-bind="click: logout"/>
 
             <div>Order History:</div>
+            
             <ul id="order-history-list"></ul>
         </div>
 
@@ -128,6 +129,12 @@
                     <span data-role="view-title"></span>
                 </div>
             </header>
+            
+            <p>
+                For demonstration purposes you can register a new username, or use:<br/>
+                Username: owner<br/>
+                Password: p@ssword123
+            </p>
 
             <input type="text" placeholder="Username" data-bind="value: loginUsername" />
             <input type="password" placeholder="Password" data-bind="value: loginPassword" />

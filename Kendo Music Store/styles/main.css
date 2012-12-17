@@ -86,7 +86,7 @@ input[type="text"], input[type="password"] {
 /* Login & Register */
 
 #login-view .km-content, #register-view .km-content {
-    padding: 40% 0 0;
+    padding: 20% 0 0;
     text-align: center;
 }
 
@@ -98,6 +98,13 @@ input[type="text"], input[type="password"] {
 #register-view .km-content input[type="password"] {
     display: block;
     margin: 10px auto;
+}
+
+#login-view p {
+    color: #888;
+    text-align: left;
+    text-indent: -10px;
+    padding-left: 10px;
 }
 
 /* Main View */
