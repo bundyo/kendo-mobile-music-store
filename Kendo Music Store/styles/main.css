@@ -63,7 +63,10 @@ input[type="text"], input[type="password"] {
         color: rgba(255,255,255,.5);
         background-image: none;
     }
-    .km-ios .km-tabstrip .km-text { color: rgba(255,255,255,.5); }
+    .km-ios .km-tabstrip .km-text { 
+        color: rgba(255,255,255,.5);
+        text-shadow: none;
+    }
     .km-ios .km-tabstrip .km-badge { display: block; }
 
 .km-icon::before, .km-contactadd::before, .km-rowdelete::before, .km-rowinsert::before, .km-detaildisclose::before { color: transparent; }
@@ -100,12 +103,57 @@ input[type="text"], input[type="password"] {
     margin: 10px auto;
 }
 
+/* Account View */
+
 #login-view p {
     color: #888;
     text-align: left;
     text-indent: -10px;
     padding-left: 10px;
 }
+
+#account-view header h2 {
+    padding: 10px;
+    text-align: center;
+    text-transform: capitalize;
+}
+    .km-android #account-view header h2 { color: #fff; }
+
+.log-off {
+    position: absolute;
+    right: 1rem;
+}
+
+.order-history-list li .order-number { 
+    float: left;
+    margin: 5px 0;
+}
+.order-history-list li .order-total { 
+    float: right;
+    margin: 5px 1rem 5px 0;
+}
+.order-history-list li .order-date { 
+    clear: both;
+    display: block;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.km-android .order-history-list li .km-group-title {
+    border-top: 2px solid #aaa;
+}
+
+.order-history-list li span {
+    font-size: 15px;
+}
+    .order-history-list li .item-title {
+        float: left;
+        display: block;
+        width: 55%;
+    }
+    .order-history-list li .item-quantity {
+        float: right;
+    }
 
 /* Main View */
 

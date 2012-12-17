@@ -112,15 +112,11 @@
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
+                    <input type="submit" data-role="button" value="Log Off" data-bind="click: logout" class="log-off"/>
                 </div>
+                <h2><span data-bind="text: userName" class="user-name"></span>'s Order History</h2>
             </header>
-
-            <div>Hello, <span data-bind="text: userName"></span>!</div>
-            <input type="submit" data-role="button" value="Log Off" data-bind="click: logout"/>
-
-            <div>Order History:</div>
-            
-            <ul id="order-history-list"></ul>
+            <ul id="order-history-list" class="order-history-list"></ul>
         </div>
 
         <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel" data-init="app.accountView.loginInit">
