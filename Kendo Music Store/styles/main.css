@@ -61,6 +61,7 @@ input[type="text"], input[type="password"] {
 }
     .km-ios .km-tabstrip .km-button {
         border: 0 solid transparent;
+        box-shadow: none;
     }
     .km-ios .km-tabstrip .km-icon { 
         color: rgba(255,255,255,.5);
