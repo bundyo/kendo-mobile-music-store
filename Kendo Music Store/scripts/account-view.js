@@ -15,7 +15,7 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
             utils.navigate("#" +_loginView.params.navto);
             return;
         }
-        utils.navigate("#account-view");
+        utils.redirect("#account-view");
     };
 
     var viewModel = kendo.observable({
@@ -121,7 +121,7 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
         beforeShow: function (showEvt) {
             if(!account.isAuthenticated) {
                 showEvt.preventDefault();
-                utils.navigate("#login-view");
+                utils.redirect("#login-view");
             }
         },
 
