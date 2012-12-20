@@ -8,6 +8,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _prevIndex = undefined;
 
     var _scrollToIndex = function (targetIndex) {
+        console.log(targetIndex);
         var target = that.element.find(".index-" + targetIndex);
         var targetTop = target.closest(".km-group-title").position().top;
         var currentScrollPosition = that._scroller().scrollTop || 0;
@@ -23,19 +24,22 @@ define(["jQuery", "kendo"], function ($, kendo) {
         return false;
     };
 
-    var _onIndexItemTouchStart = function () {
+    var _onIndexItemTouchStart = function (e) {
         _prevIndex = undefined;
-        return true;
+        _indexList.addClass("km-ontouch");
+        e.preventDefault();
+        return false;
     };
 
     var _onIndexItemTouchEnd = function () {
         _prevIndex = undefined;
+        _indexList.removeClass("km-ontouch");
         return false;
     };
 
     var _createIndexList = function (items) {
         $.each(items, function (index, item) {
-            var newElement = $("<li data-group-class=" + item.value + ">" + item.value + "</li>");
+            var newElement = $('<li data-group-class="' + item.value + '">' + item.value + '</li>');
             newElement.bind("touchmove", _onIndexItemTouchMove);
             newElement.bind("touchstart", _onIndexItemTouchStart);
             newElement.bind("touchend", _onIndexItemTouchEnd);
@@ -62,6 +66,10 @@ define(["jQuery", "kendo"], function ($, kendo) {
 
             if (that.dataSource.group()[0]) {
                 _indexList.empty();
+                
+                var itemHeight = Math.floor((_scrollWrapper.height() - 20) / e.items.length - 3);
+                _indexList.css("font-size", itemHeight + "px");
+                
                 _createIndexList(e.items);
             }
         }
