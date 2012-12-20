@@ -4,8 +4,20 @@
     right: 0;
     top: 0;
     z-index: 1000;
-    background-color: rgba(100, 100, 100, 0.5);
-    margin: 0;
-    padding: 4px 4px 4px 10px;
+    margin: 0 5px 0 0;
+    padding: 10px 0;
     list-style-type: none;
+    font-size: 8px;
+    font-weight: normal;
+    color: #999;
+    border-radius: 10px;
+}
+.km-android .km-listview-index { font-size: 10px; }
+    .km-listview-index li {
+        padding: 0px 10px;
+        text-align: center;
+    }
+.km-listview-index.km-ontouch
+{
+    background-color: rgba(255,255,255,.4);
 }
