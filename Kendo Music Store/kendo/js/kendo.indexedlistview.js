@@ -6,6 +6,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _indexList = $('<ul class="km-listview-index"></ul>');
     var _scrollWrapper;
     var _prevIndex = undefined;
+    var _indexCard = $('<div class="km-listview-index-card"></div>');
 
     var getHeaderClassFor = function (value) {
         return "index-" + value.replace("#", "_num_").replace(".", "_dot_");
@@ -18,36 +19,41 @@ define(["jQuery", "kendo"], function ($, kendo) {
         that._scroller().scrollTo(0, (currentScrollPosition + targetTop) * -1);
     };
 
-    var _onIndexItemTouchMove = function (e) {
-        var targetIndex = $(e.target).data("group-class");
-        if(_prevIndex !== targetIndex) {
-            _prevIndex = targetIndex;
-            _scrollToIndex(targetIndex);
-        }
-        e.preventDefault();
-        return false;
+    var _showIndexCard = function (x, y, text) {
+        _indexCard.text(text);
+        _indexCard.css("top", (y - (_indexCard.height() / 2)) + "px");
+        _indexCard.css("left", ((_scrollWrapper.width() / 2) - (_indexCard.width() / 2)) + "px");
+        _indexCard.show();
     };
 
-    var _onIndexItemTouchStart = function (e) {
+    var _onIndexItemTouchMove = function (e) {
+        try {
+            var targetElement = $(document.elementFromPoint(e.touch.x.location, e.touch.y.location));
+            var targetIndex = targetElement.data("group-class");
+            if(_prevIndex !== targetIndex) {
+                _prevIndex = targetIndex;
+                _scrollToIndex(targetIndex);
+                _showIndexCard(e.touch.x.location, e.touch.y.location, targetElement.text());
+            }
+        } catch (ex) {
+            _onIndexItemTouchEnd();
+        }
+    };
+
+    var _onIndexItemTouchStart = function () {
         _prevIndex = undefined;
         _indexList.addClass("km-ontouch");
-        e.preventDefault();
-        return false;
     };
 
-    var _onIndexItemTouchEnd = function (e) {
+    var _onIndexItemTouchEnd = function () {
+        _indexCard.hide();
         _prevIndex = undefined;
         _indexList.removeClass("km-ontouch");
-        e.preventDefault();
-        return false;
     };
 
     var _createIndexList = function (items) {
         $.each(items, function (index, item) {
             var newElement = $('<li data-group-class="' + item.value + '">' + item.value + '</li>');
-            newElement.bind("touchmove", _onIndexItemTouchMove);
-            newElement.bind("touchstart", _onIndexItemTouchStart);
-            newElement.bind("touchend", _onIndexItemTouchEnd);
             _indexList.append(newElement);
         });
     };
@@ -62,6 +68,13 @@ define(["jQuery", "kendo"], function ($, kendo) {
 
             _scrollWrapper = $(element).closest(".km-scroll-wrapper");
             _scrollWrapper.prepend(_indexList);
+            $("body").prepend(_indexCard);
+
+            _indexList.kendoTouch({
+                dragstart:_onIndexItemTouchStart,
+                drag: _onIndexItemTouchMove,
+                dragend: _onIndexItemTouchEnd
+            });
         },
 
         options: $.extend(base.options, {
