@@ -1,0 +1,11 @@
+.km-listview-index
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(100, 100, 100, 0.5);
+    margin: 0;
+    padding: 4px 4px 4px 10px;
+    list-style-type: none;
+}

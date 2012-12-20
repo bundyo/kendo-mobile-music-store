@@ -59,6 +59,7 @@
     <Content Include="Images\rays-background.png" />
     <Content Include="index.html" />
     <Content Include="kendo\js\jquery.min.js" />
+    <Content Include="kendo\js\kendo.indexedlistview.js" />
     <Content Include="kendo\js\kendo.mobile.min.js" />
     <Content Include="kendo\styles\images\back.png" />
     <Content Include="kendo\styles\images\ios-sprite.png" />
@@ -67,6 +68,7 @@
     <Content Include="kendo\styles\images\android-sprite.png" />
     <Content Include="kendo\styles\images\KendoUI.ttf" />
     <Content Include="kendo\styles\images\KendoUI.woff" />
+    <Content Include="kendo\styles\kendo.indexedlistview.css" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
     <Content Include="scripts\about-view.js" />
     <Content Include="scripts\account-view.js" />

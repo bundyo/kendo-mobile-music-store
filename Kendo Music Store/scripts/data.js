@@ -47,8 +47,22 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
         genresList: new kendo.data.DataSource(new DataSourceConfig(config.genresUrl, "Name")),
         
         artistsList: new kendo.data.DataSource(new DataSourceConfig(config.artistsUrl, "Name", {
+            //serverPaging: true,
             serverFiltering: true,
-            serverSorting: true
+            serverSorting: true,
+            //pageSize: 20,
+            serverGrouping: false,
+            group: [{field: "FirstLetter"}],
+            schema: {
+                parse: function (data) {
+                    $.each(data.value, function (index, artist) {
+                        artist.FirstLetter = artist.Name.substring(0,1);
+                    });
+                    return data;
+                },
+                data: _wcfSchemaData,
+                total: _wcfSchemaTotal
+            }
         })),
 
         albumsList: new EndlessScrollDataSource(new DataSourceConfig(config.albumsUrl + "?$expand=Artist", "Title", {

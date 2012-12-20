@@ -7,6 +7,7 @@
         <script src="Plugins/Child Browser/childbrowser.js"></script>
         
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <link href="kendo/styles/kendo.indexedlistview.css" rel="stylesheet" />
         <link href="styles/main.css" rel="stylesheet" />
     </head>
     <body>
@@ -18,7 +19,7 @@
         </div>
 
         <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
-            <ul data-role="listview" data-bind="source: artists" data-template="artist-list-template", data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
+            <ul data-role="indexedlistview" data-bind="source: artists" data-header-template="artist-list-header-template" data-template="artist-list-template" data-style="inset"></ul>
         </div>
         
         <div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
@@ -29,7 +30,7 @@
                 </div>
             </header>
 
-            <ul data-role="listview" data-bind="source: albums, events: {lastPageReached: lastPageReached}" data-template="album-list-template", data-style="inset" data-endless-scroll="true"></ul>
+            <ul data-role="listview" data-bind="source: albums, events: {lastPageReached: lastPageReached}" data-template="album-list-template" data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
 
@@ -198,10 +199,6 @@
                     <li data-target="#genres-view">Genres</li>
                     <li data-target="#artists-view">Artists</li>
                 </ul>
-                <div class="artists-filter-header" data-role="scroller">
-                    <ul class="buttongroup km-buttongroup">
-                    </ul>
-                </div>
             </header>
 
             <div data-role="footer">
@@ -234,6 +231,10 @@
             <a href="\#albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
         </script>
 
+        <script id="artist-list-header-template" type="text/x-kendo-template">
+            <span class="index-#:data.value#">#:data.value#</span>
+        </script>
+
         <script id="artist-list-template" type="text/x-kendo-template">
             <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
         </script>
@@ -245,7 +246,7 @@
             <h2 class="album-artist" data-bind="text: Artist.Name"></h2>
             <span class="album-price" data-bind="text: albumPrice"></span>
         </script>
-        
+
         <script id="artist-filter-template" type="text/x-kendo-template">
             <a href="\#artists-view?value=#=data#" id="#=data#">#=data#</a>
         </script>
