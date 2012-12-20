@@ -59,6 +59,10 @@ input[type="text"], input[type="password"] {
     box-shadow: none;
     -webkit-box-shadow: none;
 }
+    .km-ios .km-tabstrip .km-button {
+        border: 0 solid transparent;
+        box-shadow: none;
+    }
     .km-ios .km-tabstrip .km-icon { 
         color: rgba(255,255,255,.5);
         background-image: none;
@@ -104,12 +108,11 @@ input[type="text"], input[type="password"] {
 }
 
 /* Account View */
+#login-view { font-weight: normal; }
 
-#login-view p {
-    color: #888;
-    text-align: left;
-    text-indent: -10px;
-    padding-left: 10px;
+#login-view ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 #account-view header h2 {
@@ -303,6 +306,11 @@ input[type="text"], input[type="password"] {
 .validate input {
     margin: 0 5px 10px 0;
     padding: 0;
+}
+
+.thank-you {
+    margin: 20% auto;
+    text-align: center;
 }
 
 /* Album Lists */
