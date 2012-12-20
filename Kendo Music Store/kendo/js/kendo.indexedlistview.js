@@ -7,8 +7,12 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _scrollWrapper;
     var _prevIndex = undefined;
 
+    var getHeaderClassFor = function (value) {
+        return "index-" + value.replace("#", "_num_").replace(".", "_dot_");
+    };
+
     var _scrollToIndex = function (targetIndex) {
-        var target = that.element.find(".index-" + targetIndex);
+        var target = that.element.find("." + getHeaderClassFor(targetIndex));
         var targetTop = target.closest(".km-group-title").position().top;
         var currentScrollPosition = that._scroller().scrollTop || 0;
         that._scroller().scrollTo(0, (currentScrollPosition + targetTop) * -1);
@@ -20,12 +24,14 @@ define(["jQuery", "kendo"], function ($, kendo) {
             _prevIndex = targetIndex;
             _scrollToIndex(targetIndex);
         }
-        return false;
+        e.preventDefault();
+        return true;
     };
 
-    var _onIndexItemTouchStart = function () {
+    var _onIndexItemTouchStart = function (e) {
         _prevIndex = undefined;
-        return true;
+        e.preventDefault();
+        return false;
     };
 
     var _onIndexItemTouchEnd = function () {
@@ -46,6 +52,8 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var IndexedListView = base.extend({
         init: function(element, options) {
             that = this;
+
+            options.headerTemplate = '<span class="index-#:data.value#"></span>' + (options.headerTemplate || this.options.headerTemplate);
     
             base.fn.init.call(that, element, options);
 
@@ -64,7 +72,9 @@ define(["jQuery", "kendo"], function ($, kendo) {
                 _indexList.empty();
                 _createIndexList(e.items);
             }
-        }
+        },
+
+        getHeaderClassFor: getHeaderClassFor
     });
 
     kendo.mobile.ui.plugin(IndexedListView);
