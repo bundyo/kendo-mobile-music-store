@@ -8,15 +8,9 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _prevIndex = undefined;
     var _indexCard = $('<div class="km-listview-index-card"></div>');
 
-    var getHeaderClassFor = function (value) {
-        return "index-" + value.replace("#", "_num_").replace(".", "_dot_");
-    };
-
     var _scrollToIndex = function (targetIndex) {
-        var target = that.element.find("." + getHeaderClassFor(targetIndex));
-        var targetTop = target.closest(".km-group-title").position().top;
-        var currentScrollPosition = that._scroller().scrollTop || 0;
-        that._scroller().scrollTo(0, (currentScrollPosition + targetTop) * -1);
+        var targetTop = that.headers[that.headers.length - targetIndex - 1].offset;
+        that._scroller().scrollTo(0, targetTop * -1);
     };
 
     var _showIndexCard = function (x, y, text) {
@@ -29,14 +23,14 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _onIndexDragMove = function (e) {
         try {
             var targetElement = $(document.elementFromPoint(e.touch.x.location, e.touch.y.location));
-            var targetIndex = targetElement.data("group-class");
+            var targetIndex = parseInt(targetElement.data("index"));
             if(_prevIndex !== targetIndex) {
                 _prevIndex = targetIndex;
                 _scrollToIndex(targetIndex);
                 _showIndexCard(e.touch.x.location, e.touch.y.location, targetElement.text());
             }
         } catch (ex) {
-            _onIndexItemTouchEnd();
+            _onIndexDragEnd();
         }
     };
 
@@ -53,7 +47,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
 
     var _createIndexList = function (items) {
         $.each(items, function (index, item) {
-            var newElement = $('<li data-group-class="' + item.value + '">' + item.value + '</li>');
+            var newElement = $('<li data-index="' + index + '">' + item.value + '</li>');
             _indexList.append(newElement);
         });
     };
@@ -68,8 +62,6 @@ define(["jQuery", "kendo"], function ($, kendo) {
         init: function(element, options) {
             that = this;
 
-            options.headerTemplate = '<span class="index-#:data.value#"></span>' + (options.headerTemplate || this.options.headerTemplate);
-    
             base.fn.init.call(that, element, options);
 
             _scrollWrapper = $(element).closest(".km-scroll-wrapper");
@@ -95,9 +87,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
                 _sizeIndexList(e.items);
                 _createIndexList(e.items);
             }
-        },
-
-        getHeaderClassFor: getHeaderClassFor
+        }
     });
 
     kendo.mobile.ui.plugin(IndexedListView);
