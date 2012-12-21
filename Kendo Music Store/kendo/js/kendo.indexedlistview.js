@@ -52,17 +52,29 @@ define(["jQuery", "kendo"], function ($, kendo) {
         });
     };
 
-    var _sizeIndexList = function (items) {
-        var lineHeight = Math.floor((_scrollWrapper.height() - 20) / items.length);
+    var _sizeIndexList = function (itemCount) {
+        var lineHeight = Math.floor((_scrollWrapper.height() - 20) / itemCount);
         _indexList.css("line-height", lineHeight + "px");
         _indexList.css("font-size", (lineHeight - 1) + "px");
     };
+
+    var _preventScrollingOfParentScroller = function () {
+        _indexList.bind("touchstart", function (e) { e.preventDefault(); return true; });
+        _indexList.bind("touchmove", function (e) { e.preventDefault(); return false; });
+        _indexList.bind("touchend", function (e) { e.preventDefault(); return false; });
+};
 
     var IndexedListView = base.extend({
         init: function(element, options) {
             that = this;
 
             base.fn.init.call(that, element, options);
+
+            if (that._scroller()) {
+                kendo.onResize(function() {
+                    _sizeIndexList(that.headers.length);
+                });
+            }
 
             _scrollWrapper = $(element).closest(".km-scroll-wrapper");
             _scrollWrapper.prepend(_indexList);
@@ -73,6 +85,8 @@ define(["jQuery", "kendo"], function ($, kendo) {
                 drag: _onIndexDragMove,
                 dragend: _onIndexDragEnd
             });
+            
+            _preventScrollingOfParentScroller();
         },
 
         options: $.extend(base.options, {
@@ -84,7 +98,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
 
             if (that.dataSource.group()[0]) {
                 _indexList.empty();
-                _sizeIndexList(e.items);
+                _sizeIndexList(e.items.length);
                 _createIndexList(e.items);
             }
         }

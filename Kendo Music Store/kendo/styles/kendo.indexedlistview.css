@@ -51,3 +51,8 @@
     text-align: center;
     background-color: #ddd;
 }
+
+.km-listview-link::after
+{
+    border-style: none;
+}
