@@ -26,7 +26,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
         _indexCard.show();
     };
 
-    var _onIndexItemTouchMove = function (e) {
+    var _onIndexDragMove = function (e) {
         try {
             var targetElement = $(document.elementFromPoint(e.touch.x.location, e.touch.y.location));
             var targetIndex = targetElement.data("group-class");
@@ -40,12 +40,12 @@ define(["jQuery", "kendo"], function ($, kendo) {
         }
     };
 
-    var _onIndexItemTouchStart = function () {
+    var _onIndexDragStart = function () {
         _prevIndex = undefined;
         _indexList.addClass("km-ontouch");
     };
 
-    var _onIndexItemTouchEnd = function () {
+    var _onIndexDragEnd = function () {
         _indexCard.hide();
         _prevIndex = undefined;
         _indexList.removeClass("km-ontouch");
@@ -56,6 +56,12 @@ define(["jQuery", "kendo"], function ($, kendo) {
             var newElement = $('<li data-group-class="' + item.value + '">' + item.value + '</li>');
             _indexList.append(newElement);
         });
+    };
+
+    var _sizeIndexList = function (items) {
+        var lineHeight = Math.floor((_scrollWrapper.height() - 20) / items.length);
+        _indexList.css("line-height", lineHeight + "px");
+        _indexList.css("font-size", (lineHeight - 1) + "px");
     };
 
     var IndexedListView = base.extend({
@@ -71,9 +77,9 @@ define(["jQuery", "kendo"], function ($, kendo) {
             $("body").prepend(_indexCard);
 
             _indexList.kendoTouch({
-                dragstart:_onIndexItemTouchStart,
-                drag: _onIndexItemTouchMove,
-                dragend: _onIndexItemTouchEnd
+                dragstart:_onIndexDragStart,
+                drag: _onIndexDragMove,
+                dragend: _onIndexDragEnd
             });
         },
 
@@ -86,10 +92,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
 
             if (that.dataSource.group()[0]) {
                 _indexList.empty();
-                
-                var itemHeight = Math.floor((_scrollWrapper.height() - 20) / e.items.length - 3);
-                _indexList.css("font-size", itemHeight + "px");
-                
+                _sizeIndexList(e.items);
                 _createIndexList(e.items);
             }
         },

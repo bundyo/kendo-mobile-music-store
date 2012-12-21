@@ -19,7 +19,7 @@
         </div>
 
         <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
-            <ul data-role="indexedlistview" data-bind="source: artists" data-header-template="artist-list-header-template" data-template="artist-list-template" data-style="inset"></ul>
+            <ul data-role="indexedlistview" data-bind="source: artists" data-header-template="artist-list-header-template" data-template="artist-list-template" data-fixed-headers="true"></ul>
         </div>
         
         <div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
