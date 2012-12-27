@@ -390,3 +390,8 @@ input[type="text"], input[type="password"] {
 {
     padding: 10px;
 }
+
+.km-ios6 .km-navbar .km-button, .km-ios6 :not(.km-tabstrip):not(.km-buttongroup) > .km-button.cart-delete-button
+{
+    background-color: #900;
+}

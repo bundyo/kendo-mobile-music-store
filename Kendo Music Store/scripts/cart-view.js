@@ -9,23 +9,14 @@ define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, util
         }
     };
 
-    var onRemove = function (swipeEvt) {
-            var element = swipeEvt.sender.element;
+    var onRemove = function (clickEvt) {
+            var element = clickEvt.sender.element;
             var li = element.parents("li");
             var uid = li.data("uid");
 
             var animation = {
-                "margin-left": li.width(),
-                "margin-right": -li.width(),
                 "opacity": 0
             };
-            if(swipeEvt.direction === "left") {
-                animation = {
-                    "margin-left": -li.width(),
-                    "margin-right": li.width(),
-                    "opacity": 0
-                }
-            }
 
             li.animate(animation,
                 300,
@@ -33,6 +24,15 @@ define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, util
                     cart.items.remove(cart.items.getByUid(uid));
                     _scrollToTopIfTooFewItemsInCart();
                 });
+        },
+
+        onToggleDeleteMode = function (evt) {
+            var element = evt.sender.element;
+            var li = element.parents("li");
+            var uid = li.data("uid");
+            var cartItem = cart.items.getByUid(uid);
+
+            cartItem.set("deleteMode", !cartItem.deleteMode);
         },
 
         viewModel = kendo.observable({
@@ -62,6 +62,7 @@ define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, util
     return {
         init: init,
         onRemove: onRemove,
+        onToggleDeleteMode: onToggleDeleteMode,
         viewModel: viewModel
     };
 });

@@ -12,7 +12,6 @@ define(["jQuery", "kendo"], function ($, kendo) {
             data: [],
             change: function () {
                 var totalPrice = 0;
-                var totalQty = 0;
                 var albums = cartItems.data();
                 for (var i = 0; i < albums.length; i++) {
                     var cartEntry = albums[i];
@@ -46,7 +45,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
             if(existing) {
                 existing.set("qty", existing.qty + 1);
             } else {
-                cartItems.add({ album: $.extend(true, {}, album), qty: 1 });
+                cartItems.add({ album: $.extend(true, {}, album), qty: 1, deleteMode: false });
             }
         },
 

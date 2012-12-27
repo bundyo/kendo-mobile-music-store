@@ -19,7 +19,7 @@
         </div>
 
         <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" data-show="app.artistsView.show" class="km-insetcontent" style="display: none;">
-            <ul data-role="indexedlistview" data-bind="source: artists" data-header-template="artist-list-header-template" data-template="artist-list-template" data-fixed-headers="true"></ul>
+            <ul data-role="indexedlistview" data-bind="source: artists" data-template="artist-list-template" data-fixed-headers="true"></ul>
         </div>
         
         <div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
@@ -233,10 +233,6 @@
             <a href="\#albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
         </script>
 
-        <script id="artist-list-header-template" type="text/x-kendo-template">
-            <span class="index-#:data.value#">#:data.value#</span>
-        </script>
-
         <script id="artist-list-template" type="text/x-kendo-template">
             <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
         </script>
@@ -254,10 +250,11 @@
         </script>
 
         <script id="cart-list-template" type="text/x-kendo-template">
-            <div data-role="touch" data-enable-swipe="1" data-swipe="app.cartView.onRemove">
+            <div data-role="touch" data-enable-swipe="1" data-swipe="app.cartView.onToggleDeleteMode" data-hold="app.cartView.onToggleDeleteMode">
                 <div class="qty-and-price">
-                    <strong>Qty</strong>
-                    <input type="number" data-bind="value: qty" min="1" max="99" />
+                    <strong data-bind="invisible: deleteMode">Qty</strong>
+                    <input type="number" data-bind="value: qty, invisible: deleteMode" min="1" max="99" />
+                    <span class="cart-delete-button" data-role="button" data-click="app.cartView.onRemove" data-bind="visible: deleteMode" data-icon="trash"></span>
                 </div>
                 <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
                 <h1 class="album-title" data-bind="text: album.Title"></h1>
