@@ -1,7 +1,10 @@
 define(["jQuery", "kendo", "data", "templates"], function ($, kendo, data, templates) {
     return {
         onShow: function (e) {
-            $(e.sender.element).find(".select-group").data("kendoMobileButtonGroup").select(0);
+            var btnGrp = $(e.sender.element).find(".select-group").data("kendoMobileButtonGroup");
+            if(btnGrp) {
+                btnGrp.select(0);
+            }
         },
         
         viewModel: kendo.observable({

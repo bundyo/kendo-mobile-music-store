@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\footer-logos.png" />
+    <Content Include="Images\icon.png" />
     <Content Include="Images\rays-background-horizontal.png" />
     <Content Include="Images\rays-background.png" />
     <Content Include="index.html" />

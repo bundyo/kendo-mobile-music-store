@@ -95,6 +95,15 @@ define([], function () {
             listView.stopEndlessScrolling(); //incase it hasn't already been stopped.
             //listView._loadIcon.parent().show(); //reenable the loading icon.
             listView._bindScroller(); //rebind to the scroller.
+        },
+
+        closeAllPopovers: function() {
+            $(".km-popup").each(function (idx, item) {
+                var popover = $(item).data().kendoMobilePopOver;
+                if(popover) {
+                    popover.close();
+                }
+            });
         }
     };
 });

@@ -125,6 +125,13 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
             }
         },
 
+        layoutShow: function (showEvt) {
+            if(showEvt.layout.bound) { return; }
+            showEvt.layout.bound = true;
+            kendo.bind(showEvt.view.header, viewModel, kendo.mobile.ui);
+            kendo.bind(showEvt.view.footer, viewModel, kendo.mobile.ui);
+        },
+
         accountViewShow: function (showEvt) {
             var element = $("#order-history-list");
             var existingList = element.data().kendoMobileListView;
@@ -137,7 +144,7 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
                 template: kendo.template($("#order-history-template").text()),
                 headerTemplate: kendo.template($("#order-history-header-template").text())
             });
-    },
+        },
 
         calcOrderTotal: function (orderItems) {
             var total = 0;
@@ -145,6 +152,14 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
                 total += (orderItems[i].Quantity * orderItems[i].UnitPrice);
             }
             return kendo.toString(total, "c");
+        },
+
+        action: function (clickEvt) {
+            utils.closeAllPopovers();
+            var action = $(clickEvt.target).data("action");
+            if(action === "logout") {
+                viewModel.logout(clickEvt);
+            }
         },
 
         viewModel: viewModel

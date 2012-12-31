@@ -52,15 +52,23 @@ define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, util
 
         init = function (initEvt) {
             _view = initEvt.view
-            kendo.bind(initEvt.sender.element.find(".total"), cart.aggregates, kendo.mobile.ui);
             viewModel.set("cartHasItems", cart.items.view().length > 0);
             cart.items.bind("change", function () {
                 viewModel.set("cartHasItems", cart.items.view().length > 0);
             });
+        },
+
+        layoutShow = function (showEvt) {
+            if(showEvt.layout.bound) { return; }
+            showEvt.layout.bound = true;
+            kendo.bind(showEvt.view.header, viewModel, kendo.mobile.ui);
+            kendo.bind(showEvt.view.footer, viewModel, kendo.mobile.ui);
+            kendo.bind(showEvt.view.element.find(".total"), cart.aggregates, kendo.mobile.ui);
         };
 
     return {
         init: init,
+        layoutShow: layoutShow,
         onRemove: onRemove,
         onToggleDeleteMode: onToggleDeleteMode,
         viewModel: viewModel

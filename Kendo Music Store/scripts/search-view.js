@@ -36,10 +36,10 @@ define(["jQuery", "kendo", "config", "utils", "data", "cart", "templates", "albu
         },
 
         show: show,
+        submitSearch: submitSearch,
 
         viewModel: kendo.observable($.extend({
-            results: data.searchList,
-            submitSearch: submitSearch,
+            results: data.searchList
         }, albums.baseAlbumViewModel))
     }
 });

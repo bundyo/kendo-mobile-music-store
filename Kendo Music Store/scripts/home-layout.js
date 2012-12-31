@@ -21,6 +21,11 @@ define(["jQuery", "utils", "cart"], function ($, utils, cart) {
         
         show: function (showEvt) {
             utils.updateCartBadges($, cart);
+        },
+
+        navigate: function (clickEvt) {
+            utils.closeAllPopovers();
+            utils.navigate(clickEvt.target.data().target);
         }
     }
 });
