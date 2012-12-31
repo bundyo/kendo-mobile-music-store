@@ -29,12 +29,17 @@ input[type="text"], input[type="password"] {
 
 .km-ios .km-header { background: #E6E6E6; }
 
-.k-invalid-msg {
+.k-invalid-msg
+{
     background: rgba(255, 0, 0, .2);
-    display: inline-block;
     padding: 2px 5px 2px 4px;
+    position: absolute;
+    right: 0;
+    font-size: .6rem;
+    top: 0;
 }
-    .km-android .k-invalid-msg { background: red; }
+
+    .km-android .k-invalid-msg { background: rgba(255, 0, 0, .6); }
 
 /* Modals */
 
@@ -286,6 +291,19 @@ input[type="text"], input[type="password"] {
 
 .album-cart {
     margin-left: 10px;
+}
+
+#checkout-view input
+{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 50%;
+    font-size: 1rem;
+}
+
+#checkout-view section
+{
+    padding: 0;
 }
 
 /* Shipping */
