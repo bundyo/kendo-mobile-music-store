@@ -8,12 +8,26 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _prevIndex = undefined;
     var _indexCard = $('<div class="km-listview-index-card"></div>');
 
+    var _indexSelected = function (x, y) {
+        try {
+            var targetElement = $(document.elementFromPoint(x, y));
+            var targetIndex = parseInt(targetElement.data("index"));
+            if(_prevIndex !== targetIndex) {
+                _prevIndex = targetIndex;
+                _scrollToIndex(targetIndex);
+                _showIndexCard(y, targetElement.text());
+            }
+        } catch (ex) {
+            _onIndexDragEnd();
+        }
+    };
+
     var _scrollToIndex = function (targetIndex) {
         var targetTop = that.headers[that.headers.length - targetIndex - 1].offset;
         that._scroller().scrollTo(0, targetTop * -1);
     };
 
-    var _showIndexCard = function (x, y, text) {
+    var _showIndexCard = function (y, text) {
         _indexCard.text(text);
         _indexCard.css("top", (y - (_indexCard.height() / 2)) + "px");
         _indexCard.css("left", (Math.floor((_scrollWrapper.width() * .7) - (_indexCard.width() / 2))) + "px");
@@ -21,17 +35,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
     };
 
     var _onIndexDragMove = function (e) {
-        try {
-            var targetElement = $(document.elementFromPoint(e.touch.x.location, e.touch.y.location));
-            var targetIndex = parseInt(targetElement.data("index"));
-            if(_prevIndex !== targetIndex) {
-                _prevIndex = targetIndex;
-                _scrollToIndex(targetIndex);
-                _showIndexCard(e.touch.x.location, e.touch.y.location, targetElement.text());
-            }
-        } catch (ex) {
-            _onIndexDragEnd();
-        }
+        _indexSelected(e.touch.x.location, e.touch.y.location);
     };
 
     var _onIndexDragStart = function () {
@@ -83,7 +87,9 @@ define(["jQuery", "kendo"], function ($, kendo) {
             _indexList.kendoTouch({
                 dragstart:_onIndexDragStart,
                 drag: _onIndexDragMove,
-                dragend: _onIndexDragEnd
+                dragend: _onIndexDragEnd,
+                touchstart: function (e) { _onIndexDragStart(e); _onIndexDragMove(e); },
+                tap: _onIndexDragEnd
             });
             
             _preventScrollingOfParentScroller();
