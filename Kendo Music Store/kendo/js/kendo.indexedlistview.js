@@ -16,7 +16,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
     var _showIndexCard = function (x, y, text) {
         _indexCard.text(text);
         _indexCard.css("top", (y - (_indexCard.height() / 2)) + "px");
-        _indexCard.css("left", ((_scrollWrapper.width() / 2) - (_indexCard.width() / 2)) + "px");
+        _indexCard.css("left", (Math.floor((_scrollWrapper.width() * .7) - (_indexCard.width() / 2))) + "px");
         _indexCard.show();
     };
 

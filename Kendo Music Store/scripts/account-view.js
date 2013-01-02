@@ -12,7 +12,7 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
     
     var _redirectAfterLogin = function () {
         if(_loginView.params && _loginView.params.navto) {
-            utils.navigate("#" +_loginView.params.navto);
+            utils.redirect("#" +_loginView.params.navto);
             return;
         }
         utils.redirect("#account-view");
