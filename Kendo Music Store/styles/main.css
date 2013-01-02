@@ -392,7 +392,6 @@ input[type="text"], input[type="password"] {
     padding: 10px;
 }
 
-/*.km-root .qty-and-price .km-button.cart-delete-button*/
 #body .cart-delete-button
 {
     background-color: #900;
@@ -519,8 +518,7 @@ input[type="text"], input[type="password"] {
     display: none;
 }
 
-/*.km-root .km-android .km-navbar input[type="text"].search-text*/
-#body .search-text
+#body .km-android .search-text
 {
     font-size: 1em;
     width: 100%;
