@@ -510,8 +510,7 @@ input[type="text"], input[type="password"] {
 
 .km-android .action-buttons .km-button .km-icon {
     font-size: 1.5rem;
-    margin-right: .5rem;
-    margin-top:.7rem;
+    margin:.8rem .5rem;
 }
 
 .km-root .km-pane .km-view .km-action-overflow {
