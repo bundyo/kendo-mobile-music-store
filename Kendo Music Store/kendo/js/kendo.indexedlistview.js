@@ -16,7 +16,8 @@ define(["jQuery", "kendo"], function ($, kendo) {
             if(_prevIndex !== targetIndex) {
                 _prevIndex = targetIndex;
                 _scrollToIndex(targetIndex);
-                _showIndexCard(y, targetElement.text());
+                window.x = targetElement;
+                _showIndexCard(targetElement.offset().top - (targetElement.height() / 2), targetElement.text());
             }
         } catch (ex) {
             _onIndexDragEnd();
@@ -44,7 +45,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
         _indexList.addClass("km-ontouch");
     };
 
-    var _onIndexDragEnd = function (e) {
+    var _onIndexDragEnd = function () {
         _indexCard.hide();
         _prevIndex = undefined;
         _indexList.removeClass("km-ontouch");
@@ -68,6 +69,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
             that = this;
 
             base.fn.init.call(that, element, options);
+            $(element).addClass("km-indexedlistview");
 
             if (that._scroller()) {
                 kendo.onResize(function() {

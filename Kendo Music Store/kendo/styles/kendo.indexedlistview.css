@@ -71,7 +71,8 @@
             right: -34px;
         }*/
 
-.km-listview-link:after
+.km-root .km-indexedlistview .km-listview-link:after
 {
+    display: none;
     border-style: none;
 }
