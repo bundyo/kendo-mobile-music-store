@@ -3,6 +3,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
 
     var base = kendo.mobile.ui.ListView;
     var that;
+    var userEvents;
     var _indexList = $('<ul class="km-listview-index"></ul>');
     var _scrollWrapper;
     var _prevIndex = undefined;
@@ -43,7 +44,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
         _indexList.addClass("km-ontouch");
     };
 
-    var _onIndexDragEnd = function () {
+    var _onIndexDragEnd = function (e) {
         _indexCard.hide();
         _prevIndex = undefined;
         _indexList.removeClass("km-ontouch");
@@ -62,12 +63,6 @@ define(["jQuery", "kendo"], function ($, kendo) {
         _indexList.css("font-size", (lineHeight - 1) + "px");
     };
 
-    var _preventScrollingOfParentScroller = function () {
-        _indexList.bind("touchstart", function (e) { e.preventDefault(); return true; });
-        _indexList.bind("touchmove", function (e) { e.preventDefault(); return false; });
-        _indexList.bind("touchend", function (e) { e.preventDefault(); return false; });
-};
-
     var IndexedListView = base.extend({
         init: function(element, options) {
             that = this;
@@ -84,15 +79,15 @@ define(["jQuery", "kendo"], function ($, kendo) {
             _scrollWrapper.prepend(_indexList);
             $("body").prepend(_indexCard);
 
-            _indexList.kendoTouch({
-                dragstart:_onIndexDragStart,
-                drag: _onIndexDragMove,
-                dragend: _onIndexDragEnd,
-                touchstart: function (e) { _onIndexDragStart(e); _onIndexDragMove(e); },
-                tap: _onIndexDragEnd
+           
+            that.userEvents = new kendo.UserEvents(_indexList, {
+                stopPropagation: true,
+                press: function (e) { _onIndexDragStart(); _onIndexDragMove(e); },
+                tap: _onIndexDragEnd,
+                start: function () { that.userEvents.capture(); _onIndexDragStart(); },
+                move: _onIndexDragMove,
+                end: _onIndexDragEnd
             });
-            
-            _preventScrollingOfParentScroller();
         },
 
         options: $.extend(base.options, {
