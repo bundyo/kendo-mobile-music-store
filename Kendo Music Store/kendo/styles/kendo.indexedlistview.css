@@ -71,7 +71,7 @@
             right: -34px;
         }*/
 
-.km-listview-link::after
+.km-listview-link:after
 {
     border-style: none;
 }
