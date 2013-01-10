@@ -6,12 +6,13 @@
     <AppIdentifier>com.telerik.Kendo_Music_Store</AppIdentifier>
     <ProjectName>Kendo Music Store</ProjectName>
     <IsRunnable>true</IsRunnable>
-    <TemplateAppName>Cordova200</TemplateAppName>
+    <TemplateAppName>Cordova220</TemplateAppName>
     <AndroidPermissions>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS;android.permission.INTERNET;android.permission.WRITE_EXTERNAL_STORAGE;android.permission.ACCESS_NETWORK_STATE</AndroidPermissions>
     <DeviceOrientations>Portrait;Landscape</DeviceOrientations>
     <iOSStatusBarStyle>Default</iOSStatusBarStyle>
     <BundleVersion>1.0</BundleVersion>
     <AndroidVersionCode>1</AndroidVersionCode>
+    <AndroidHardwareAcceleration>True</AndroidHardwareAcceleration>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="App_Resources" />
@@ -107,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <CordovaPlugin Include="com.phonegap.plugins.childbrowser">
-      <Version>3.0.4</Version>
+      <Version>4.0.0</Version>
       <Name>Child Browser</Name>
     </CordovaPlugin>
   </ItemGroup>
