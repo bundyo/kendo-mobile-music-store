@@ -1,4 +1,4 @@
-define(["jQuery", "utils"], function ($, utils) {
+define(["jQuery", "utils", "cart"], function ($, utils, cart) {
     var _openExternal = function (event, url) {
         try {
             window.plugins.childBrowser.openExternal(url);
@@ -13,6 +13,10 @@ define(["jQuery", "utils"], function ($, utils) {
     };
 
     return {
+        show: function () {
+            utils.updateCartBadges($, cart);
+        },
+
         viewModel: {
             openKendoWeb: function (clickEvt) {
                 _openExternal(clickEvt, 'http://www.kendoui.com');

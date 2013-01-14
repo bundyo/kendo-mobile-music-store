@@ -14,7 +14,7 @@ define(["jQuery", "kendo", "kendoIndexedListView", "data", "config", "utils", "c
             loading: '<h1 class="loading-message">Loading...</h1>'
         });
         utils.init(kendoApp);
-        cart.items.bind("change", function () { utils.updateCartBadges($, cart) });
+        cart.items.bind("change", function () { utils.updateCartBadges($, cart); });
     };
 
     return {

@@ -1,4 +1,4 @@
-define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, utils) {
+define(["jQuery", "kendo", "cart", "config", "utils"], function ($, kendo, cart, config, utils) {
     "use strict";
 
     var _view;
@@ -59,6 +59,7 @@ define(["kendo", "cart", "config", "utils"], function (kendo, cart, config, util
         },
 
         layoutShow = function (showEvt) {
+            utils.updateCartBadges($, cart);
             if(showEvt.layout.bound) { return; }
             showEvt.layout.bound = true;
             kendo.bind(showEvt.view.header, viewModel, kendo.mobile.ui);

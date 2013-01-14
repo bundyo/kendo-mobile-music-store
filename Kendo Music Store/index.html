@@ -89,7 +89,7 @@
             <ul data-role="listview" data-bind="source: results" data-template="album-list-template" data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
         </div>
 
-        <div data-role="layout" data-id="search-layout">
+        <div data-role="layout" data-id="search-layout" data-show="app.baseLayout.show">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <div data-role="layout" data-id="search-layout" data-platform="android">
+        <div data-role="layout" data-id="search-layout" data-platform="android" data-show="app.baseLayout.show">
             <header data-role="header">
                 <div data-role="navbar">
                     <a class="nav-button" data-align="left" data-role="backbutton"></a>
@@ -333,7 +333,7 @@
             </ul>
         </div>
 
-        <div data-role="layout" data-id="about-layout">
+        <div data-role="layout" data-id="about-layout" data-show="app.baseLayout.show">
             <div data-role="footer">
                 <div data-role="tabstrip">
                     <a href="#genres-view" data-icon="home">Home</a>
@@ -345,7 +345,7 @@
             </div>
         </div>
 
-        <div data-role="layout" data-id="about-layout" data-platform="android">
+        <div data-role="layout" data-id="about-layout" data-platform="android" data-show="app.baseLayout.show">
             <header data-role="header">
                 <div data-role="navbar">
                     <a href="#genres-view" class="nav-button" data-align="left" data-role="backbutton"></a>
