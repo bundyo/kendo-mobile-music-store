@@ -91,7 +91,6 @@
     <Content Include="scripts\require.js" />
     <Content Include="scripts\search-view.js" />
     <Content Include="scripts\splash-view.js" />
-    <Content Include="scripts\templates.js" />
     <Content Include="scripts\utils.js" />
     <Content Include="Images\awesomesauce-logo.png" />
     <Content Include="Images\kendo-ui-logo.png" />

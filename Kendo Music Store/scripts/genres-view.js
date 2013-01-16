@@ -1,4 +1,4 @@
-define(["jQuery", "kendo", "data", "templates"], function ($, kendo, data, templates) {
+define(["jQuery", "kendo", "data"], function ($, kendo, data) {
     return {
         onShow: function (e) {
             var btnGrp = $(e.sender.element).find(".select-group").data("kendoMobileButtonGroup");

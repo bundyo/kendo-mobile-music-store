@@ -111,7 +111,7 @@ define(["jQuery", "kendo", "config", "utils"], function ($, kendo, config, utils
                         }
                     }
                 },
-                requestStart: function () { if (this.page() === 1) { utils.showLoading(); }}, //infinite scrolling has its own, less obtrusive indicator
+                requestStart: function () { if (this.page() === 1) { utils.showLoading(); }},
                 requestEnd: function () { if (this.page() === 1) { utils.hideLoading(); }},
                 error: function () { utils.hideLoading(); utils.showError("There was an error loading the data from the server. Please close the app and try again."); }
             });
