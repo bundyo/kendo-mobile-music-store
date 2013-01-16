@@ -1,5 +1,17 @@
 define(["kendo", "data", "utils", "cart", "albums"], function (kendo, data, utils, cart, albums) {
-    var _refreshListViewScrolling = false;
+    var _createAlbumsListView = function () {
+        var listViewElement = $("#albums-listview");
+        var existingListView = listViewElement.data().kendoMobileListView;
+        var viewModel = kendo.observable($.extend({
+            albums: data.albumsList
+        }, albums.baseAlbumViewModel));
+
+        if(existingListView) {
+            existingListView.destroy();
+        }
+
+        kendo.bind(listViewElement, viewModel, kendo.mobile.ui);
+    };
 
     return {
         show: function (e) {
@@ -10,17 +22,7 @@ define(["kendo", "data", "utils", "cart", "albums"], function (kendo, data, util
             data.clear(data.albumsList);
             data.albumsList.filter(filter);
 
-            if(_refreshListViewScrolling) {
-                utils.reEnableEndlessScrolling(e.view.element.find("ul.km-listview"));
-                _refreshListViewScrolling = false;
-            }
-        },
-        
-        viewModel: kendo.observable($.extend({
-            albums: data.albumsList,
-            lastPageReached: function (e) {
-                _refreshListViewScrolling = true;
-            }
-        }, albums.baseAlbumViewModel))
+            _createAlbumsListView();
+        }
     }
 });

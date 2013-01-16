@@ -11,15 +11,24 @@ define(["jQuery", "kendo", "config", "utils", "data", "cart", "albums"], functio
             };
         },
 
-        submitSearch = function (e) {
+        submitSearch = function () {
             var filter;
+            var listViewElement = $("#search-listview");
+            var existingListView = listViewElement.data().kendoMobileListView;
+            var viewModel = kendo.observable($.extend({
+                results: data.searchList
+            }, albums.baseAlbumViewModel));
+
+            if(existingListView) {
+                existingListView.destroy();
+            }
 
             utils.scrollViewToTop(_viewElement);
-            
+
             filter = _buildSearchFilter(_viewElement.find(".search-text").val());
             data.searchList.filter(filter);
 
-            utils.reEnableEndlessScrolling(_viewElement.find("ul.km-listview"));
+            kendo.bind(listViewElement, viewModel, kendo.mobile.ui);
         },
         
         show = function (showEvent) {
@@ -36,10 +45,6 @@ define(["jQuery", "kendo", "config", "utils", "data", "cart", "albums"], functio
         },
 
         show: show,
-        submitSearch: submitSearch,
-
-        viewModel: kendo.observable($.extend({
-            results: data.searchList
-        }, albums.baseAlbumViewModel))
+        submitSearch: submitSearch
     }
 });

@@ -30,7 +30,7 @@
                 </div>
             </header>
 
-            <ul data-role="listview" data-bind="source: albums, events: {lastPageReached: lastPageReached}" data-auto-bind="false" data-template="album-list-template" data-style="inset" data-endless-scroll="true"></ul>
+            <ul id="albums-listview" data-role="listview" data-bind="source: albums" data-auto-bind="false" data-template="album-list-template" data-style="inset" data-endless-scroll="true"></ul>
         </div>
 
         <div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init" data-show="app.homeLayout.show">
@@ -85,8 +85,8 @@
 
         <!-- Search Views -->
 
-        <div data-role="view" id="search-view" data-layout="search-layout" data-title="Search" data-model="app.searchView.viewModel" data-init="app.searchView.init" data-show="app.searchView.show" style="display: none;">
-            <ul data-role="listview" data-bind="source: results" data-template="album-list-template" data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
+        <div data-role="view" id="search-view" data-layout="search-layout" data-title="Search" data-init="app.searchView.init" data-show="app.searchView.show" style="display: none;">
+            <ul id="search-listview" data-role="listview" data-bind="source: results" data-template="album-list-template" data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
         </div>
 
         <div data-role="layout" data-id="search-layout" data-show="app.baseLayout.show">
