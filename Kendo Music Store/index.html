@@ -126,6 +126,16 @@
         <!-- Cart Checkout Views -->
 
         <div data-role="view" id="cart-view" data-layout="cart-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
+            <header data-role="header" class="cart-header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton" data-bind="visible: isAndroid"></a>
+                    <span data-role="view-title"></span>
+                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
+                </div>
+                <h3>Swipe to Remove Item</h3>
+                <h1>TOTAL: <span class="total" data-bind="text: cart.aggregates.formattedTotal"></span></h1>
+            </header>
+
             <ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>
         </div>
         
@@ -184,15 +194,7 @@
             <h1 class="thank-you">Thank You!</h1>
         </div>
 
-        <div data-role="layout" data-id="cart-layout" data-show="app.cartView.layoutShow">
-            <header data-role="header" class="cart-header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
-                </div>
-                <h3>Swipe to Remove Item</h3>
-                <h1>TOTAL: <span class="total" data-bind="text: formattedTotal"></span></h1>
-            </header>
+        <div data-role="layout" data-id="cart-layout" data-show="app.cartView.layoutShow" data-platform="ios">
             <div data-role="footer">
                 <div data-role="tabstrip">
                     <a href="#genres-view" data-icon="home">Home</a>
@@ -202,18 +204,6 @@
                     <a href="#about-view" data-icon="about">About</a>
                 </div>
             </div>
-        </div>
-
-        <div data-role="layout" data-id="cart-layout" data-show="app.cartView.layoutShow" data-platform="android">
-            <header data-role="header" class="cart-header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton"></a>
-                    <span data-role="view-title"></span>
-                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
-                </div>
-                <h3>Swipe to Remove Item</h3>
-                <h1>TOTAL: <span class="total" data-bind="text: formattedTotal"></span></h1>
-            </header>
         </div>
 
         <div data-role="layout" data-id="checkout-complete-layout" data-show="app.baseLayout.show">

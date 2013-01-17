@@ -38,6 +38,11 @@ define(["jQuery", "kendo", "cart", "config", "utils"], function ($, kendo, cart,
         viewModel = kendo.observable({
             items: cart.items,
             cartHasItems: false,
+            cart: cart,
+
+            isAndroid: function () {
+                return $("body").hasClass("km-android");
+            },
 
             albumPrice: function (cartItem) {
                 return kendo.toString(parseFloat(cartItem.album.get("Price")), "c");
@@ -58,13 +63,8 @@ define(["jQuery", "kendo", "cart", "config", "utils"], function ($, kendo, cart,
             });
         },
 
-        layoutShow = function (showEvt) {
+        layoutShow = function () {
             utils.updateCartBadges($, cart);
-            if(showEvt.layout.bound) { return; }
-            showEvt.layout.bound = true;
-            kendo.bind(showEvt.view.header, viewModel, kendo.mobile.ui);
-            kendo.bind(showEvt.view.footer, viewModel, kendo.mobile.ui);
-            kendo.bind(showEvt.view.element.find(".total"), cart.aggregates, kendo.mobile.ui);
         };
 
     return {
