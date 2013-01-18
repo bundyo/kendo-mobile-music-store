@@ -23,6 +23,7 @@ define(["jQuery", "kendo"], function ($, kendo) {
                 model: {
                     fields: {
                         qty: { type: "number", min: 1, max: 99 },
+                        deleteMode: { type: "boolean" },
                         album: {}
                     }
                 }

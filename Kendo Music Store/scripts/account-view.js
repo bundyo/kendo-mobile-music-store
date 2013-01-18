@@ -21,8 +21,8 @@ define(["jQuery", "kendo", "config", "utils", "account", "data"], function ($, k
     var viewModel = kendo.observable({
         userName: account.userName,
         errorMessage: "",
-        loginUsername: "",
-        loginPassword: "",
+        loginUsername: "owner",
+        loginPassword: "p@ssword123",
         registerUsername: "",
         registerPassword: "",
         registerPasswordRetyped: "",

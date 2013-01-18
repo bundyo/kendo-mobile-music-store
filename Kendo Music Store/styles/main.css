@@ -127,11 +127,6 @@ input[type="text"], input[type="password"] {
 }
     .km-android #account-view header h2 { color: #fff; }
 
-.log-off {
-    position: absolute;
-    right: 1rem;
-}
-
 .order-history-list li .order-number { 
     float: left;
     margin: 5px 0;
