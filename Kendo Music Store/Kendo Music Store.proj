@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>bbbc04f5-79e5-4381-8e0e-1f19ca32d44d</ProjectGuid>
     <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
-    <AppIdentifier>com.telerik.Kendo_Music_Store</AppIdentifier>
+    <AppIdentifier>com.telerik.KendoMusicStore</AppIdentifier>
     <ProjectName>Kendo Music Store</ProjectName>
     <IsRunnable>true</IsRunnable>
     <TemplateAppName>Cordova220</TemplateAppName>
