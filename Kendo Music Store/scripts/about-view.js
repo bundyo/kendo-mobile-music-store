@@ -1,9 +1,13 @@
 define(["jQuery", "utils", "cart"], function ($, utils, cart) {
     var _openExternal = function (event, url) {
-        try {
-            window.plugins.childBrowser.openExternal(url);
-        } catch(ex) {
-            utils.showError("Sorry, opening an external page is only avaibale on an actual device.");
+        if($("body").hasClass("km-ios")) {
+            window.location.href = url;
+        } else {
+            try {
+                window.plugins.childBrowser.openExternal(url);
+            } catch(ex) {
+                utils.showError("Sorry, there was an error trying to open this external URL: " + url);
+            }
         }
         
         if(event && event.preventDefault) {
